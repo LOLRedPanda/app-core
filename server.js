@@ -42,14 +42,6 @@ app.get('/summoner/topChampions', async (req, res) => {
     res.send(await getTop5Champions('redpanda0129'))
 })
 
-// async function getChampions() {
-//     app.get('/summoner/topChampions', (req, res) => {
-//         res.send(await getTop5Champions('redpanda0129'))
-//       })
-      
-      
-// }
-
 
 
 

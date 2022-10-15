@@ -1,56 +1,31 @@
 require('dotenv').config()
 const fs = require("fs")
-const axios = require('axios')
+const {RiotApi} = require('./src/services/riotApi')
 const jsonQuery = require('json-query')
-const { lookup } = require('dns')
-const { json } = require('express')
-
-
 
 async function getTop5Champions() {
-
-    const {status, data} = await axios.get(
-        'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/RedPanda0129', 
-        {
-            params: {
-                api_key: process.env.RIOT_API_KEY
-            }
-    })
+    const riotApi = new RiotApi()
     
-    const {id} = data
-
-    
-    console.log(id)
+    const id = await riotApi.getplayerIdByName('RedPanda0129')
 
     getChampionMastery(id)
-
 }
 
 async function getChampionMastery(id) {
-    const {status, data} = await axios.get(
-        `https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${id}/top`, 
-        {
-            params: {
-                count: 5,
-                api_key: process.env.RIOT_API_KEY
-            }
-    }
-    )
+    const riotApi = new RiotApi()
+    const top5Ids = await riotApi.getTopUsedChampionsIds(id, 5)
     const jsonString = fs.readFileSync("./static-data/champions.json", "utf-8")
     const rawData = JSON.parse(jsonString)
     const championData = rawData.data
-    // console.log(championData)
-    const top5 = []
-    data.forEach(
-        (champion) => {
-            const {championId} = champion
-            const {name} = jsonQuery(`[**][key=${championId}]`, {data: championData}).value
-            top5.push(name)
+    const top5Names = []
+    top5Ids.forEach(
+        (id) => {
+            const {name} = jsonQuery(`[**][key=${id}]`, {data: championData}).value
+            top5Names.push(name)
         }
     )
-    console.log(top5)
-    
-  
+    console.log(top5Names)
+
 }
 
 getTop5Champions()

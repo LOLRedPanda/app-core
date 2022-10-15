@@ -1,7 +1,7 @@
 const axios = require('axios')
 
 class RiotApi {
-    constructor(apiKey) {
+    constructor() {
         this.url = 'https://na1.api.riotgames.com/lol'
         this.options = {
             params: {

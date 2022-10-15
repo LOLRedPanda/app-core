@@ -2,13 +2,15 @@ require('dotenv').config()
 const fs = require("fs")
 const {RiotApi} = require('./src/services/riotApi')
 const jsonQuery = require('json-query')
+const express = require('express')
 
-async function getTop5Champions() {
+async function getTop5Champions(name) {
     const riotApi = new RiotApi()
     
-    const id = await riotApi.getplayerIdByName('RedPanda0129')
+    const id = await riotApi.getplayerIdByName(name)
 
-    getChampionMastery(id)
+    const result = await getChampionMastery(id)
+    return result
 }
 
 async function getChampionMastery(id) {
@@ -24,11 +26,33 @@ async function getChampionMastery(id) {
             top5Names.push(name)
         }
     )
-    console.log(top5Names)
-
+    return top5Names
 }
 
-getTop5Champions()
+const app = express()
+const port = 3000
+
+getTop5Champions('redpanda0129').then((result) => console.log(result))
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
+
+app.get('/summoner/topChampions', async (req, res) => {
+    res.send(await getTop5Champions('redpanda0129'))
+})
+
+// async function getChampions() {
+//     app.get('/summoner/topChampions', (req, res) => {
+//         res.send(await getTop5Champions('redpanda0129'))
+//       })
+      
+      
+// }
+
+
+
+
 
 
 

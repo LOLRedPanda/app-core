@@ -1,0 +1,1 @@
+# lol-scouting-api

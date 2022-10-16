@@ -10,7 +10,7 @@ class RiotApi {
         }
     }
 
-    async getplayerIdByName(name) {
+    async getPlayerIdByName(name) {
         const {data} = await axios.get(`${this.url}/summoner/v4/summoners/by-name/${name}`, this.options)
         return data.id
     }
@@ -28,8 +28,6 @@ class RiotApi {
         )
         return championIds
     }
-
-   
 }
 
 module.exports.RiotApi = RiotApi

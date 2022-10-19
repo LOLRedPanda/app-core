@@ -1,0 +1,27 @@
+name: Test
+description: Run Tests
+
+inputs:
+  workingDirectory:
+    required: true
+    description: "The Directory of the application to test"
+
+runs:
+  using: composite
+  steps:
+
+  - name: NPM Install
+    shell: bash
+    run : npm install
+    working-directory: ${{ inputs.workingDirectory }}
+
+# TODO
+  # - name: Lint
+  #   shell: bash
+  #   run: yarn run lint
+  #   working-directory: ${{ inputs.workingDirectory }}
+
+  - name: Unit Test
+    shell: bash
+    run: npm test
+    working-directory: ${{ inputs.workingDirectory }}

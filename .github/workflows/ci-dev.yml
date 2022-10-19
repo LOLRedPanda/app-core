@@ -1,5 +1,4 @@
 name: DEV - CI
-description: Continuous integration for the dev environment
 
 on:
   push:
@@ -13,6 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: '../actions/tests'
+    - uses: ../actions/tests
       with:
         workingDirectory: ./

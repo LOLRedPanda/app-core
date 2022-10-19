@@ -12,6 +12,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: ../actions/tests
-      with:
-        workingDirectory: ./
+    - name: NPM Install
+      shell: bash
+      run : npm install
+
+    # TODO
+      # - name: Lint
+      #   shell: bash
+      #   run: yarn run lint
+
+    - name: Unit Test
+      shell: bash
+      run: npm test

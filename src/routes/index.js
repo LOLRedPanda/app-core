@@ -7,8 +7,16 @@ function Routes(app) {
 
     app.get('/summoner/topChampions', async (req, res) => {
         const name = req.query.name;
+        const id = await riotApi.getPlayerIdByName(name)
         const summoner = new SummonerController(name, riotApi)
-        res.send(await summoner.getTop5Champions(name))
+        const rank = await summoner.getRank(id)
+        const champs = await summoner.getChampionMastery(id)
+
+        const data = "Username: " + name +
+        "<br/>Rank: " + rank +
+        "<br/>Top 5 Champs By Mastery: " + champs
+        
+        res.send(data)
     })
 }
 

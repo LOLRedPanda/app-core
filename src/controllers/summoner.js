@@ -9,10 +9,10 @@ class SummonerController {
         this.champions = champs.getChampions()
     }
 
-    async getTop5Champions(name) {
-        const id = await this.riotApi.getPlayerIdByName(name)
-        return await this.getChampionMastery(id)
-    }
+    // async getPlayerInfo(name) {
+    //     const id = await this.riotApi.getPlayerIdByName(name)
+    //     return await this.getChampionMastery(id)
+    // }
 
     async getChampionMastery(id) {
         const top5Ids = await this.riotApi.getTopUsedChampionsIds(id, 5)
@@ -24,6 +24,11 @@ class SummonerController {
             }
         )
         return top5Names
+    }
+
+    async getRank(id){
+        const currentRank = await this.riotApi.getCurrentRank(id)
+        return currentRank
     }
 }
 

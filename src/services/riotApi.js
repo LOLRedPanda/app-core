@@ -28,6 +28,11 @@ class RiotApi {
         )
         return championIds
     }
+     async getCurrentRank(PlayerID){
+         const {data} = await axios.get(`${this.url}/league/v4/entries/by-summoner/${PlayerID}`, this.options)
+         const rank = data[0].tier + " " + data[0].rank
+        return rank
+     }
 }
 
 module.exports.RiotApi = RiotApi

@@ -12,9 +12,11 @@ function Routes(app) {
         const rank = await summoner.getRank(id)
         const champs = await summoner.getChampionMastery(id)
 
-        const data = "Username: " + name +
-        "<br/>Rank: " + rank +
-        "<br/>Top 5 Champs By Mastery: " + champs
+        const data = {
+        Username:name, 
+        Rank:rank,
+        Top5ChampsByMastery:champs
+        }
         
         res.send(data)
     })

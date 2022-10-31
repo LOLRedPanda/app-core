@@ -17,7 +17,7 @@ describe('SummonerController', () => {
             const mockChampionIds = [ 81, 202, 145, 222, 22 ]
             mockRiotApi.getTopUsedChampionsIds.and.returnValue(mockChampionIds)
 
-            const result = await summoner.getChampionMastery('fakeId')
+            const result = await summoner.getChampionMastery(fakePlayerId)
             const expected = ["Ezreal","Jhin","Kai'Sa","Jinx","Ashe"]
             expect(result).toEqual(expected)
         })

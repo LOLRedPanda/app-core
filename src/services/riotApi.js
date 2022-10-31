@@ -2,7 +2,8 @@ const axios = require('axios')
 
 class RiotApi {
     constructor() {
-        this.url = 'https://na1.api.riotgames.com/lol'
+        this.na1url = 'https://na1.api.riotgames.com/lol'
+        this.americasurl = 'https://americas.api.riotgames.com/lol'
         this.options = {
             params: {
                 api_key: process.env.RIOT_API_KEY
@@ -11,14 +12,19 @@ class RiotApi {
     }
 
     async getPlayerIdByName(name) {
-        const {data} = await axios.get(`${this.url}/summoner/v4/summoners/by-name/${name}`, this.options)
+        const {data} = await axios.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
         return data.id
+    }
+
+    async getPlayerPuuIdByName(name) {
+        const {data} = await axios.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
+        return data.puuid
     }
 
     async getTopUsedChampionsIds(playerId, count) {
         const options = {...this.options}
         options.params.count = count
-        const {data} = await axios.get(`${this.url}/champion-mastery/v4/champion-masteries/by-summoner/${playerId}/top`, options)
+        const {data} = await axios.get(`${this.na1url}/champion-mastery/v4/champion-masteries/by-summoner/${playerId}/top`, options)
         const championIds = []
         data.forEach(
             (champion) => {
@@ -28,10 +34,25 @@ class RiotApi {
         )
         return championIds
     }
+
      async getCurrentRank(PlayerID){
-         const {data} = await axios.get(`${this.url}/league/v4/entries/by-summoner/${PlayerID}`, this.options)
+         const {data} = await axios.get(`${this.na1url}/league/v4/entries/by-summoner/${PlayerID}`, this.options)
          const rank = data[0].tier + " " + data[0].rank
         return rank
+     }
+
+     async getMatchId(PlayerID, queueId, count){
+        const options = {...this.options}
+        options.params.queue = queueId
+        options.params.count = count
+        const {data} = await axios.get(`${this.americasurl}/match/v5/matches/by-puuid/${PlayerID}/ids`, this.options)
+        return data[0]
+     }
+
+     async getMatchParticipants(matchId) {
+        const options = {...this.options}
+        const {data} = await axios.get(`${this.americasurl}/match/v5/matches/${matchId}`, this.options)
+        return data.info.participants
      }
 }
 

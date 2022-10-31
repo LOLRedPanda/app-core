@@ -12,8 +12,10 @@ runs:
 
   - name: NPM Install
     shell: bash
-    run : npm install
-    working-directory: ${{ inputs.workingDirectory }}/api
+    run : |
+      cd api
+      npm install
+    working-directory: ${{ inputs.workingDirectory }}
 
 # TODO
   # - name: Lint
@@ -23,5 +25,7 @@ runs:
 
   - name: Unit Test
     shell: bash
-    run: npm test
-    working-directory: ${{ inputs.workingDirectory }}/api
+    run: |
+      cd api
+      npm test
+    working-directory: ${{ inputs.workingDirectory }}

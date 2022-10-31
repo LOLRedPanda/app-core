@@ -14,7 +14,9 @@ jobs:
 
     - name: NPM Install
       shell: bash
-      run : npm install
+      run : |
+        cd api
+        npm install
 
     # TODO
       # - name: Lint
@@ -23,4 +25,6 @@ jobs:
 
     - name: Unit Test
       shell: bash
-      run: npm test
+      run: |
+        cd api
+        npm test

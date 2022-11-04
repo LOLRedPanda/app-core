@@ -9,14 +9,18 @@ function Routes(app) {
     app.get('/summoner', async (req, res) => {
         const name = req.query.name;
         const id = await riotApi.getPlayerIdByName(name)
+        const puuid = await riotApi.getPlayerPuuIdByName(name)
         const summoner = new SummonerController(name, riotApi)
         const rank = await summoner.getRank(id)
         const champs = await summoner.getChampionMastery(id)
-
+        const matchId = await summoner.getMatchId(puuid)
+        //const matchData = await summoner.getPlayerMatchHistory(matchId, puuid)
+        const CSPerMinute = await summoner.getCSPerMinute(puuid, matchId)
         const data = {
         Username:name, 
         Rank:rank,
-        Top5ChampsByMastery:champs
+        Top5ChampsByMastery:champs,
+        CS: CSPerMinute
         }
         
         res.send(data)

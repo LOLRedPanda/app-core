@@ -30,6 +30,15 @@ class SummonerController {
         const currentRank = await this.riotApi.getCurrentRank(id)
         return currentRank
     }
+    async getMatchId(puuid){
+        const matchId = await this.riotApi.getMatchId(puuid, 420, 20)
+        return matchId
+    }
+
+    async getCSPerMinute(puuid, matchId) {
+        const CSPerMinute = await this.riotApi.getCSPerMinute(puuid, matchId)
+        return CSPerMinute
+    }
 }
 
 module.exports.SummonerController = SummonerController

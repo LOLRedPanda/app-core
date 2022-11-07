@@ -13,9 +13,16 @@ function Routes(app) {
         const summoner = new SummonerController(name, riotApi)
         const rank = await summoner.getRank(id)
         const champs = await summoner.getChampionMastery(id)
-        const matchId = await summoner.getMatchId(puuid)
-        //const matchData = await summoner.getPlayerMatchHistory(matchId, puuid)
-        const CSPerMinute = await summoner.getCSPerMinute(puuid, matchId)
+        const matchIds = await summoner.getMatchIds(puuid)
+        const matches = []
+        matchIds.forEach(async (matchId) => {
+            const participants = await summoner.getAllMatchParticipants(matchId)
+            matches.push(participants)
+        })
+
+        console.log(matches)
+       // const matchParticipants = await summoner.getMatchParticipants(puuid)
+        const CSPerMinute = await summoner.getCSPerMinute(puuid, matchIds)
         const data = {
         Username:name, 
         Rank:rank,

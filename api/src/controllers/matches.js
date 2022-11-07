@@ -1,5 +1,7 @@
 const jsonQuery = require('json-query')
 const {Champions} = require('../models/champions')
+const { getParticipant } = require('./common')
+
 
 class MatchesController{
     constructor(riotApi) {
@@ -16,9 +18,7 @@ class MatchesController{
     async getPlayerMatchHistory(matchId, puuid) {
         const participants = await this.riotApi.getMatchParticipants(matchId)
 
-        const participant = participants.find(participant => {
-            if(participant.puuid === puuid) return participant
-        })
+        const participant = getParticipant(participants, puuid)
 
         if(participant === undefined){
             return `PUUID: ${puuid} does not exist for match: ${matchId}`

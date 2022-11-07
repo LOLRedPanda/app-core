@@ -40,11 +40,9 @@ class RiotApi {
          const rank = data[0].tier + " " + data[0].rank
         return rank
      }
-    //  async getCSPerMinute(){
 
-    //  }
 
-     async getMatchId(PlayerID, queueId, count){
+     async getMatchIds(PlayerID, queueId, count){
         const options = {...this.options}
         options.params.queue = queueId
         options.params.count = count
@@ -57,26 +55,7 @@ class RiotApi {
         const {data} = await axios.get(`${this.americasurl}/match/v5/matches/${matchId}`, this.options)
         return data.info.participants
      }
-     async getMatchId(PlayerID, queueId, count){
-        const options = {...this.options}
-        options.params.queue = queueId
-        options.params.count = count
-        const {data} = await axios.get(`${this.americasurl}/match/v5/matches/by-puuid/${PlayerID}/ids`, this.options)
-        return data
-     }
 
-     async getCSPerMinute(puuid, matchId) {
-        let CSPerMinute = 0
-        for(let i = 0; i < matchId.length; i++){
-            const participants = await this.getMatchParticipants(matchId[i])
-
-            const participant = participants.find(participant => {
-             if(participant.puuid === puuid) return participant
-             })
-             CSPerMinute += participant.totalMinionsKilled/(participant.timePlayed/60)
-        }
-        return CSPerMinute/matchId.length
-    }
 }
 
 

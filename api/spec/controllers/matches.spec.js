@@ -1,13 +1,13 @@
 const { createSpyFromClass } = require("jasmine-auto-spies")
 const { MatchesController } = require("../../src/controllers/matches")
 const { RiotApi } = require("../../src/services/riotApi")
+const {mockParticipants} = require('../mocks/mockParticipants')
 
 describe('MatchesController', () => {
     const mockRiotApi = createSpyFromClass(RiotApi)
     const fakeMatchId = 'fakeMatchId'
-    let summoner
 
-    const mockParticpants = [
+    const mockParticipants = [
         {
         "assists": 7,
         "baronKills": 0,
@@ -574,8 +574,8 @@ describe('MatchesController', () => {
 
     describe('getPlayerMatchHistory', () => {
         it('should return the correct participant data', async () => {
-            mockRiotApi.getMatchParticipants.and.returnValue(mockParticpants)
-            const fakeParticipant = mockParticpants[1]
+            mockRiotApi.getMatchParticipants.and.returnValue(mockParticipants)
+            const fakeParticipant = mockParticipants[1]
             const result = await match.getPlayerMatchHistory(fakeMatchId, fakeParticipant.puuid)
 
             const kda = (fakeParticipant.kills + fakeParticipant.assists)/fakeParticipant.deaths
@@ -595,7 +595,7 @@ describe('MatchesController', () => {
         })
 
         it('should return an error message if no player history is found', async () => {
-            mockRiotApi.getMatchParticipants.and.returnValue(mockParticpants)
+            mockRiotApi.getMatchParticipants.and.returnValue(mockParticipants)
             const nonexistantPlayerId = 'I do not exist'
             const result = await match.getPlayerMatchHistory(fakeMatchId, nonexistantPlayerId)
             expect(result).toEqual(`PUUID: ${nonexistantPlayerId} does not exist for match: ${fakeMatchId}`)

@@ -29,7 +29,6 @@ function Routes(app) {
         Top5ChampsByMastery:champs,
         CS: CSPerMinute
         }
-        
         res.send(data)
     })
 

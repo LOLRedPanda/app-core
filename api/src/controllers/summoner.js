@@ -42,20 +42,18 @@ class SummonerController {
         return participants
     }
 
-    // async getAllMatchesForPlayer(puuid, matchIds) {
-    //     const matches = await matchIds.map(async (matchId) => {
-    //         const participants = await this.getAllMatchParticipants(matchId)
-    //         console.log(participants)
-    //         // const participantMatches = participants.filter((participant) => {
-    //         //     if (participant.puuid === puuid) {
-    //         //         return participant
-    //         //     }
-    //         // })
-    //         return participants
-    //     })
-    //     console.log(matches)
-    //     return matches
-    // }
+    async getAllPlayersForAllMatches(matchIds) {
+        const allMatches = Promise.all(matchIds.map(async (matchId) => {
+            const participants = await this.getAllMatchParticipants(matchId)
+            return await participants
+        }))
+        return (await allMatches).flat()
+    }
+
+    async filterPlayersMatches(puuid, participants) {
+        const matches = participants.filter((participant) => participant.puuid === puuid)
+        return matches
+    }
 
     async getCSPerMinute(puuid, participants) {
         const participant = getParticipant(participants, puuid)

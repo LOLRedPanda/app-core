@@ -14,15 +14,7 @@ function Routes(app) {
         const rank = await summoner.getRank(id)
         const champs = await summoner.getChampionMastery(id)
         const matchIds = await summoner.getMatchIds(puuid)
-        const matches = []
-        matchIds.forEach(async (matchId) => {
-            const participants = await summoner.getAllMatchParticipants(matchId)
-            matches.push(participants)
-        })
-
-        console.log(matches)
-       // const matchParticipants = await summoner.getMatchParticipants(puuid)
-        const CSPerMinute = await summoner.getCSPerMinute(puuid, matchIds)
+        const CSPerMinute = await summoner.getCSPerMinute(matchIds, puuid)
         const data = {
         Username:name, 
         Rank:rank,

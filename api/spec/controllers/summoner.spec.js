@@ -26,16 +26,71 @@ describe('SummonerController', () => {
         })
     })
 
-    describe('getCSPerMinute', () => {
-        it('Should return the proper csPerMinute value on a participant pulled from a list', async () => {
-            const fakePuuid = mockParticipants[1].puuid
-            const result = await summoner.getCSPerMinute(fakePuuid, mockParticipants)
-            const expected = 1.13
+    describe('getAverageCSPerMinute', () => {
+        const mockMatchStats = [
+            {
+                puuid: 'nerdyplayer',
+                assist: 3,
+                totalMinionsKilled: 1,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 5,
+                totalMinionsKilled: 2,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 6,
+                totalMinionsKilled: 4,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 9,
+                totalMinionsKilled: 5,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 11,
+                totalMinionsKilled: 6,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 12,
+                totalMinionsKilled: 7,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 15,
+                totalMinionsKilled: 8,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 17,
+                totalMinionsKilled: 9,
+                timePlayed: 1
+            },
+            {
+                puuid: 'nerdyplayer',
+                assist: 18,
+                totalMinionsKilled: 10,
+                timePlayed: 1
+            }
+        ]
+        it('Should return the average csPerMinute value on a participant based on a list of match statt', async () => {
+            const result = await summoner.calculateAverageCSPerMinute(mockMatchStats)
+            const expected = 347
             expect(result).toEqual(expected)
         })
     })
 
-    describe('getAllMatchesForPlayer', () => {
+    describe('getAllPlayersForAllMatches', () => {
         it('Should return all of the player match stats from each match id', async () => {
             const fakeMatchIds = ['123', '456', '789']
             const mockParticipants1 = [

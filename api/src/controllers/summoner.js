@@ -10,11 +10,6 @@ class SummonerController {
         this.champions = champs.getChampions()
     }
 
-    // async getPlayerInfo(name) {
-    //     const id = await this.riotApi.getPlayerIdByName(name)
-    //     return await this.getChampionMastery(id)
-    // }
-
     async getChampionMastery(id) {
         const top5Ids = await this.riotApi.getTopUsedChampionsIds(id, 5)
         const top5Names = []
@@ -42,8 +37,13 @@ class SummonerController {
         return participants
     }
 
+    async sleep() {
+        setTimeout(() => console.log('waiting....'), 1000)
+    }
+
     async getAllPlayersForAllMatches(matchIds) {
         const allMatches = Promise.all(matchIds.map(async (matchId) => {
+            await this.sleep()
             const participants = await this.getAllMatchParticipants(matchId)
             return await participants
         }))
@@ -55,10 +55,21 @@ class SummonerController {
         return matches
     }
 
-    async getCSPerMinute(puuid, participants) {
-        const participant = getParticipant(participants, puuid)
-        const CSPerMinute = (participant.totalMinionsKilled/(participant.timePlayed/60))
-        return Math.ceil(CSPerMinute * 100) / 100
+   async calculateAverageCSPerMinute(playerMatches) {
+        const csPerMinutes = playerMatches.map((match) => {
+            const CSPerMinute = (match.totalMinionsKilled/(match.timePlayed/60))
+            return CSPerMinute
+        })
+        const sum  = csPerMinutes.reduce((accumulator, a) => accumulator + a, 0)
+        const FinalCSPM = await sum / await csPerMinutes.length
+        return Math.ceil(FinalCSPM * 100 / 100)
+    }
+
+    async getCSPerMinute(matchIds, puuid) {
+        const allPlayersForAllMatches = await this.getAllPlayersForAllMatches(matchIds)
+        const playersMatches = await this.filterPlayersMatches(puuid, allPlayersForAllMatches)
+        const averageCSPerMinute = await this.calculateAverageCSPerMinute(playersMatches)
+        return averageCSPerMinute
     }
 }
 

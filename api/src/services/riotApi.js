@@ -11,19 +11,28 @@ class RiotApi {
         }
     }
 
+    async sleep() {
+        setTimeout(() => console.log('waiting....'), 10000)
+    }
+
     async getPlayerIdByName(name) {
+        console.log('getPlayerIdByName')
         const {data} = await axios.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
         return data.id
     }
 
     async getPlayerPuuIdByName(name) {
+        console.log('getPlayerPuuidByName')
+        await this.sleep()
         const {data} = await axios.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
         return data.puuid
     }
 
     async getTopUsedChampionsIds(PlayerId, count) {
+        console.log('getTopUsedChampionIds')
         const options = {...this.options}
         options.params.count = count
+        await this.sleep()
         const {data} = await axios.get(`${this.na1url}/champion-mastery/v4/champion-masteries/by-summoner/${PlayerId}/top`, options)
         const championIds = []
         data.forEach(
@@ -36,6 +45,8 @@ class RiotApi {
     }
 
      async getCurrentRank(PlayerID){
+        console.log('getCurrentRank')
+        await this.sleep()
          const {data} = await axios.get(`${this.na1url}/league/v4/entries/by-summoner/${PlayerID}`, this.options)
          const rank = data[0].tier + " " + data[0].rank
         return rank
@@ -43,15 +54,19 @@ class RiotApi {
 
 
      async getMatchIds(PlayerID, queueId, count){
+        console.log('getMatchIds')
         const options = {...this.options}
         options.params.queue = queueId
         options.params.count = count
+        await this.sleep()
         const {data} = await axios.get(`${this.americasurl}/match/v5/matches/by-puuid/${PlayerID}/ids`, this.options)
         return data
      }
 
      async getMatchParticipants(matchId) {
+        console.log('getMatchParticipants')
         const options = {...this.options}
+        await this.sleep()
         const {data} = await axios.get(`${this.americasurl}/match/v5/matches/${matchId}`, this.options)
         return data.info.participants
      }

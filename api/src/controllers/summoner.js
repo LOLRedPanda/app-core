@@ -43,7 +43,7 @@ class SummonerController {
 
     async getAllPlayersForAllMatches(matchIds) {
         const allMatches = Promise.all(matchIds.map(async (matchId) => {
-            await this.sleep()
+            // await this.sleep()
             const participants = await this.getAllMatchParticipants(matchId)
             return await participants
         }))

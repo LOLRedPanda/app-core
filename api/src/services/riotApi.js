@@ -1,4 +1,5 @@
 const axios = require('axios')
+const {RestClient} = require('./restClient')
 
 class RiotApi {
     constructor() {
@@ -9,6 +10,7 @@ class RiotApi {
                 api_key: process.env.RIOT_API_KEY
             }
         }
+        this.client = new RestClient()
     }
 
     async sleep() {
@@ -16,9 +18,8 @@ class RiotApi {
     }
 
     async getPlayerIdByName(name) {
-        console.log('getPlayerIdByName')
-        const {data} = await axios.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
-        return data.id
+        const result = await this.client.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
+        return result.id
     }
 
     async getPlayerPuuIdByName(name) {

@@ -1,0 +1,120 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "League of Legends Scouting API",
+        "description": "Gathers information on League of Legend players to scout out picks and bans.",
+        "license": {}
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [],
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/summoner": {
+            "get": {
+                "tags": [
+                    "Summoner"
+                ],
+                "summary": "Finds the information of a player by their summoner(player) name and returns stats for that player's in game information.",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "type": "string",
+                        "required": "true",
+                        "x-example": "Redpanda0129",
+                        "description": "Player's Username."
+                    }
+                ]
+            },
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Summoner"
+                    }
+                }
+            }
+        },
+        "/matches": {
+            "get": {
+                "tags": [
+                    "Matches"
+                ],
+                "summary": "Finds the information of a player by their summoner(player) name and returns stats for that player from his last game.",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "type": "string",
+                        "required": "true",
+                        "x-example": "Redpanda0129",
+                        "description": "Player's Username."
+                    }
+                ]
+            },
+            "responses": {
+                "200": {
+                    "description": "OK",
+                    "schema": {
+                        "$ref": "#/definitions/Match"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Summoner": {
+            "type": "object",
+            "properties": {
+                "Username": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "Rank": {
+                    "type": "string"
+                },
+                "Top5ChampsByMastery": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "CS": {
+                    "type": "float"
+                }
+            }
+        },
+        "Match": {
+            "type": "object",
+            "properties": {
+                "puuid": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "Y3pWKTYUAA8XrZKpRdp64o0HN1V0XQ8aeLvwm5i_x0oFzBVdb5kffW1mkjFXRXh2VARW6B5EYtmdXg"
+                },
+                "championID": {
+                    "type": "float"
+                },
+                "kills": {
+                    "type": "float"
+                },
+                "deaths": {
+                    "type": "float"
+                },
+                "KDA": {
+                    "type": "float"
+                },
+                "time": {
+                    "type": "float"
+                }
+            }
+        }
+    }
+}

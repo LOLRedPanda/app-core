@@ -11,7 +11,7 @@ class MatchesController{
     }
 
     async getMatchId(puuid){
-        const matchId = await this.riotApi.getMatchId(puuid, 420, 1)
+        const matchId = await this.riotApi.getMatchIds(puuid, 420, 1)
         return matchId
     }
 

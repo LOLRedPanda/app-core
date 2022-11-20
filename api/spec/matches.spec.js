@@ -1,6 +1,6 @@
 const { createSpyFromClass } = require("jasmine-auto-spies")
-const { MatchesController } = require("../../src/controllers/matches")
-const { RiotApi } = require("../../src/services/riotApi")
+const { MatchesController } = require("../src/controllers/matches")
+const { RiotApi } = require("../src/services/riotApi")
 
 describe('MatchesController', () => {
     const mockRiotApi = createSpyFromClass(RiotApi)

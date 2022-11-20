@@ -28,7 +28,7 @@ class SummonerController {
     }
 
     async getMatchIds(puuid){
-        const matchIds = await this.riotApi.getMatchIds(puuid, 420, 20)
+        const matchIds = await this.riotApi.getMatchIds(puuid, 420, 15)
         return matchIds
     }
 
@@ -43,7 +43,6 @@ class SummonerController {
 
     async getAllPlayersForAllMatches(matchIds) {
         const allMatches = Promise.all(matchIds.map(async (matchId) => {
-            // await this.sleep()
             const participants = await this.getAllMatchParticipants(matchId)
             return await participants
         }))
@@ -67,6 +66,7 @@ class SummonerController {
 
     async getCSPerMinute(matchIds, puuid) {
         const allPlayersForAllMatches = await this.getAllPlayersForAllMatches(matchIds)
+        console.log('got all players for all matches')
         const playersMatches = await this.filterPlayersMatches(puuid, allPlayersForAllMatches)
         const averageCSPerMinute = await this.calculateAverageCSPerMinute(playersMatches)
         return averageCSPerMinute

@@ -27,17 +27,17 @@
                         "name": "name",
                         "in": "query",
                         "type": "string",
-                        "required": "true",
+                        "required": true,
                         "x-example": "Redpanda0129",
                         "description": "Player's Username."
                     }
-                ]
-            },
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "schema": {
-                        "$ref": "#/definitions/Summoner"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Summoner"
+                        }
                     }
                 }
             }
@@ -53,17 +53,17 @@
                         "name": "name",
                         "in": "query",
                         "type": "string",
-                        "required": "true",
+                        "required": true,
                         "x-example": "Redpanda0129",
                         "description": "Player's Username."
                     }
-                ]
-            },
-            "responses": {
-                "200": {
-                    "description": "OK",
-                    "schema": {
-                        "$ref": "#/definitions/Match"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Match"
+                        }
                     }
                 }
             }
@@ -87,7 +87,7 @@
                     }
                 },
                 "CS": {
-                    "type": "float"
+                    "type": "number"
                 }
             }
         },
@@ -96,23 +96,22 @@
             "properties": {
                 "puuid": {
                     "type": "string",
-                    "uniqueItems": true,
-                    "example": "Y3pWKTYUAA8XrZKpRdp64o0HN1V0XQ8aeLvwm5i_x0oFzBVdb5kffW1mkjFXRXh2VARW6B5EYtmdXg"
+                    "uniqueItems": true
                 },
                 "championID": {
-                    "type": "float"
+                    "type": "number"
                 },
                 "kills": {
-                    "type": "float"
+                    "type": "number"
                 },
                 "deaths": {
-                    "type": "float"
+                    "type": "number"
                 },
                 "KDA": {
-                    "type": "float"
+                    "type": "number"
                 },
                 "time": {
-                    "type": "float"
+                    "type": "number"
                 }
             }
         }

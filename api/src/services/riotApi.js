@@ -17,38 +17,24 @@ class RiotApi {
         setTimeout(() => console.log('waiting....'), 10000)
     }
 
-    async getPlayerIdByName(name) {
-        console.log('getPlayerIdByName')
+    async getPlayerIdsByName(name) {
+        console.log('getPlayerIdsByName')
         const result = await this.client.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
-        return result.id
+        return result
     }
 
-    async getPlayerPuuIdByName(name) {
-        console.log('getPlayerPuuidByName')
-        const {data} = await axios.get(`${this.na1url}/summoner/v4/summoners/by-name/${name}`, this.options)
-        return data.puuid
-    }
-
-    async getTopUsedChampionsIds(PlayerId, count) {
-        console.log('getTopUsedChampionIds')
+    async getChampionMastery(PlayerId, count) {
+        console.log('getChampionMastery')
         const options = {...this.options}
         options.params.count = count
-        const {data} = await axios.get(`${this.na1url}/champion-mastery/v4/champion-masteries/by-summoner/${PlayerId}/top`, options)
-        const championIds = []
-        data.forEach(
-            (champion) => {
-                const {championId} = champion
-                championIds.push(championId)
-            }
-        )
-        return championIds
+        const result = await axios.get(`${this.na1url}/champion-mastery/v4/champion-masteries/by-summoner/${PlayerId}/top`, options)
+        return result
     }
 
-     async getCurrentRank(PlayerID){
-        console.log('getCurrentRank')
-         const {data} = await axios.get(`${this.na1url}/league/v4/entries/by-summoner/${PlayerID}`, this.options)
-         const rank = data[0].tier + " " + data[0].rank
-        return rank
+     async getleagueEntries(PlayerID){
+        console.log('getleagueEntries')
+        const result = await axios.get(`${this.na1url}/league/v4/entries/by-summoner/${PlayerID}`, this.options)
+        return result
      }
 
 
@@ -57,15 +43,15 @@ class RiotApi {
         const options = {...this.options}
         options.params.queue = queueId
         options.params.count = count
-        const {data} = await axios.get(`${this.americasurl}/match/v5/matches/by-puuid/${PlayerID}/ids`, options)
-        return data
+        const result = await axios.get(`${this.americasurl}/match/v5/matches/by-puuid/${PlayerID}/ids`, options)
+        return result
      }
 
-     async getMatchParticipants(matchId) {
-        console.log('getMatchParticipants')
+     async getMatch(matchId) {
+        console.log('getMatch')
         const options = {...this.options}
-        const {data} = await axios.get(`${this.americasurl}/match/v5/matches/${matchId}`, options)
-        return data.info.participants
+        const result = await axios.get(`${this.americasurl}/match/v5/matches/${matchId}`, options)
+        return result
      }
 
 }

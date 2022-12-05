@@ -1,40 +1,68 @@
 const jsonQuery = require('json-query')
-const {Champions} = require('../models/champions')
+const { Champions } = require('../models/champions')
 const { getParticipant } = require('./common')
 
 class SummonerController {
-    constructor(name, riotApi) {
-        this.name = name
+    constructor(riotApi) {
         this.riotApi = riotApi
         const champs = new Champions()
         this.champions = champs.getChampions()
     }
 
+    async getIdsByName(playerName){
+        try{
+            const result = await this.riotApi.getPlayerIdsByName(playerName)
+            const {id, puuid, accountId, name} = result
+            return {id, puuid, accountId, name}
+        } 
+        catch (e){
+            throw new Error(`cannot get Player Ids: ${e}`)
+        }
+    }
+
     async getChampionMastery(id) {
-        const top5Ids = await this.riotApi.getTopUsedChampionsIds(id, 5)
-        const top5Names = []
-        top5Ids.forEach(
-            (id) => {
-                const {name} = jsonQuery(`[**][key=${id}]`, {data: this.champions}).value
-                top5Names.push(name)
+        try {
+            const {data} = await this.riotApi.getChampionMastery(id, 5)
+            const champions = data.map((champion) => {
+                const { championId } = champion
+                const { name } = jsonQuery(`[**][key=${championId}]`, { data: this.champions }).value
+                return name
+            })
+            return champions
+        } catch(e) {
+            throw new Error(`cannot get Champion Mastery: ${e}`)
+        }
+    }
+
+    async getRank(id) {
+        try{
+            const {data} = await this.riotApi.getleagueEntries(id)
+            const rank = data[0].tier + " " + data[0].rank
+            return rank
+        }catch(e){
+            throw new Error(`cannot get Summoner Rank: ${e}`)
+        }
+    }
+
+    async getMatchIds(puuid) {
+        try{
+            const {data} = await this.riotApi.getMatchIds(puuid, 420, 15)
+            return data
+        } catch(e){
+            throw new Error(`cannot get Match Ids: ${e}`)
+        }
+    }
+
+    async getAllMatchParticipants(matchId) {
+        try{
+            const {data} = await this.riotApi.getMatch(matchId)
+            if(data){
+                const {participants} = data.info
+                return participants
             }
-        )
-        return top5Names
-    }
-
-    async getRank(id){
-        const currentRank = await this.riotApi.getCurrentRank(id)
-        return currentRank
-    }
-
-    async getMatchIds(puuid){
-        const matchIds = await this.riotApi.getMatchIds(puuid, 420, 15)
-        return matchIds
-    }
-
-    async getAllMatchParticipants(matchId){
-        const participants = await this.riotApi.getMatchParticipants(matchId)
-        return participants
+        } catch(e){
+            throw new Error(`cannot get match participants: ${e}`)
+        }
     }
 
     async sleep() {
@@ -54,12 +82,12 @@ class SummonerController {
         return matches
     }
 
-   async calculateAverageCSPerMinute(playerMatches) {
+    async calculateAverageCSPerMinute(playerMatches) {
         const csPerMinutes = playerMatches.map((match) => {
-            const CSPerMinute = (match.totalMinionsKilled/(match.timePlayed/60))
+            const CSPerMinute = (match.totalMinionsKilled / (match.timePlayed / 60))
             return CSPerMinute
         })
-        const sum  = csPerMinutes.reduce((accumulator, a) => accumulator + a, 0)
+        const sum = csPerMinutes.reduce((accumulator, a) => accumulator + a, 0)
         const FinalCSPM = await sum / await csPerMinutes.length
         return Math.ceil(FinalCSPM * 100 / 100)
     }

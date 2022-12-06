@@ -22,8 +22,8 @@ class SummonerController {
 
     async getChampionMastery(id) {
         try {
-            const {data} = await this.riotApi.getChampionMastery(id, 5)
-            const champions = data.map((champion) => {
+            const mastery = await this.riotApi.getChampionMastery(id, 5)
+            const champions = mastery.map((champion) => {
                 const { championId } = champion
                 const { name } = jsonQuery(`[**][key=${championId}]`, { data: this.champions }).value
                 return name
@@ -36,8 +36,8 @@ class SummonerController {
 
     async getRank(id) {
         try{
-            const {data} = await this.riotApi.getleagueEntries(id)
-            const rank = data[0].tier + " " + data[0].rank
+            const leagueEntries = await this.riotApi.getleagueEntries(id)
+            const rank = leagueEntries[0].tier + " " + leagueEntries[0].rank
             return rank
         }catch(e){
             throw new Error(`cannot get Summoner Rank: ${e}`)
@@ -46,8 +46,8 @@ class SummonerController {
 
     async getMatchIds(puuid) {
         try{
-            const {data} = await this.riotApi.getMatchIds(puuid, 420, 15)
-            return data
+            const matchIds = await this.riotApi.getMatchIds(puuid, 420, 30)
+            return matchIds
         } catch(e){
             throw new Error(`cannot get Match Ids: ${e}`)
         }
@@ -55,9 +55,9 @@ class SummonerController {
 
     async getAllMatchParticipants(matchId) {
         try{
-            const {data} = await this.riotApi.getMatch(matchId)
-            if(data){
-                const {participants} = data.info
+            const match = await this.riotApi.getMatch(matchId)
+            if(match){
+                const {participants} = match.info
                 return participants
             }
         } catch(e){
@@ -78,7 +78,7 @@ class SummonerController {
     }
 
     async filterPlayersMatches(puuid, participants) {
-        const matches = participants.filter((participant) => participant.puuid === puuid)
+        const matches = participants.filter((participant) => participant && participant.puuid === puuid)
         return matches
     }
 

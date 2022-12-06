@@ -4,31 +4,26 @@ class RestClient {
     async get(url, options) {
         const result = await axios.get(url, options)
             .then((response) => {
-                console.log(response.status)
                 return response.data
             })
             .catch( async (error) => {
-                console.log(error)
-                const { status, headers } = error.response
+                const { status, statusText, headers } = error.response
                 console.log(status)
-                if(status === 429){
-                    console.log(status)
+                if(status === 429) {
                     const millisToSleep = this.millisToSleep(headers["retry-after"])
                     await this.sleep(millisToSleep)
                     const result = this.get(url, options)
                     return result.data
                 }
-                return error.response.data
-                // }else{
-                //     new Error(`could not complete request: ${error.response}`)
-                // }
-
+                if(status === 403) {
+                    throw new Error(`${status} ${statusText}: Did you forget to refresh your api key?`)
+                }
             })
         return result
     }
 
     async sleep(retryAfter) {
-        setTimeout(() => console.log('waiting....', retryAfter), retryAfter)
+        setTimeout(() => console.log('waiting to retry....', retryAfter), retryAfter)
     }
 
     millisToSleep(retryHeaderString){

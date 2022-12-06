@@ -30,9 +30,8 @@ function Routes(app) {
     })
 
     app.get('/matches', async (req, res) => {
-        const name = req.query.name;
-        const puuid = await riotApi.getPlayerPuuIdByName(name)
-        const match = new MatchesController(riotApi)
+        const name = req.query.name
+        const {puuid} = await match.getIdsByName(name)
         const matchId = await match.getMatchId(puuid)
         const participant = await match.getPlayerMatchHistory(matchId, puuid)
         res.send(participant)

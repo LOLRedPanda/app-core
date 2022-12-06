@@ -10,14 +10,25 @@ class MatchesController{
         this.champions = champs.getChampions()
     }
 
+    async getIdsByName(playerName){
+        try{
+            const result = await this.riotApi.getPlayerIdsByName(playerName)
+            const {id, puuid, accountId, name} = result
+            return {id, puuid, accountId, name}
+        } 
+        catch (e){
+            throw new Error(`cannot get Player Ids: ${e}`)
+        }
+    }
+
     async getMatchId(puuid){
         const matchId = await this.riotApi.getMatchIds(puuid, 420, 1)
         return matchId
     }
 
     async getPlayerMatchHistory(matchId, puuid) {
-        const participants = await this.riotApi.getMatchParticipants(matchId)
-
+        const match = await this.riotApi.getMatch(matchId)
+        const participants = match.info.participants
         const participant = getParticipant(participants, puuid)
 
         if(participant === undefined){

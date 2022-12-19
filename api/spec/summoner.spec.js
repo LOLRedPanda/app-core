@@ -18,7 +18,7 @@ describe('SummonerController', () => {
     describe('getChampionMastery', () => {
         it('should return the top 5 champion names of the player', async () => {
             const mockChampionIds = [ 81, 202, 145, 222, 22 ]
-            mockRiotApi.getTopUsedChampionsIds.and.returnValue(mockChampionIds)
+            mockRiotApi.getChampionMastery.and.returnValue(mockChampionIds)
 
             const result = await summoner.getChampionMastery(fakePlayerId)
             const expected = ["Ezreal","Jhin","Kai'Sa","Jinx","Ashe"]
@@ -93,7 +93,8 @@ describe('SummonerController', () => {
     describe('getAllPlayersForAllMatches', () => {
         it('Should return all of the player match stats from each match id', async () => {
             const fakeMatchIds = ['123', '456', '789']
-            const mockParticipants1 = [
+            const mockParticipants1 = {"info": {
+                "participants": [
             {
                 puuid: '1234',
                 assist: 1
@@ -118,63 +119,92 @@ describe('SummonerController', () => {
                 puuid: 'nerdyplayer',
                 assist: 6
             },
-        ]
+        ]}}
 
-        const mockParticipants2 = [
-            {
-                puuid: '1234',
-                assist: 7
-            },
-            {
-                puuid: 'the second puuid',
-                assist: 8
-            },
-            {
-                puuid: 'nerdyplayer',
-                assist: 9
-            },
-            {
-                puuid: 'homersimpson',
-                assist: 10
-            },
-            {
-                puuid: 'nerdyplayer',
-                assist: 11
-            },
-            {
-                puuid: 'nerdyplayer',
-                assist: 12
-            },
-        ]
+        // const mockParticipants2 = {"info": {
 
-        const mockParticipants3 = [
-            {
-                puuid: '1234',
-                assist: 13
-            },
-            {
-                puuid: 'the second puuid',
-                assist: 14
-            },
-            {
-                puuid: 'nerdyplayer',
-                assist: 15
-            },
-            {
-                puuid: 'homersimpson',
-                assist: 16
-            },
-            {
-                puuid: 'nerdyplayer',
-                assist: 17
-            },
-            {
-                puuid: 'nerdyplayer',
-                assist: 18
-            },
-        ]
-            const expected = [...mockParticipants1, ...mockParticipants2, ...mockParticipants3]
-            mockRiotApi.getMatchParticipants.and.returnValues(mockParticipants1, mockParticipants2, mockParticipants3)
+        //     "participants": [
+        //     {
+        //         puuid: '1234',
+        //         assist: 7
+        //     },
+        //     {
+        //         puuid: 'the second puuid',
+        //         assist: 8
+        //     },
+        //     {
+        //         puuid: 'nerdyplayer',
+        //         assist: 9
+        //     },
+        //     {
+        //         puuid: 'homersimpson',
+        //         assist: 10
+        //     },
+        //     {
+        //         puuid: 'nerdyplayer',
+        //         assist: 11
+        //     },
+        //     {
+        //         puuid: 'nerdyplayer',
+        //         assist: 12
+        //     },
+        // ]}}
+
+        // const mockParticipants3 = { "info": {
+        //     "gameCreation": 1666931095854,
+        //     "participants": [
+        //     {
+        //         puuid: '1234',
+        //         assist: 13
+        //     },
+        //     {
+        //         puuid: 'the second puuid',
+        //         assist: 14
+        //     },
+        //     {
+        //         puuid: 'nerdyplayer',
+        //         assist: 15
+        //     },
+        //     {
+        //         puuid: 'homersimpson',
+        //         assist: 16
+        //     },
+        //     {
+        //         puuid: 'nerdyplayer',
+        //         assist: 17
+        //     },
+        //     {
+        //         puuid: 'nerdyplayer',
+        //         assist: 18
+        //     },
+        // ]}}
+            const expected = {"participants": [
+                {
+                    puuid: '1234',
+                    assist: 1
+                },
+                {
+                    puuid: 'the second puuid',
+                    assist: 2
+                },
+                {
+                    puuid: 'nerdyplayer',
+                    assist: 3
+                },
+                {
+                    puuid: 'homersimpson',
+                    assist: 4
+                },
+                {
+                    puuid: 'nerdyplayer',
+                    assist: 5
+                },
+                {
+                    puuid: 'nerdyplayer',
+                    assist: 6
+                },
+            ]}
+            mockRiotApi.getMatch.and.returnValues(mockParticipants1)
             const result = await summoner.getAllPlayersForAllMatches(fakeMatchIds)
             expect(result).toEqual(expected)
         })

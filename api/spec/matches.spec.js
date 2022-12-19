@@ -7,7 +7,19 @@ describe('MatchesController', () => {
     const mockRiotApi = createSpyFromClass(RiotApi)
     const fakeMatchId = 'fakeMatchId'
 
-    const mockParticipants = [
+    const mockMatchData = {
+        "info": {
+            "gameCreation": 1666931095854,
+            "gameDuration": 1388,
+            "gameEndTimestamp": 1666932590490,
+            "gameId": 4476629454,
+            "gameMode": "CLASSIC",
+            "gameName": "teambuilder-match-4476629454",
+            "gameStartTimestamp": 1666931201948,
+            "gameType": "MATCHED_GAME",
+            "gameVersion": "12.20.474.8882",
+            "mapId": 11,
+            "participants": [
         {
         "assists": 7,
         "baronKills": 0,
@@ -566,7 +578,7 @@ describe('MatchesController', () => {
         "wardsKilled": 1,
         "wardsPlaced": 0,
         "win": true
-    }]
+    }]},}
 
     beforeAll(() => {
         match = new MatchesController(mockRiotApi)
@@ -574,8 +586,8 @@ describe('MatchesController', () => {
 
     describe('getPlayerMatchHistory', () => {
         it('should return the correct participant data', async () => {
-            mockRiotApi.getMatchParticipants.and.returnValue(mockParticipants)
-            const fakeParticipant = mockParticipants[1]
+            mockRiotApi.getMatch.and.returnValue(mockMatchData)
+            const fakeParticipant = mockMatchData.info.participants[1]
             const result = await match.getPlayerMatchHistory(fakeMatchId, fakeParticipant.puuid)
 
             const kda = (fakeParticipant.kills + fakeParticipant.assists)/fakeParticipant.deaths
@@ -591,12 +603,13 @@ describe('MatchesController', () => {
                 KDA: expectedKDA,
                 time: expectedTime
             }
+            
             expect(result).toEqual(expected)
         })
 
         it('should return an error message if no player history is found', async () => {
-            mockRiotApi.getMatchParticipants.and.returnValue(mockParticipants)
-            const nonexistantPlayerId = 'I do not exist'
+            mockRiotApi.getMatch.and.returnValue(mockMatchData)
+            const nonexistantPlayerId = "I do not exist"
             const result = await match.getPlayerMatchHistory(fakeMatchId, nonexistantPlayerId)
             expect(result).toEqual(`PUUID: ${nonexistantPlayerId} does not exist for match: ${fakeMatchId}`)
         })

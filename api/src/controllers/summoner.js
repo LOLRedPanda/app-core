@@ -23,8 +23,8 @@ class SummonerController {
     async getChampionMastery(id) {
         try {
             const mastery = await this.riotApi.getChampionMastery(id, 5)
-            const champions = mastery.map((champion) => {
-                const { championId } = champion
+            console.log(mastery)
+            const champions = mastery.map((championId) => {
                 const { name } = jsonQuery(`[**][key=${championId}]`, { data: this.champions }).value
                 return name
             })
@@ -58,6 +58,7 @@ class SummonerController {
             const match = await this.riotApi.getMatch(matchId)
             if(match){
                 const {participants} = match.info
+                console.log(participants)
                 return participants
             }
         } catch(e){

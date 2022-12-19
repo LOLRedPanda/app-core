@@ -14,7 +14,7 @@ class MatchesController{
         try{
             const result = await this.riotApi.getPlayerIdsByName(playerName)
             const {id, puuid, accountId, name} = result
-            return {id, puuid, accountId, name}
+            return {puuid}
         } 
         catch (e){
             throw new Error(`cannot get Player Ids: ${e}`)

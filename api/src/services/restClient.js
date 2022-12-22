@@ -9,15 +9,16 @@ class RestClient {
             .catch( async (error) => {
                 const { status, statusText, headers } = error.response
                 console.log(status)
+                if(status === 403) {
+                    throw new Error(`${status} ${statusText}: Did you forget to refresh your api key?`)
+                }
                 if(status === 429) {
                     const millisToSleep = this.millisToSleep(headers["retry-after"])
                     await this.sleep(millisToSleep)
                     const result = this.get(url, options)
                     return result.data
                 }
-                if(status === 403) {
-                    throw new Error(`${status} ${statusText}: Did you forget to refresh your api key?`)
-                }
+               
             })
         return result
     }

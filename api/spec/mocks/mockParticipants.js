@@ -1,5 +1,4 @@
-function getMockParticipants() {
-    return [
+const mockParticipantData = [
         {
         "assists": 7,
         "baronKills": 0,
@@ -559,6 +558,5 @@ function getMockParticipants() {
         "wardsPlaced": 0,
         "win": true
     }]
-}
 
-module.exports.getMockParticipants = getMockParticipants
+module.exports.mockParticipantData = mockParticipantData

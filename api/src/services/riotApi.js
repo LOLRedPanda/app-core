@@ -36,8 +36,8 @@ class RiotApi {
         return result
     }
 
-    async getleagueEntries(PlayerID) {
-        console.log('getleagueEntries');
+    async getLeagueEntries(PlayerID) {
+        console.log('getLeagueEntries');
         const result = await this.client.get(
             `${this.na1url}/league/v4/entries/by-summoner/${PlayerID}`,
             this.options

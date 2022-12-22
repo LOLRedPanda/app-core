@@ -1,6 +1,5 @@
 const jsonQuery = require('json-query')
 const { Champions } = require('../models/champions')
-const { getParticipant } = require('./common')
 
 class SummonerController {
     constructor(riotApi) {
@@ -14,14 +13,14 @@ class SummonerController {
             const result = await this.riotApi.getPlayerIdsByName(playerName)
             const {id, puuid, accountId, name} = result
             return {id, puuid, accountId, name}
-        } 
+        }
         catch (e){
             throw new Error(`cannot get Player Ids: ${e}`)
         }
     }
 
     async getChampionMastery(id) {
-        try {            
+        try {
             const mastery = await this.riotApi.getChampionMastery(id, 5)
             const champions = mastery.map((champion) => {
                 const { championId } = champion
@@ -36,8 +35,7 @@ class SummonerController {
 
     async getRank(id) {
         try{
-            const leagueEntries = await this.riotApi.getleagueEntries(id)
-            //console.log(leagueEntries.rank)
+            const leagueEntries = await this.riotApi.getLeagueEntries(id)
             const rank = leagueEntries[0].tier + " " + leagueEntries[0].rank
             return rank
         }catch(e){
@@ -59,7 +57,6 @@ class SummonerController {
             const match = await this.riotApi.getMatch(matchId)
             if(match){
                 const {participants} = match.info
-                //console.log(participants)
                 return participants
             }
         } catch(e){

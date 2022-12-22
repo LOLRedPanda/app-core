@@ -21,17 +21,13 @@ class SummonerController {
     }
 
     async getChampionMastery(id) {
-        try {
-            const {data} = await this.riotApi.getChampionMastery(id, 5)
-            const champions = data.map(async(champion) => {
+        try {            
             const mastery = await this.riotApi.getChampionMastery(id, 5)
             const champions = mastery.map((champion) => {
                 const { championId } = champion
-                const { name } = jsonQuery(`[**][key=${championId}]`, { data: this.champions }).value
-                console.log(name)
+                const {name} = jsonQuery(`[**][key=${championId}]`, {data: this.champions}).value
                 return name
             })
-        })
             return champions
         } catch(e) {
             throw new Error(`cannot get Champion Mastery: ${e}`)

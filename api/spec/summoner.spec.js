@@ -15,9 +15,28 @@ describe('SummonerController', () => {
         summoner = new SummonerController(mockRiotApi)
     })
 
-    describe('getChampionMastery', () => {
+    fdescribe('getChampionMastery', () => {
         it('should return the top 5 champion names of the player', async () => {
-            const mockChampionIds = [ 81, 202, 145, 222, 22 ]
+            const mockChampionIds = [ {
+                championId: 81,
+                
+              },
+              {
+                championId: 202,
+                
+              },
+              {
+                championId: 145,
+                
+              },
+              {
+                championId: 222,
+                
+              },
+              {
+                championId: 22,
+                
+              }]
             mockRiotApi.getChampionMastery.and.returnValue(mockChampionIds)
 
             const result = await summoner.getChampionMastery(fakePlayerId)

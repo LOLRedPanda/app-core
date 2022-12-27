@@ -1,4 +1,5 @@
 const { RestClient } = require('./restClient');
+const { Req } = require('../services/request')
 
 class RiotApi {
     constructor() {
@@ -9,7 +10,8 @@ class RiotApi {
                 api_key: process.env.RIOT_API_KEY,
             },
         }
-        this.client = new RestClient()
+        const request = new Req()
+        this.client = new RestClient(request)
     }
 
     async sleep() {

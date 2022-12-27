@@ -6,15 +6,12 @@ class RestClient {
     async get(url, options) {
         try {
             const result = await this.request.get(url, options)
-            if (result.data.status == 200) {
+            if (result.status == 200) {
                 return result.data
             }
         } catch (e) {
-            console.log(e)
             const { status, statusText, headers } = e.response
-            console.log(status)
-            if (status === 403) {
-                console.log('foo')
+            if (status === 403) {       
                 throw new Error(`${status} ${statusText}: Did you forget to refresh your api key?`)
             }
             if (status === 429) {

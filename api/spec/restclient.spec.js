@@ -12,9 +12,9 @@ describe('RestClient', () => {
 
         describe('get', () => {
             it('Should return a result on success', async () => {
-                mockRequest.get.and.returnValue({ data:{status:200} })
+                mockRequest.get.and.returnValue({status:200, data:{}})
                 const result = await client.get('https://www.string.com', {})
-                expect(result).toEqual({status:200})
+                expect(result).toEqual({})
             })
 
             it('if it is a 403 it should return an error', async () => {
@@ -30,11 +30,11 @@ describe('RestClient', () => {
             })
             it('if it is a 429 should retry and sleep', async () => {
                 mockRequest.get.and.throwError({response:{status:429, statusText:'statustext', headers:{'retry-after': 2}}})
-                mockRequest.get.and.returnValue({ data:{status:200} })
+                mockRequest.get.and.returnValue({status:200, data:{}})
 
                 const result = await client.get('https://www.string.com', {})
                 console.log(result)
-                expect(result).toEqual({status:200})
+                expect(result).toEqual({})
 
             })
             

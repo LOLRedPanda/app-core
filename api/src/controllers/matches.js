@@ -46,6 +46,7 @@ class MatchesController{
             assists: participant.assists,
             KDA,
             time,
+
         }
         return data
     }

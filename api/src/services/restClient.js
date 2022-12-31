@@ -1,4 +1,3 @@
-
 class RestClient {
     constructor(request) {
         this.request = request

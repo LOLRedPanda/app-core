@@ -34,20 +34,20 @@ describe('SummonerController', () => {
 
     describe('getAverageCSPerMinute', () => {
         const mockMatchStats = [
-            {totalMinionsKilled: 1, timePlayed: 1},
-            {totalMinionsKilled: 2, timePlayed: 1},
-            {totalMinionsKilled: 4, timePlayed: 1},
-            {totalMinionsKilled: 5, timePlayed: 1},
-            {totalMinionsKilled: 6, timePlayed: 1},
-            {totalMinionsKilled: 7, timePlayed: 1},
-            {totalMinionsKilled: 8, timePlayed: 1},
-            {totalMinionsKilled: 9, timePlayed: 1},
-            {totalMinionsKilled: 10,timePlayed: 1}
+            {totalMinionsKilled: 1, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 2, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 4, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 5, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 6, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 7, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 8, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 9, neutralMinionsKilled: 0, timePlayed: 1},
+            {totalMinionsKilled: 10, neutralMinionsKilled: 0, timePlayed: 1}
         ]
 
         it('Should return the average csPerMinute value on a participant based on a list of match stats', async () => {
             const result = await summoner.calculateAverageCSPerMinute(mockMatchStats)
-            const expected = 347
+            const expected = 346.67
             expect(result).toEqual(expected)
         })
     })

@@ -83,16 +83,17 @@ class SummonerController {
 
     async calculateAverageCSPerMinute(playerMatches) {
         const csPerMinutes = playerMatches.map((match) => {
-            const CSPerMinute = (match.totalMinionsKilled / (match.timePlayed / 60))
+            const CSPerMinute = ((match.totalMinionsKilled + match.neutralMinionsKilled) / (match.timePlayed / 60))
             return CSPerMinute
         })
         const sum = csPerMinutes.reduce((accumulator, a) => accumulator + a, 0)
         const FinalCSPM = await sum / await csPerMinutes.length
-        return Math.ceil(FinalCSPM * 100 / 100)
+        return Number(FinalCSPM.toFixed(2))
     }
 
     async getCSPerMinute(matchIds, puuid) {
         const allPlayersForAllMatches = await this.getAllPlayersForAllMatches(matchIds)
+        //const matchTime = 
         console.log('got all players for all matches')
         const playersMatches = await this.filterPlayersMatches(puuid, allPlayersForAllMatches)
         const averageCSPerMinute = await this.calculateAverageCSPerMinute(playersMatches)

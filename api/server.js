@@ -1,6 +1,6 @@
 require('dotenv').config()
 const swaggerUi = require('swagger-ui-express'),
-swaggerDocument = require('./swagger.json');
+	swaggerDocument = require('./swagger.json')
 const express = require('express')
 const { Routes } = require('./src/routes')
 
@@ -10,13 +10,13 @@ const port = 3000
 Routes(app)
 
 app.use(
-    '/api-docs',
-    swaggerUi.serve, 
-    swaggerUi.setup(swaggerDocument)
-  ); 
+	'/api-docs',
+	swaggerUi.serve, 
+	swaggerUi.setup(swaggerDocument)
+) 
 
 app.listen(port, () => {
-    console.log(`listening on port ${port}`)
+	console.log(`listening on port ${port}`)
 })
 
 

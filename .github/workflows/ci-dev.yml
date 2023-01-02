@@ -32,8 +32,6 @@ jobs:
       - name: Terraform init
         run: terraform init
         working-directory: ./infrastructure
-        env: 
-          ENVIROMENT: dev
 
       - name: Terraform Format
         run: terraform fmt -check
@@ -44,5 +42,5 @@ jobs:
         working-directory: ./infrastructure
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="ENVIROMENT=dev"
         working-directory: ./infrastructure

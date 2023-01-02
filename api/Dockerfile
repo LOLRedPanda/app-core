@@ -4,11 +4,10 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package*.json ./
 
-RUN cd api
 RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD [ "npm", "start" ]

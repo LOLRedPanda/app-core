@@ -1,7 +1,7 @@
 name: DEV - CI
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
+
 
 jobs:
   tests:

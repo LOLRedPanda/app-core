@@ -1,32 +1,21 @@
 name: TEST - CI
 
-on: 
+on:
   push:
     branches:
       - main
+  pull_request:
+      branches:
+        - main
 
 jobs:
   tests:
     name: Run Tests
     runs-on: ubuntu-latest
-    environment: prod
-
+    environment: test
     steps:
-    - uses: actions/checkout@v3
-
-    - name: NPM Install
-      shell: bash
-      run : |
-        cd api
-        npm install
-
-    # TODO
-      # - name: Lint
-      #   shell: bash
-      #   run: yarn run lint
-
-    - name: Unit Test
-      shell: bash
-      run: |
-        cd api
-        npm test
+      - uses: actions/checkout@v3
+      - name: Run Tests
+        uses: ./.github/actions/test
+        with:
+          workingDirectory: api

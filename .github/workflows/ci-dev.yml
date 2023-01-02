@@ -42,5 +42,5 @@ jobs:
         working-directory: ./infrastructure
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var="ENVIROMENT=dev"
+        run: terraform apply -auto-approve
         working-directory: ./infrastructure

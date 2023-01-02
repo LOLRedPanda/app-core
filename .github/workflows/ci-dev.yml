@@ -14,3 +14,29 @@ jobs:
         uses: ./.github/actions/test
         with:
           workingDirectory: api
+
+  terraform:
+    runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZUIRE_SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.AZUIRE_TENANT_ID}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform init
+        run: terraform init
+        working-directory: ./infrastructure
+      
+      - name: Terraform Format
+        run: terraform fmt -check
+        working-directory: ./infrastructure
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: ./infrastructure

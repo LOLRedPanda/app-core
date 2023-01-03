@@ -35,6 +35,7 @@ jobs:
         with:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: './infrastructure'
+        env:
           TF_VAR_environment: 'dev'
 
       - name: Terraform Format

@@ -33,6 +33,8 @@ jobs:
       - name: Terraform init
         run: terraform init
         working-directory: ./infrastructure
+        with:
+          TF_VAR_environment: 'dev'
 
       - name: Terraform Format
         run: terraform fmt -check

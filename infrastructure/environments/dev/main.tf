@@ -14,7 +14,7 @@ module "backend" {
     storage_account_name = locals.storage_account_name
 }
 
-module "resource_group " {
+module "resource_group" {
     source = "../../modules/resource_group"
 
     resource_group_name = local.resource_group_name

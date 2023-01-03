@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "lol_scout_rg" {
   location = "eastus"
 }
 
-resource "azurerm_app_service_plan" "lol_scout_rg" {
+resource "azurerm_app_service_plan" "app_sp" {
   name                = "devlolscoutsp01"
   location            = azurerm_resource_group.lol_scout_rg.location
   resource_group_name = azurerm_resource_group.lol_scout_rg.name

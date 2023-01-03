@@ -31,28 +31,28 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform init
-        uses: hashicorp/setup-actions@master
+        uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: './infrastructure'
           TF_VAR_environment: 'dev'
 
       - name: Terraform Format
-        uses: hashicorp/setup-actions@master
+        uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_subcommand: 'fmt -check'
           tf_actions_working_dir: './infrastructure'
           TF_VAR_environment: 'dev'
 
       - name: Terraform Plan
-        uses: hashicorp/setup-actions@master
+        uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: './infrastructure'
           TF_VAR_environment: 'dev'
 
       - name: Terraform Apply
-        uses: hashicorp/setup-actions@master
+        uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_subcommand: 'apply -auto-approve'
           tf_actions_working_dir: './infrastructure'

@@ -35,6 +35,7 @@ jobs:
         with:
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: './infrastructure'
+          tf_actions_version: 0.12.13
         env:
           TF_VAR_environment: 'dev'
 
@@ -43,6 +44,7 @@ jobs:
         with:
           tf_actions_subcommand: 'fmt -check'
           tf_actions_working_dir: './infrastructure'
+          tf_actions_version: 0.12.13
         env:
           TF_VAR_environment: 'dev'
 
@@ -51,6 +53,7 @@ jobs:
         with:
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: './infrastructure'
+          tf_actions_version: 0.12.13
         env:
           TF_VAR_environment: 'dev'
 
@@ -59,5 +62,6 @@ jobs:
         with:
           tf_actions_subcommand: 'apply -auto-approve'
           tf_actions_working_dir: './infrastructure'
+          tf_actions_version: 0.12.13
         env:
           TF_VAR_environment: 'dev'

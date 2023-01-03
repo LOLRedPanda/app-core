@@ -22,3 +22,15 @@ resource "azurerm_storage_account" "lol-scout-storage-account" {
   location            = azurerm_resource_group.lol-scout-resource-group.location
   account_tier        = "Standard"
 }
+
+
+resource "azurerm_app_service_plan" "app_sp" {
+  name                = "devlolscoutsp01"
+  location            = azurerm_resource_group.app_sp.location
+  resource_group_name = azurerm_resource_group.app_sp.name
+
+  sku {
+    tier = "Free"
+    size = "F1"
+  }
+}

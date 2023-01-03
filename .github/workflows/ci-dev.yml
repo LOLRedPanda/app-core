@@ -42,6 +42,7 @@ jobs:
         with:
           tf_actions_subcommand: 'fmt -check'
           tf_actions_working_dir: './infrastructure'
+        env:
           TF_VAR_environment: 'dev'
 
       - name: Terraform Plan
@@ -49,6 +50,7 @@ jobs:
         with:
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: './infrastructure'
+        env:
           TF_VAR_environment: 'dev'
 
       - name: Terraform Apply
@@ -56,4 +58,5 @@ jobs:
         with:
           tf_actions_subcommand: 'apply -auto-approve'
           tf_actions_working_dir: './infrastructure'
+        env:
           TF_VAR_environment: 'dev'

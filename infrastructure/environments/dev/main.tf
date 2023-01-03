@@ -6,10 +6,25 @@ locals {
     location = "eastus"
 }
 
-module "main" {
-    source = "../../main.tf"
+
+module "backend" {
+    source = "../../modules/backend"
+
     resource_group_name = locals.resource_group_name
     storage_account_name = locals.storage_account_name
-    app_service_plan_name = locals.app_service_plan_name
-    location = locals.location
+}
+
+module "resource_group " {
+    source = "../../modules/resource_group"
+
+    resource_group_name = local.resource_group_name
+    location = local.location
+}
+
+module "service_plan" {
+    source = "../../modules/service_plan"
+
+    app_service_plan_name = local.app_service_plan_name
+    resource_group_name = local.resource_group_name
+    location = local.location
 }

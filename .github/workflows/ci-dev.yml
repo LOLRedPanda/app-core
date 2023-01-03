@@ -41,6 +41,9 @@ jobs:
         run: terraform plan
         working-directory: ./infrastructure
 
+      - name: Import resources (temporary)
+        run: terraform import azurerm_resource_group.lol_scout_rg /subscriptions/df57bed8-0e0a-4fd0-9a77-7ed74883900f/resourceGroups/dev-lol-scout-rg
+
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: ./infrastructure

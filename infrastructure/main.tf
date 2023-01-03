@@ -16,21 +16,16 @@ resource "azurerm_resource_group" "lol_scout_rg" {
   location = "eastus"
 }
 
-resource "azurerm_storage_account" "lol-scout-storage-account" {
-  name                = "devlolscoutsa01"
-  resource_group_name = azurerm_resource_group.lol-scout-resource-group.name
-  location            = azurerm_resource_group.lol-scout-resource-group.location
-  account_tier        = "Standard"
+resource "azurerm_storage_account" "lol_scout_sa" {
+  name                     = "devlolscoutsa01"
+  resource_group_name      = azurerm_resource_group.lol_scout_rg.name
+  location                 = azurerm_resource_group.lol_scout_rg.location
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
 }
 
-
-resource "azurerm_app_service_plan" "app_sp" {
-  name                = "devlolscoutsp01"
-  location            = azurerm_resource_group.app_sp.location
-  resource_group_name = azurerm_resource_group.app_sp.name
-
-  sku {
-    tier = "Free"
-    size = "F1"
-  }
+resource "azurerm_storage_container" "terraform_state_sa" {
+  name                  = "terraform-state"
+  storage_account_name  = azurerm_storage_account.lol_scout_sa.name
+  container_access_type = "private"
 }

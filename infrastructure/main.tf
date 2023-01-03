@@ -11,7 +11,7 @@ terraform {
   }
 }
 
-resource "azurerm_resource_group" "lol-scout-resource-group" {
+resource "azurerm_resource_group" "lol_scout_rg" {
   name     = "dev-lol-scout-rg"
   location = "eastus"
 }

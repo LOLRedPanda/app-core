@@ -22,20 +22,14 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.AZUIRE_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZUIRE_TENANT_ID}}
-      TF_LOG: true
+      TF_LOG: "TRACE"
+      environment: "Dev"
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
-
-      - name: Setup Terraform variables
-        id: variables
-        run: |-
-          cat > pipeline.auto.tfvars <<EOF
-          environment = "dev"
-          EOF
 
       - name: Terraform init
         run: terraform init

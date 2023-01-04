@@ -22,6 +22,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.AZUIRE_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZUIRE_TENANT_ID}}
+      TF_LOG: true
 
     steps:
       - uses: actions/checkout@v3

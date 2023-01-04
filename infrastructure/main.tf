@@ -1,14 +1,10 @@
-locals {
-    environment = var.environment
-}
-
 provider "azurerm" {
   features {}
 }
 
 terraform {
   backend "azurerm" {
-    resource_group_name  = local.resource_group_name
+    resource_group_name  = "dev-lol-scout-rg"
     storage_account_name = "devlolscoutsa01"
     container_name       = "terraform-state"
     key                  = "terraform.tfstate"

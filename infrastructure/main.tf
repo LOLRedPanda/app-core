@@ -1,5 +1,5 @@
 locals {
-    resource_group_name = "${var.environment}-lol-scout-rg"
+    environment = var.environment
 }
 
 provider "azurerm" {

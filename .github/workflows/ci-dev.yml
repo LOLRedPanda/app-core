@@ -22,7 +22,6 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.AZUIRE_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZUIRE_TENANT_ID}}
-      environment: dev
 
     steps:
       - uses: actions/checkout@v3
@@ -30,18 +29,25 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - name: Setup Terraform variables
+        id: variables
+        run: |-
+          cat > pipeline.auto.tfvars <<EOF
+          environment = "dev"
+          EOF
+
       - name: Terraform init
         run: terraform init
-        working-directory: ./infrastructure/environments/dev
+        working-directory: ./infrastructure
 
       - name: Terraform Format
         run: terraform fmt -check
-        working-directory: ./infrastructure/environments/dev
+        working-directory: ./infrastructure
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./infrastructure/environments/dev
+        working-directory: ./infrastructure
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ./infrastructure/environments/dev
+        working-directory: ./infrastructure

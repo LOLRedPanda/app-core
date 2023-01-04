@@ -40,9 +40,9 @@ jobs:
         working-directory: ./infrastructure
 
       - name: Terraform Plan
-        run: terraform plan -lock=false
+        run: terraform plan
         working-directory: ./infrastructure
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -lock=false
+        run: terraform apply -auto-approve
         working-directory: ./infrastructure

@@ -33,9 +33,14 @@ resource "azurerm_cosmosdb_account" "app_db" {
   resource_group_name = azurerm_resource_group.lol_scout_rg.name
   offer_type          = "Standard"
 
-
   enable_automatic_failover = true
   enable_free_tier          = true
+
+  consistency_policy {
+    consistency_level       = "BoundedStaleness"
+    max_interval_in_seconds = 300
+    max_staleness_prefix    = 100000
+  }
 
   geo_location {
     location          = "eastus"

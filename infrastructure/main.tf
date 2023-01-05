@@ -27,7 +27,7 @@ resource "azurerm_app_service_plan" "app_sp" {
   }
 }
 
-resource "azurerm_cosmosdb_account" "db" {
+resource "azurerm_cosmosdb_account" "app_db" {
   name                = "devlolscoutdb01"
   location            = azurerm_resource_group.lol_scout_rg.location
   resource_group_name = azurerm_resource_group.lol_scout_rg.name
@@ -36,4 +36,14 @@ resource "azurerm_cosmosdb_account" "db" {
 
   enable_automatic_failover = true
   enable_free_tier          = true
+
+  geo_location {
+    location          = "eastus"
+    failover_priority = 1
+  }
+
+  geo_location {
+    location          = "westus"
+    failover_priority = 0
+  }
 }

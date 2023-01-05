@@ -61,4 +61,4 @@ resource "azurerm_cosmosdb_account" "app_db" {
 
     site_config {}
   }
-}
+

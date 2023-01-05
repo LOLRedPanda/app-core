@@ -26,3 +26,14 @@ resource "azurerm_app_service_plan" "app_sp" {
     size = "F1"
   }
 }
+
+resource "azurerm_cosmosdb_account" "db" {
+  name                = "devlolscoutdb01"
+  location            = azurerm_resource_group.lol_scout_rg.location
+  resource_group_name = azurerm_resource_group.lol_scout_rg.name
+  offer_type          = "Standard"
+
+
+  enable_automatic_failover = true
+  enable_free_tier          = true
+}

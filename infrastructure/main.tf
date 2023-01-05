@@ -51,6 +51,7 @@ resource "azurerm_cosmosdb_account" "app_db" {
     location          = "westus"
     failover_priority = 0
   }
+}
 
   resource "azurerm_windows_web_app" "app_wa" {
     name                = "devlolscoutwa01"

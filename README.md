@@ -3,8 +3,8 @@
 A web app for scouting players for League of Legends tournaments. View your team stats, match history, and detailed player information for each team.
 
 ## Authors
-- Nate White - Owner / Admin - [LinkedIn](linkedin.com/in/natelwhite) - [GitHub](github.com/NathanLee29)
-- Nicole Selig - Contributor - [LinkedIn](linkedin.com/in/NicoleSelig) - [GitHub](github.com/NicoleSelig)
+- Nate White - Owner / Admin / Maintainer - [LinkedIn](linkedin.com/in/natelwhite) - [GitHub](github.com/NathanLee29)
+- Nicole Selig - Maintainer - [LinkedIn](linkedin.com/in/NicoleSelig) - [GitHub](github.com/NicoleSelig)
 
 ## Legal
 ### Riot Games Disclaimer

@@ -56,8 +56,8 @@ resource "azurerm_cosmosdb_account" "app_db" {
 resource "azurerm_windows_web_app" "app_wa" {
   name                = "devlolscoutwa01"
   resource_group_name = azurerm_resource_group.lol_scout_rg.name
-  location            = azurerm.service_plan.app_sp.location
-  service_plan_id     = azurerm.service_plan.app_sp.id
+  location            = azurerm_app_service_plan.app_sp.location
+  service_plan_id     = azurerm_app_service_plan.app_sp.id
 
   site_config {
     always_on = false

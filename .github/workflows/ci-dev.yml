@@ -17,12 +17,15 @@ jobs:
 
   terraform:
     runs-on: ubuntu-latest
+    environment: dev
     env:
       ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.AZUIRE_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZUIRE_TENANT_ID}}
-      //TF_LOG: "TRACE"
+      # TF_LOG: "TRACE"
+      TF_VAR_env: dev
+      TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
 
     steps:
       - uses: actions/checkout@v3
@@ -32,17 +35,12 @@ jobs:
 
       - name: Terraform init
         run: terraform init
-          -var "environment=\"dev\""
-        working-directory: ./infrastructure
-
-      - name: Terraform Format
-        run: terraform fmt -check
-        working-directory: ./infrastructure
+        working-directory: ./infrastructure/environments/dev
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: ./infrastructure
+        working-directory: ./infrastructure/environments/dev
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ./infrastructure
+        working-directory: ./infrastructure/environments/dev

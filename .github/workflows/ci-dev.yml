@@ -56,7 +56,7 @@ jobs:
       - name: Setup-node-js
         uses: actions/setup-node@v3
         with:
-          working-directory: ./api
+          cache-dependency-path: ./api
           cache: npm
 
       - name: npm install

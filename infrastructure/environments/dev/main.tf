@@ -16,6 +16,11 @@ terraform {
   }
 }
 
+resource "azurerm_resource_group" "lol_scout_rg" {
+  name     = "${local.env}-lol-scout-rg"
+  location = local.location
+}
+
 module "infra" {
   source = "../../"
   resource_group_name = "${local.env}-lol-scout-rg"

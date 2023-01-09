@@ -84,4 +84,4 @@ jobs:
       with:
         app-name: devlolscoutwa01
         publish-profile: ${{ secrets.AZUIRE_PUBLISH_PROFILE }}
-        package: ./api
+

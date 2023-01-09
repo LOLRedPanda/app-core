@@ -15,36 +15,36 @@ jobs:
         with:
           workingDirectory: api
 
-  terraform:
-    runs-on: ubuntu-latest
-    environment: dev
-    env:
-      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.AZUIRE_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.AZUIRE_TENANT_ID}}
-      # TF_LOG: "TRACE"
-      TF_VAR_env: dev
-      TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
+  # terraform:
+  #   runs-on: ubuntu-latest
+  #   environment: dev
+  #   env:
+  #     ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+  #     ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+  #     ARM_SUBSCRIPTION_ID: ${{secrets.AZUIRE_SUBSCRIPTION_ID}}
+  #     ARM_TENANT_ID: ${{secrets.AZUIRE_TENANT_ID}}
+  #     # TF_LOG: "TRACE"
+  #     TF_VAR_env: dev
+  #     TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
 
 
-    steps:
-      - uses: actions/checkout@v3
+    # steps:
+    #   - uses: actions/checkout@v3
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+    #   - name: Setup Terraform
+    #     uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform init
-        run: terraform init
-        working-directory: ./infrastructure/environments/dev
+    #   - name: Terraform init
+    #     run: terraform init
+    #     working-directory: ./infrastructure/environments/dev
 
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: ./infrastructure/environments/dev
+    #   - name: Terraform Plan
+    #     run: terraform plan
+    #     working-directory: ./infrastructure/environments/dev
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: ./infrastructure/environments/dev
+    #   - name: Terraform Apply
+    #     run: terraform apply -auto-approve
+    #     working-directory: ./infrastructure/environments/dev
 
   build-and-push: 
     name: Build and push
@@ -61,6 +61,7 @@ jobs:
       - name: npm install
         run: |
           npm install
+        working-directory: ./api
 
       - name: Upload atrifact for deployment
         uses: actions/upload-artifact@v3

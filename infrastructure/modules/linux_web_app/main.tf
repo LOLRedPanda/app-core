@@ -6,6 +6,9 @@ resource "azurerm_linux_web_app" "app_api" {
 
   site_config {
     always_on = false
+    application_stack = {
+      node_version = "18-lts"
+    }
   }
 
   app_settings = merge(var.app_env_vars)

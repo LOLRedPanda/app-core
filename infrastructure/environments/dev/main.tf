@@ -30,9 +30,6 @@ module "infra" {
   web_app_name = "${local.env}lolscoutwa01"
   location = local.location
   app_env_vars = {
-    application_stack = {
-      node_version = "18-lts"
-    }
     RIOT_API_KEY = local.riot_api_key
   }
 }

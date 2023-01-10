@@ -20,19 +20,16 @@ jobs:
     needs: tests
     environment: dev
     env:
-      TF_VAR_client_id: ${{secrets.AZURE_CLIENT_ID}}
-      TF_VAR_client_secret: ${{secrets.AZURE_CLIENT_SECRET}}
-      TF_VAR_subscription_id: ${{secrets.AZURE_SUBSCRIPTION_ID}}
-      TF_VAR_tenant_id: ${{secrets.AZURE_TENANT_ID}}
+      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
       # TF_LOG: "TRACE"
       TF_VAR_env: dev
       TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: echo tenant id
-        run: echo ${TF_VAR_tenant_id:0:5}
 
       - name: Run Terraform
         uses: ./.github/actions/terraform

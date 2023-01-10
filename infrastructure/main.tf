@@ -25,8 +25,8 @@ module "cosmos_db" {
   location = var.location
 }
 
-module "windows_web_app" {
-  source = "./modules/windows_web_app"
+module "linux_web_app" {
+  source = "./modules/linux_web_app"
 
   resource_group_name = var.resource_group_name
   web_app_name = var.web_app_name

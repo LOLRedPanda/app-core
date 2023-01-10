@@ -31,6 +31,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: echo tenant id
+        run: echo ${TF_VAR_tenant_id:0:5}
+
       - name: Run Terraform
         uses: ./.github/actions/terraform
         with:

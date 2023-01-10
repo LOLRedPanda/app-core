@@ -35,7 +35,7 @@ jobs:
       - name: Run Terraform
         uses: ./.github/actions/terraform
         with:
-          workingDirectory: ./infrastructure/dev
+          workingDirectory: infrastructure/environments/dev
 
       # - name: Setup Terraform
       #   uses: hashicorp/setup-terraform@v1

@@ -9,6 +9,14 @@ module "resource_group" {
   location = var.location
 }
 
+module "storage_account" {
+  source = "./modules/storage_account"
+
+  storage_account_name = var.storage_account_name
+  resource_group_name = var.resource_group_name
+  location = var.location
+}
+
 module "service_plan" {
   source = "./modules/service_plan"
 

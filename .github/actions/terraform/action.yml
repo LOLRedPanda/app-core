@@ -15,13 +15,16 @@ runs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform init
+      shell: bash
       run: terraform init
       working-directory: ${{inputs.workingDirectory}}
 
     - name: Terraform Plan
+      shell: bash
       run: terraform plan
       working-directory: ${{inputs.workingDirectory}}
 
     - name: Terraform Apply
+      shell: bash
       run: terraform apply -auto-approve
       working-directory: ${{inputs.workingDirectory}}

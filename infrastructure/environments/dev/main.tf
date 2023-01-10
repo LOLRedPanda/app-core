@@ -25,7 +25,6 @@ module "infra" {
   web_app_name = "${local.env}lolscoutwa01"
   location = local.location
   app_env_vars = {
-    SCM_DO_BUILD_DURING_DEPLOYMENT = true
     WEBSITE_WEBDEPLOY_USE_SCM = true
     RIOT_API_KEY = local.riot_api_key
   }

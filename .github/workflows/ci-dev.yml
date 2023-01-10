@@ -32,20 +32,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: Run Terraform
+        uses: ./.github/actions/terraform
+        with:
+          workingDirectory: ./infrastructure/dev
 
-      - name: Terraform init
-        run: terraform init
-        working-directory: ./infrastructure/environments/dev
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: ./infrastructure/environments/dev
+      # - name: Terraform init
+      #   run: terraform init
+      #   working-directory: ./infrastructure/environments/dev
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: ./infrastructure/environments/dev
+      # - name: Terraform Plan
+      #   run: terraform plan
+      #   working-directory: ./infrastructure/environments/dev
+
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
+      #   working-directory: ./infrastructure/environments/dev
 
   build-and-push: 
     name: Build and push

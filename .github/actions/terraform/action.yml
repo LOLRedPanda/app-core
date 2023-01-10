@@ -9,20 +9,19 @@ inputs:
 runs:
   using: composite
   steps:
-        steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform init
-        run: terraform init
-        working-directory: ${{inputs.workingDirectory}}
+    - name: Terraform init
+      run: terraform init
+      working-directory: ${{inputs.workingDirectory}}
 
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: ${{inputs.workingDirectory}}
+    - name: Terraform Plan
+      run: terraform plan
+      working-directory: ${{inputs.workingDirectory}}
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: ${{inputs.workingDirectory}}
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: ${{inputs.workingDirectory}}

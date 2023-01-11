@@ -17,8 +17,8 @@ resource "azurerm_linux_web_app" "app_api" {
   app_settings = merge(var.app_env_vars)
 }
 
-resource "azurerm_role_assignment" "acrpull" {
-  scope                = var.container_registry_id
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_linux_web_app.app_api.identity.0.principal_id
-}
+# resource "azurerm_role_assignment" "acrpull" {
+#   scope                = var.container_registry_id
+#   role_definition_name = "AcrPull"
+#   principal_id         = azurerm_linux_web_app.app_api.identity.0.principal_id
+# }

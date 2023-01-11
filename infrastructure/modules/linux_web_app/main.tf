@@ -3,6 +3,7 @@ resource "azurerm_linux_web_app" "app_api" {
   resource_group_name = var.resource_group_name
   location            = var.location
   service_plan_id     = var.service_plan_id
+  https_only          = true
 
   site_config {
     always_on = false
@@ -19,5 +20,5 @@ resource "azurerm_linux_web_app" "app_api" {
 resource "azurerm_role_assignment" "acrpull" {
   scope                = var.container_registry_id
   role_definition_name = "AcrPull"
-  principal_id         = azurerm_linux_web_app.app_api.identity[0].principal_id
+  principal_id         = azurerm_linux_web_app.app_api.identity.0.principal_id
 }

@@ -75,5 +75,5 @@ jobs:
       with:
         app-name: devlolscoutwa01
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: ./api
+        # package: ./api
 

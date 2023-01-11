@@ -4,41 +4,41 @@ on:
   workflow_dispatch:
 
 jobs:
-  # tests:
-  #   name: Run Tests
-  #   runs-on: ubuntu-latest
-  #   environment: dev
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Run Tests
-  #       uses: ./.github/actions/test
-  #       with:
-  #         workingDirectory: api
-
-  # terraform:
-  #   runs-on: ubuntu-latest
-  #   needs: tests
-  #   environment: dev
-  #   env:
-  #     ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-  #     ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-  #     ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
-  #     ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-  #     # TF_LOG: "TRACE"
-  #     TF_VAR_env: dev
-  #     TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
-
-  #   steps:
-  #     - uses: actions/checkout@v3
-
-  #     - name: Run Terraform
-  #       uses: ./.github/actions/terraform
-  #       with:
-  #         workingDirectory: infrastructure/environments/dev
-
-  build-and-push:
+  tests:
+    name: Run Tests
     runs-on: ubuntu-latest
-    # needs: terraform
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Tests
+        uses: ./.github/actions/test
+        with:
+          workingDirectory: api
+
+  terraform:
+    runs-on: ubuntu-latest
+    needs: tests
+    environment: dev
+    env:
+      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
+      # TF_LOG: "TRACE"
+      TF_VAR_env: dev
+      TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Terraform
+        uses: ./.github/actions/terraform
+        with:
+          workingDirectory: infrastructure/environments/dev
+
+  build:
+    runs-on: ubuntu-latest
+    needs: terraform
     environment: dev
     steps:
       - uses: actions/checkout@v3
@@ -55,15 +55,15 @@ jobs:
           npm install
         working-directory: ./api
 
-      - name: Upload artifact for deployment
-        uses: actions/upload-artifact@v3
-        with:
-          name: lol-scout-api
-          path: ./api
+      # - name: Upload artifact for deployment
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: lol-scout-api
+      #     path: ./api
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build-and-push
+    needs: build
     environment:
       name: 'dev'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -73,6 +73,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: lol-scout-api
+        app-name: devlolscoutwa01
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        package: ./api
 

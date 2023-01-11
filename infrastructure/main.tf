@@ -43,3 +43,12 @@ module "linux_web_app" {
   service_plan_id = module.service_plan.service_plan_id
 }
 
+module "container_registry" {
+  source = "./modules/container_registry"
+
+  resource_group_name = var.resource_group_name
+  web_app_name = var.container_registry_name
+  location = var.location
+}
+
+

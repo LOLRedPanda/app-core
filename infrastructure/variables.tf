@@ -28,6 +28,11 @@ variable "web_app_name" {
     description = "The name of the cosmosdb database"
 }
 
+variable "container_registry_name" {
+    type = string
+    description = "The name of the container registry."
+}
+
 variable "app_env_vars" {
     description = "The environment variables for the application."
 }

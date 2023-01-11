@@ -55,7 +55,7 @@ jobs:
           npm install
         working-directory: ./api
 
-      - name: Upload atrifact for deployment
+      - name: Upload artifact for deployment
         uses: actions/upload-artifact@v3
         with:
           name: lol-scout-api
@@ -75,4 +75,5 @@ jobs:
       with:
         app-name: devlolscoutwa01
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        package: ./api
 

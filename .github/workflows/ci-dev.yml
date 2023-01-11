@@ -15,65 +15,65 @@ jobs:
   #       with:
   #         workingDirectory: api
 
-  # terraform:
-  #   runs-on: ubuntu-latest
-  #   needs: tests
-  #   environment: dev
-  #   env:
-  #     ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-  #     ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-  #     ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
-  #     ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-  #     # TF_LOG: "TRACE"
-  #     TF_VAR_env: dev
-  #     TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
-
-  #   steps:
-  #     - uses: actions/checkout@v3
-
-  #     - name: Run Terraform
-  #       uses: ./.github/actions/terraform
-  #       with:
-  #         workingDirectory: infrastructure/environments/dev
-
-  build:
+  terraform:
     runs-on: ubuntu-latest
-    # needs: terraform
+    needs: tests
     environment: dev
+    env:
+      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
+      # TF_LOG: "TRACE"
+      TF_VAR_env: dev
+      TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup-node-js
-        uses: actions/setup-node@v3
+      - name: Run Terraform
+        uses: ./.github/actions/terraform
         with:
-          node-version: 16
-          cache-dependency-path: ./api/package-lock.json
-          cache: npm
+          workingDirectory: infrastructure/environments/dev
 
-      - name: npm install
-        run: |
-          npm install
-        working-directory: ./api
+  # build:
+  #   runs-on: ubuntu-latest
+  #   # needs: terraform
+  #   environment: dev
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      # - name: Upload artifact for deployment
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: lol-scout-api
-      #     path: ./api
+  #     - name: Setup-node-js
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: 16
+  #         cache-dependency-path: ./api/package-lock.json
+  #         cache: npm
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'dev'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  #     - name: npm install
+  #       run: |
+  #         npm install
+  #       working-directory: ./api
 
-    steps:
-    - name: Download artifact from build jobs
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: devlolscoutwa01
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        # package: ./api
+  #     # - name: Upload artifact for deployment
+  #     #   uses: actions/upload-artifact@v3
+  #     #   with:
+  #     #     name: lol-scout-api
+  #     #     path: ./api
+
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   environment:
+  #     name: 'dev'
+  #     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+  #   steps:
+  #   - name: Deploy to Azure WebApp
+  #     id: deploy-to-webapp
+  #     uses: azure/webapps-deploy@v2
+  #     with:
+  #       app-name: devlolscoutwa01
+  #       publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+  #       # package: ./api
 

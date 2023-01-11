@@ -23,10 +23,9 @@ module "infra" {
   service_plan_name = "${local.env}lolscoutsp01"
   db_name = "${local.env}lolscoutdb01"
   web_app_name = "${local.env}lolscoutwa01"
+  container_registry_name = "${local.env}lolscoutcr01"
   location = local.location
   app_env_vars = {
-    SCM_DO_BUILD_DURING_DEPLOYMENT = true
-    WEBSITE_WEBDEPLOY_USE_SCM = false
     RIOT_API_KEY = local.riot_api_key
   }
 }

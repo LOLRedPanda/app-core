@@ -46,19 +46,18 @@ jobs:
         with:
           creds: '{"clientId":"${{secrets.AZURE_CLIENT_ID}}","clientSecret":"${{secrets.AZURE_CLIENT_SECRET}}","subscriptionId":"${{secrets.AZURE_SUBSCRIPTION_ID}}","tenantId":"${{secrets.AZURE_TENANT_ID}}"}'
 
-      - name: 'Login to Docker Registry'
+      - name: Login to Docker Registry
         uses: azure/docker-login@v1
         with:
           login-server: ${{secrets.REGISTRY_LOGIN_SERVER}}
           username: ${{secrets.AZURE_CLIENT_ID}}
           password: ${{secrets.AZURE_CLIENT_SECRET}}
 
-      - name: 'Build and push image'
+      - name: 'Build and Push Image'
         shell: bash
         run: |
-          docker build ./ -t ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
+          docker build ./api -t ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
           docker push ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
-        working-directory: api
 
   # deploy:
   #   runs-on: ubuntu-latest

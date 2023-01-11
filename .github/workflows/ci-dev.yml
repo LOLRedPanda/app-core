@@ -58,7 +58,7 @@ jobs:
         run: |
           docker build ./ -t ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
           docker push ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
-        working-directory: ./api
+        working-directory: api
 
   # deploy:
   #   runs-on: ubuntu-latest

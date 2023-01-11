@@ -36,6 +36,7 @@ module "cosmos_db" {
 module "linux_web_app" {
   source = "./modules/linux_web_app"
 
+  container_registry_id = module.container_registry.container_registry_id
   resource_group_name = var.resource_group_name
   web_app_name = var.web_app_name
   location = var.location

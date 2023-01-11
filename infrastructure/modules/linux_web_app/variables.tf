@@ -17,6 +17,10 @@ variable "service_plan_id" {
     description = "The id of the service plan the web app will use."
 }
 
+variable "container_registry_id" {
+    description = "The id of the container registry the web app will use."
+}
+
 variable "app_env_vars" {
     description = "The environment variables for the application."
 }

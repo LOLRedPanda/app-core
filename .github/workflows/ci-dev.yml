@@ -56,8 +56,9 @@ jobs:
       - name: 'Build and Push Image'
         shell: bash
         run: |
-          docker build ./api -t ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
+          docker build ./ -t ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
           docker push ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
+        working-directory: ./api
 
   # deploy:
   #   runs-on: ubuntu-latest

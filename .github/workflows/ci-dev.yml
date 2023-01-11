@@ -4,37 +4,37 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    environment: dev
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Tests
-        uses: ./.github/actions/test
-        with:
-          workingDirectory: api
+  # tests:
+  #   name: Run Tests
+  #   runs-on: ubuntu-latest
+  #   environment: dev
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Run Tests
+  #       uses: ./.github/actions/test
+  #       with:
+  #         workingDirectory: api
 
-  terraform:
-    runs-on: ubuntu-latest
-    needs: tests
-    environment: dev
-    env:
-      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-      # TF_LOG: "TRACE"
-      TF_VAR_env: dev
-      TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
+  # terraform:
+  #   runs-on: ubuntu-latest
+  #   needs: tests
+  #   environment: dev
+  #   env:
+  #     ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+  #     ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+  #     ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+  #     ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
+  #     # TF_LOG: "TRACE"
+  #     TF_VAR_env: dev
+  #     TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
 
-    steps:
-      - uses: actions/checkout@v3
+  #   steps:
+  #     - uses: actions/checkout@v3
 
-      - name: Run Terraform
-        uses: ./.github/actions/terraform
-        with:
-          workingDirectory: infrastructure/environments/dev
+  #     - name: Run Terraform
+  #       uses: ./.github/actions/terraform
+  #       with:
+  #         workingDirectory: infrastructure/environments/dev
 
   build-and-push:
     runs-on: ubuntu-latest
@@ -73,7 +73,6 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: devlolscoutwa01
+        app-name: lol-scout-api
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: ./api
 

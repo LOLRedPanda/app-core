@@ -46,7 +46,8 @@ module "linux_web_app" {
 module "container_registry" {
   source = "./modules/container_registry"
 
-  containercontainer_registry_name = var.container_registry_name
+  resource_group_name = var.resource_group_name
+  container_registry_name = var.container_registry_name
   location = var.location
 }
 

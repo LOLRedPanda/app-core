@@ -61,6 +61,12 @@ jobs:
           docker push ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
         working-directory: api
 
+      - name: 'Deploy App Service'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: devlolscoutwa01
+          images: ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
+
   # deploy:
   #   runs-on: ubuntu-latest
   #   needs: build

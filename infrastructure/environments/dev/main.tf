@@ -25,6 +25,7 @@ module "infra" {
   web_app_name = "${local.env}lolscoutwa01"
   container_registry_name = "${local.env}lolscoutcr01"
   location = local.location
+  app_command_line = "server.js"
   app_env_vars = {
     RIOT_API_KEY = local.riot_api_key
   }

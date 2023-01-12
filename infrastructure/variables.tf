@@ -36,3 +36,7 @@ variable "container_registry_name" {
 variable "app_env_vars" {
     description = "The environment variables for the application."
 }
+
+variable "app_command_line" {
+    description = "The script command to run the application."
+}

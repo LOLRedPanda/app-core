@@ -10,7 +10,7 @@ variable "location" {
 
 variable "web_app_name" {
     type = string
-    description = "The name of the cosmosdb database"
+    description = "The name of the cosmosdb database."
 }
 
 variable "service_plan_id" {
@@ -21,7 +21,15 @@ variable "container_registry_id" {
     description = "The id of the container registry the web app will use."
 }
 
+variable "registry_server_url" {
+    description = "The url of the container registry the web app will use."
+}
+
 variable "app_env_vars" {
     description = "The environment variables for the application."
+}
+
+variable "app_command_line" {
+    description = "The script command to run the application."
 }
 

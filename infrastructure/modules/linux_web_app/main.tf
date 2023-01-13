@@ -6,7 +6,6 @@ resource "azurerm_linux_web_app" "app_api" {
   https_only          = true
 
   site_config {
-    always_on = false
     app_command_line = var.app_command_line
   }
 

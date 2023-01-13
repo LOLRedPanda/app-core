@@ -18,9 +18,9 @@ resource "azurerm_linux_web_app" "app_api" {
   app_settings = merge(
     var.app_env_vars,
     {
-      DOCKER_ENABLE_CI = true
-      DOCKER_REGISTRY_SERVER_URL = var.registry_server_url
-      WEBSITES_CONTAINER_START_TIME_LIMIT = 1800
+      # DOCKER_ENABLE_CI = true
+      # DOCKER_REGISTRY_SERVER_URL = var.registry_server_url
+      # WEBSITES_CONTAINER_START_TIME_LIMIT = 1800
     }
   )
 }

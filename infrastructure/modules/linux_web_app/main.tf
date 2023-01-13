@@ -3,7 +3,7 @@ resource "azurerm_linux_web_app" "app_api" {
   resource_group_name = var.resource_group_name
   location            = var.location
   service_plan_id     = var.service_plan_id
-  https_only          = true
+  # https_only          = true
 
   site_config {
     always_on = false

@@ -6,6 +6,7 @@ resource "azurerm_linux_web_app" "app_api" {
   https_only          = true
 
   site_config {
+    always_on = true
     container_registry_use_managed_identity = true
     app_command_line = var.app_command_line
   }

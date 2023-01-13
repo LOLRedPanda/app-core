@@ -6,6 +6,7 @@ resource "azurerm_linux_web_app" "app_api" {
   https_only          = true
 
   site_config {
+    container_registry_use_managed_identity = true
     app_command_line = var.app_command_line
   }
 
@@ -18,7 +19,7 @@ resource "azurerm_linux_web_app" "app_api" {
     var.app_env_vars,
     {
       DOCKER_ENABLE_CI = true
-      DOCKER_REGISTRY_SERVER_URL = var.registry_server_url
+      DOCKER_REGISTRY_SERVER_URL = "https://${var.registry_server_url}"
       WEBSITES_CONTAINER_START_TIME_LIMIT = 1800
     }
   )

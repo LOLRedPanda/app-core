@@ -25,6 +25,7 @@ module "infra" {
   web_app_name = "${local.env}lolscoutwa01"
   location = local.location
   app_env_vars = {
+    API_URL = "https://${local.env}lolscoutwa01.azurewebsites.net"
     RIOT_API_KEY = local.riot_api_key
   }
 }

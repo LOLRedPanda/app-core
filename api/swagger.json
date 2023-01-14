@@ -6,11 +6,6 @@
         "description": "Gathers information on League of Legend players to scout out picks and bans.",
         "license": {}
     },
-    "servers": [
-        {
-            "url": "http://localhost:7071"
-        }
-    ],
     "tags": [],
     "schemes": [
         "http"

@@ -8,7 +8,7 @@
     },
     "tags": [],
     "schemes": [
-        "http"
+        "https"
     ],
     "produces": [
         "application/json"

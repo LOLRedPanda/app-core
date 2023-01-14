@@ -16,11 +16,6 @@ resource "azurerm_linux_web_app" "app_api" {
     type = "SystemAssigned"
   }
 
-  cors {
-    allowed_origins = []
-    support_credentials = false
-  }
-
   app_settings = merge(
     var.app_env_vars,
     {

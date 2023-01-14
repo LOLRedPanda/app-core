@@ -26,7 +26,7 @@ resource "azurerm_linux_web_app" "app_api" {
   )
 }
 
-# TODO: figure out how to import this into state
+# TODO: figure out how to import this into state. for now, it needs to be assigned manually
 
 # resource "azurerm_role_assignment" "acrpull" {
 #   scope                = var.resouce_group_name

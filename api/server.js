@@ -13,7 +13,7 @@ Routes(app)
 app.use(
 	'/api-docs',
 	swaggerUi.serve,
-	swaggerUi.setup(swaggerDocument, null, null, null, null, apiURL)
+	swaggerUi.setup(swaggerDocument)
 )
 
 app.listen(port, () => {

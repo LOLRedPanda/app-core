@@ -16,6 +16,11 @@ resource "azurerm_linux_web_app" "app_api" {
     type = "SystemAssigned"
   }
 
+  cors {
+    allowed_origins = []
+    support_credentials = false
+  }
+
   app_settings = merge(
     var.app_env_vars,
     {
@@ -26,8 +31,10 @@ resource "azurerm_linux_web_app" "app_api" {
   )
 }
 
+# TODO: figure out how to import this into state
+
 # resource "azurerm_role_assignment" "acrpull" {
 #   scope                = var.resouce_group_name
 #   role_definition_name = "AcrPull"
-#   principal_id         = azurerm_linux_web_app.app_api.identity[0].principal_id
+#   principal_id         = azurerm_linux_web_app.app_api.identity.0.principal_id
 # }

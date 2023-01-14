@@ -6,7 +6,6 @@ const { Routes } = require('./src/routes')
 
 const app = express()
 const port = process.env.PORT || 3000
-const apiURL = process.env.API_URL
 
 Routes(app)
 

@@ -1,11 +1,12 @@
 {
-    "swagger": "3.0.2",
+    "swagger": "2.0",
     "info": {
         "version": "1.0.0",
         "title": "League of Legends Scouting API",
         "description": "Gathers information on League of Legend players to scout out picks and bans.",
         "license": {}
     },
+    "basePath": "/",
     "tags": [],
     "schemes": [
         "https"

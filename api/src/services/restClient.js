@@ -6,6 +6,8 @@ class RestClient {
 		let result
 		try {
 			result = await this.request.get(url, options)
+			//console.log(result.status)
+			//console.log(result.data)
 			if (result.status == 200) {
 				return result.data
 			}
@@ -25,7 +27,7 @@ class RestClient {
 	}
 
 	async sleep(retryAfter) {
-		setTimeout(() => console.log('waiting to retry....', retryAfter), retryAfter)
+		setTimeout(() => /*console.log('waiting to retry....', retryAfter)*/{}, retryAfter)
 	}
 
 	millisToSleep(retryHeaderString) {

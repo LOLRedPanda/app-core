@@ -15,11 +15,11 @@ class RiotApi {
 	}
 
 	async sleep() {
-		setTimeout(() => console.log('waiting....'), 10000)
+		setTimeout(() => /*console.log('waiting....')*/ { }, 10000)
 	}
 
 	async getPlayerIdsByName(name) {
-		console.log('getPlayerIdsByName')
+		//console.log('getPlayerIdsByName')
 		const result = await this.client.get(
 			`${this.na1url}/summoner/v4/summoners/by-name/${name}`,
 			this.options
@@ -28,7 +28,7 @@ class RiotApi {
 	}
 
 	async getChampionMastery(PlayerId, count) {
-		console.log('getChampionMastery')
+		//console.log('getChampionMastery')
 		const options = { ...this.options }
 		options.params.count = count
 		const result = await this.client.get(
@@ -52,15 +52,21 @@ class RiotApi {
 		const options = { ...this.options }
 		options.params.queue = queueId
 		options.params.count = count
-		const result = await this.client.get(
-			`${this.americasurl}/match/v5/matches/by-puuid/${PlayerID}/ids`,
-			options
-		)
+		let result
+		try {
+			result = await this.client.get(
+				`${this.americasurl}/match/v5/matches/by-puuid/${PlayerID}/ids`,
+				options
+			)
+		} catch (e) {
+			console.log(e)
+		}
+		console.log(result)
 		return result
 	}
 
 	async getMatch(matchId) {
-		console.log('getMatch')
+		//console.log('getMatch')
 		const options = { ...this.options }
 		const result = await this.client.get(
 			`${this.americasurl}/match/v5/matches/${matchId}`,

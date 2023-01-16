@@ -65,7 +65,7 @@ class SummonerController {
 	}
 
 	async sleep() {
-		setTimeout(() => console.log('waiting....'), 1000)
+		setTimeout(() => {}, 1000)
 	}
 
 	async getAllPlayersForAllMatches(matchIds) {
@@ -93,8 +93,6 @@ class SummonerController {
 
 	async getCSPerMinute(matchIds, puuid) {
 		const allPlayersForAllMatches = await this.getAllPlayersForAllMatches(matchIds)
-		//const matchTime = 
-		console.log('got all players for all matches')
 		const playersMatches = await this.filterPlayersMatches(puuid, allPlayersForAllMatches)
 		const averageCSPerMinute = await this.calculateAverageCSPerMinute(playersMatches)
 		return averageCSPerMinute

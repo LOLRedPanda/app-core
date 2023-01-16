@@ -6,13 +6,10 @@ class RestClient {
 		let result
 		try {
 			result = await this.request.get(url, options)
-			console.log(result.status)
-			//console.log(result.data)
 			if (result.status == 200) {
 				return result.data
 			}
 		} catch (e) {
-			console.log(e)
 			const { status, statusText, headers } = e.response
 			if (status === 403) {
 				throw new Error(`${status} ${statusText}: Did you forget to refresh your api key?`)
@@ -28,7 +25,7 @@ class RestClient {
 	}
 
 	async sleep(retryAfter) {
-		setTimeout(() => /*console.log('waiting to retry....', retryAfter)*/{}, retryAfter)
+		setTimeout(() => console.log('waiting to retry....', retryAfter), retryAfter)
 	}
 
 	millisToSleep(retryHeaderString) {

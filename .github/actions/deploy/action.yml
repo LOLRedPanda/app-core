@@ -26,6 +26,12 @@ inputs:
   publishProfile:
     required: true
     description: Web App Publish profile credentials for the container registry.
+  imageName:
+    required: true
+    description: The name of the app to deploy to.
+  appName:
+    required: true
+    description: The name of the docker image.
   
 
 runs:
@@ -47,13 +53,13 @@ runs:
     - name: 'Build and Push Image'
       shell: bash
       run: |
-        docker build ./ -t ${{inputs.loginServer}}/lol-scout-api:${{ inputs.commitHash }}
-        docker push ${{inputs.loginServer}}/lol-scout-api:${{ inputs.commitHash }}
+        docker build ./ -t ${{inputs.loginServer}}/${{ inputs.imageName }}:${{ inputs.commitHash }}
+        docker push ${{inputs.loginServer}}/${{ inputs.imageName }}:${{ inputs.commitHash }}
       working-directory: ${{inputs.workingDirectory}}
 
     - name: 'Deploy App Service'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: devlolscoutwa01
+        app-name: ${{inputs.appName}}
         publish-profile: ${{ inputs.publishProfile }}
-        images: ${{inputs.loginServer}}/lol-scout-api:${{ inputs.commitHash }}
+        images: ${{inputs.loginServer}}/${{ inputs.imageName }}:${{ inputs.commitHash }}

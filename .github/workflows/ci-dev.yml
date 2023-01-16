@@ -54,4 +54,7 @@ jobs:
           loginServer: ${{secrets.REGISTRY_LOGIN_SERVER}}
           commitHash: ${{ github.sha }}
           publishProfile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          appName: devlolscoutwa01
+          imageName: lol-scout-api
+          
 

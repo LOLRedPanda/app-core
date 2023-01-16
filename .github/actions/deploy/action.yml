@@ -1,0 +1,59 @@
+name: Deploy
+description: Deploy to Azure Web App
+
+inputs:
+  workingDirectory:
+    required: true
+    description: Working directory where terraform will run.
+  clientId:
+    required: true
+    description: Azure client id credential.
+  clientSecret:
+    required: true
+    description: Azure client secret credential.
+  subscriptionId:
+    required: true
+    description: Azure subscription Id.
+  tenantId:
+    required: true
+    description: Azure tenant Id.
+  loginServer:
+    required: true
+    description: Login server of the container registry.
+  commitHash:
+    required: true
+    description: commit hash of the pipeline run.
+  publishProfile:
+    required: true
+    description: Web App Publish profile credentials for the container registry.
+  
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v3
+    - name: AZ Login
+      uses: azure/login@v1
+      with:
+        creds: '{"clientId":"${{input.clientId}}","clientSecret":"${{input.clientSecret}}","subscriptionId":"${{input.subscriptionId}}","tenantId":"${{input.tenantId}}"}'
+
+    - name: Login to Docker Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{input.loginServer}}
+        username: ${{input.clientId}}
+        password: ${{input.clientSecret}}
+
+    - name: 'Build and Push Image'
+      shell: bash
+      run: |
+        docker build ./ -t ${{input.loginServer}}/lol-scout-api:${{ input.commitHash }}
+        docker push ${{input.loginServer}}/lol-scout-api:${{ input.commitHash }}
+      working-directory: ${{input.workingDirectory}}
+
+    - name: 'Deploy App Service'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: devlolscoutwa01
+        publish-profile: ${{ input.publishProfile }}
+        images: ${{input.loginServer}}/lol-scout-api:${{ input.commitHash }}

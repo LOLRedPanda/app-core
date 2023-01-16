@@ -16,6 +16,7 @@ jobs:
           workingDirectory: api
 
   terraform:
+    name: Deploy Infrastructure
     runs-on: ubuntu-latest
     needs: tests
     environment: dev
@@ -36,35 +37,20 @@ jobs:
         with:
           workingDirectory: infrastructure/environments/dev
 
-  build:
+  deploy-api:
     runs-on: ubuntu-latest
     needs: terraform
     environment: dev
     steps:
       - uses: actions/checkout@v3
-      - name: AZ Login
-        uses: azure/login@v1
+      - uses: ./.github/actions/deploy
         with:
-          creds: '{"clientId":"${{secrets.AZURE_CLIENT_ID}}","clientSecret":"${{secrets.AZURE_CLIENT_SECRET}}","subscriptionId":"${{secrets.AZURE_SUBSCRIPTION_ID}}","tenantId":"${{secrets.AZURE_TENANT_ID}}"}'
-
-      - name: Login to Docker Registry
-        uses: azure/docker-login@v1
-        with:
-          login-server: ${{secrets.REGISTRY_LOGIN_SERVER}}
-          username: ${{secrets.AZURE_CLIENT_ID}}
-          password: ${{secrets.AZURE_CLIENT_SECRET}}
-
-      - name: 'Build and Push Image'
-        shell: bash
-        run: |
-          docker build ./ -t ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
-          docker push ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
-        working-directory: api
-
-      - name: 'Deploy App Service'
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: devlolscoutwa01
-          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          images: ${{secrets.REGISTRY_LOGIN_SERVER}}/lol-scout-api:${{ github.sha }}
+          workingDirectory: api
+          clientId: ${{secrets.AZURE_CLIENT_ID}}
+          clientSecret: ${{secrets.AZURE_CLIENT_SECRET}}
+          subscriptionId: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+          tenantId: ${{secrets.AZURE_TENANT_ID}}
+          loginServer: ${{secrets.REGISTRY_LOGIN_SERVER}}
+          commitHash: ${{ github.sha }}
+          publishProfile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
 

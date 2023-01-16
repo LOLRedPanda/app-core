@@ -4,11 +4,9 @@ const { RiotApi } = require('../services/riotApi')
 
 
 function Routes(app) {
-	const riotApi = new RiotApi()
-	const summoner = new SummonerController(riotApi)
-	const match = new MatchesController(riotApi)
-
 	app.get('/summoner', async (req, res) => {
+		const riotApi = new RiotApi()
+		const summoner = new SummonerController(riotApi)
 		try {
 			const playerName = req.query.name
 			const { id, puuid, name } = await summoner.getIdsByName(playerName)
@@ -30,6 +28,8 @@ function Routes(app) {
 	})
 
 	app.get('/matches', async (req, res) => {
+		const riotApi = new RiotApi()
+		const match = new MatchesController(riotApi)
 		const name = req.query.name
 		const {puuid} = await match.getIdsByName(name)
 		const matchId = await match.getMatchId(puuid)

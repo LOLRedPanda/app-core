@@ -45,7 +45,7 @@ class SummonerController {
 
 	async getMatchIds(puuid) {
 		try{
-			const matchIds = await this.riotApi.getMatchIds(puuid, 420, 30)
+			const matchIds = await this.riotApi.getMatchIds(puuid, 420, 20)
 			return matchIds
 		} catch(e){
 			throw new Error(`cannot get Match Ids: ${e}`)

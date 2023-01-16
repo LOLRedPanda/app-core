@@ -3,10 +3,10 @@ name: PROD - CI
 on:
   pull_request: 
     branches: 
-      - main
+      - prod
   push: 
     branches:
-      - main
+      - prod
 
 jobs:
   unit-tests:

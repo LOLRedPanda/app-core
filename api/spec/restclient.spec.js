@@ -35,7 +35,6 @@ describe('RestClient', () => {
 			mockRequest.get.and.returnValue({status:200, data:{}})
 
 			const result = await client.get('https://www.string.com', {})
-			console.log(result)
 
 			expect(result).toEqual({})
 

@@ -59,6 +59,7 @@ jobs:
     name: Deploy API
     runs-on: ubuntu-latest
     needs: terraform-apply
+    if: ${{ github.event_name == 'push' }}
     environment: prod
     steps:
       - uses: actions/checkout@v3

@@ -6,11 +6,10 @@
         "description": "Gathers information on League of Legend players to scout out picks and bans.",
         "license": {}
     },
-    "host": "localhost:3000",
     "basePath": "/",
     "tags": [],
     "schemes": [
-        "http"
+        "https"
     ],
     "produces": [
         "application/json"

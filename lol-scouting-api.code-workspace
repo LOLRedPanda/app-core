@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "api"
+		},
+		{
+			"path": "infrastructure"
+		},
+		{
+			"path": "web"
 		}
 	],
 	"settings": {}

@@ -21,7 +21,7 @@ class RestClient {
 				const millisToSleep = this.millisToSleep(headers['retry-after'])
 				await this.sleep(millisToSleep)
 				result = await this.get(url, options)
-				return result.data
+				if (result.status === 200) return result.data
 			}
 		}
 		return result

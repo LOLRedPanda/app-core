@@ -35,25 +35,25 @@ runs:
     - name: AZ Login
       uses: azure/login@v1
       with:
-        creds: '{"clientId":"${{input.clientId}}","clientSecret":"${{input.clientSecret}}","subscriptionId":"${{input.subscriptionId}}","tenantId":"${{input.tenantId}}"}'
+        creds: '{"clientId":"${{inputs.clientId}}","clientSecret":"${{inputs.clientSecret}}","subscriptionId":"${{inputs.subscriptionId}}","tenantId":"${{inputs.tenantId}}"}'
 
     - name: Login to Docker Registry
       uses: azure/docker-login@v1
       with:
-        login-server: ${{input.loginServer}}
-        username: ${{input.clientId}}
-        password: ${{input.clientSecret}}
+        login-server: ${{inputs.loginServer}}
+        username: ${{inputs.clientId}}
+        password: ${{inputs.clientSecret}}
 
     - name: 'Build and Push Image'
       shell: bash
       run: |
-        docker build ./ -t ${{input.loginServer}}/lol-scout-api:${{ input.commitHash }}
-        docker push ${{input.loginServer}}/lol-scout-api:${{ input.commitHash }}
-      working-directory: ${{input.workingDirectory}}
+        docker build ./ -t ${{inputs.loginServer}}/lol-scout-api:${{ inputs.commitHash }}
+        docker push ${{inputs.loginServer}}/lol-scout-api:${{ inputs.commitHash }}
+      working-directory: ${{inputs.workingDirectory}}
 
     - name: 'Deploy App Service'
       uses: azure/webapps-deploy@v2
       with:
         app-name: devlolscoutwa01
-        publish-profile: ${{ input.publishProfile }}
-        images: ${{input.loginServer}}/lol-scout-api:${{ input.commitHash }}
+        publish-profile: ${{ inputs.publishProfile }}
+        images: ${{inputs.loginServer}}/lol-scout-api:${{ inputs.commitHash }}

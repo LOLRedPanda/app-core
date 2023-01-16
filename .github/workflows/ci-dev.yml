@@ -38,6 +38,7 @@ jobs:
           workingDirectory: infrastructure/environments/dev
 
   deploy-api:
+    name: Deploy API
     runs-on: ubuntu-latest
     needs: terraform
     environment: dev

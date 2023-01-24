@@ -7,7 +7,8 @@ import Header from "../components/header"
 import TopCards from "../components/TopCards"
 import BarChart from "../components/BarChart"
 import RecentOrders from "../components/RecentOrders"
-
+import Members from "../components/members"
+import {data} from '../data/teams'
 const Home: NextPage = () => {
   return (
     <div className="">
@@ -16,14 +17,14 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-gray-100 min-h-screen">
+      <main className="bg-red-300 min-h-screen">
         {/* <Sidebar/> */}
         <div className='pl-4'>
           <Header />
           <TopCards />
           <div className='pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 '>
             <BarChart />
-            <RecentOrders />
+            <Members />
           </div>
         </div>
       </main>

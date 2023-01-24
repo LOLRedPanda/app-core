@@ -4,11 +4,10 @@ import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Sidebar>
+    <Sidebar>  
       <Component {...pageProps} />
     </Sidebar>
     
-
   )
 }
 

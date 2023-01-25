@@ -3,141 +3,141 @@ export const data = [
       id: 1,
       name: 'Never Lucky',
       logo: '/../public/assets/NL.png',
-      Captain:'Tominatoo',
+      captain:'Tominatoo',
       members: {
-        Top: 'Tyriq',
-        Jungle: 'Tominatoo',
-        Mid:'Soxxy',
-        ADC:'RedPanda',
-        Support:'JTRippr'
+        top: 'Tyriq',
+        jungle: 'Tominatoo',
+        mid:'Soxxy',
+        adc:'RedPanda',
+        support:'JTRippr'
       },
-      Record: '4-0',
+      record: '4-0',
     },
     {
         id: 2,
         name: 'Final Bastion',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'Ramss',
+        captain:'Ramss',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 3,
         name: 'CSU',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'Rivinana',
+        captain:'Rivinana',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 4,
         name: 'Spartan Shields',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'Narwhal',
+        captain:'Narwhal',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 5,
         name: 'MiSFiTS',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'Fearless',
+        captain:'Fearless',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 6,
         name: 'Orbit Gaming Quasar',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'BonTheQuad',
+        captain:'BonTheQuad',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 7,
         name: 'CB Frost',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'Inxtinction',
+        captain:'Inxtinction',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 8,
         name: 'High on Meeps',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'DoorGaurd',
+        captain:'DoorGaurd',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 9,
         name: 'I Dont like sand',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'Xyenial',
+        captain:'Xyenial',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       {
         id: 10,
         name: 'Clown Gaming Spartans',
         logo: '/../public/assets/pxe_logo.png',
-        Captain:'SEMZ',
+        captain:'SEMZ',
         members: {
-          Top: '',
-          Jungle: '',
-          Mid:'',
-          ADC:'',
-          Support:''
+          top: '',
+          jungle: '',
+          mid:'',
+          adc:'',
+          support:''
         },
-        Record: '0-0',
+        record: '0-0',
       },
       
 ]

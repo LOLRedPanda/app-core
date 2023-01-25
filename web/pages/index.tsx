@@ -21,10 +21,10 @@ const Home: NextPage = () => {
         {/* <Sidebar/> */}
         <div className='pl-4'>
           <Header />
-          <TopCards />
+          <TopCards teamData={data[0]}/>
           <div className='pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 '>
             <BarChart />
-            <Members />
+            <Members teamData={data[0]} />
           </div>
         </div>
       </main>

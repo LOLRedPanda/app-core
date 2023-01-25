@@ -5,11 +5,11 @@ export const data = [
       logo: '/../public/assets/NL.png',
       Captain:'Tominatoo',
       members: {
-        Top: '',
-        Jungle: '',
-        Mid:'',
-        ADC:'',
-        Support:''
+        Top: 'Tyriq',
+        Jungle: 'Tominatoo',
+        Mid:'Soxxy',
+        ADC:'RedPanda',
+        Support:'JTRippr'
       },
       Record: '4-0',
     },

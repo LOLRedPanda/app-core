@@ -1,12 +1,15 @@
 import React from 'react'
-
-function TopCards() {
+import PropTypes, {InferProps} from 'prop-types'
+function TopCards({teamData} : InferProps<typeof TopCards.propTypes>) {
   return (
+    
     <div className="grid lg:grid-cols-5 gap-4 pr-4 pt-4 ">
         <div className="lg:col-span-2 col-span-1 bg-red-100 flex justify-between w-full border p-4 rounded-lg">
-            <div className='flex flex-col w-full pb-4'>
-                <p className='text-2xl font-bold'>4-0</p>
+            <div className='flex flex-col w-full pb-4'>  
+                <>
+                <p className='text-2xl font-bold'>{teamData.Record}</p>
                 <p className='text-gray-600'>Record</p>
+                </>
             </div>
             <p className='bg-green-200 flex jusify-center items-center p-2 rounded-lg'>
                 <span className='text-green-600 text-lg'>100%</span>
@@ -14,8 +17,8 @@ function TopCards() {
         </div>
         <div className="lg:col-span-2 col-span-1 bg-red-100 flex justify-between w-full border p-4 rounded-lg">
             <div className='flex flex-col w-full pb-4'>
-                <p className='text-2xl font-bold'>1st</p>
-                <p className='text-gray-600'>Ranked</p>
+                
+                <><p className='text-2xl font-bold'>1st</p><p className='text-gray-600'>Ranked</p></>          
             </div>
             <p className='bg-gray-200 flex jusify-center items-center p-2 rounded-lg'>
                 <span className='text-gray-600 text-lg'>-</span>
@@ -33,5 +36,7 @@ function TopCards() {
     </div>
   )
 }
-
+TopCards.propTypes = {
+    teamData: PropTypes.any,
+}
 export default TopCards

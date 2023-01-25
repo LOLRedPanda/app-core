@@ -3,15 +3,6 @@ import { Listbox, Transition } from '@headlessui/react'
 import { HiChevronUpDown } from 'react-icons/hi2'
 import {BsCheckLg} from 'react-icons/bs'
 
-// const list = [
-//   { name: 'Wade Cooper' },
-//   { name: 'Arlene Mccoy' },
-//   { name: 'Devon Webb' },
-//   { name: 'Tom Cook' },
-//   { name: 'Tanya Fox' },
-//   { name: 'Hellen Schmidt' },
-// ]
-
 export default function ListBox({list}) {
   const [selected, setSelected] = useState(list[0])
 

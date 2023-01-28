@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Bar } from "react-chartjs-2";
 import { Menu } from '@headlessui/react'
+import type { ChartData, ChartOptions } from 'chart.js';
 
 import{
     Chart as ChartJS,
@@ -14,6 +15,17 @@ import{
 import { data } from '../data/data';
 import ListBox from './ListBox';
 
+interface chartData{
+    labels: string[] ,
+    datasets: dataset[]
+}
+
+interface dataset{
+    label: string,
+    data: number[],
+    borderColor: string,
+    backgroundColor: string
+}
 
 ChartJS.register(
     CategoryScale,
@@ -25,8 +37,14 @@ ChartJS.register(
 );
 
 function BarChart() {
-    const [chartData, setChartData] = useState({
-        datasets: [],
+    const [chartData, setChartData] = useState<chartData>({
+        labels: [],
+        datasets: [{
+            label: '',
+            data: [],
+            borderColor: '',
+            backgroundColor:'',
+        }]
     })
 
     const[chartOptions, setChartOptions] = useState({})
@@ -38,13 +56,13 @@ function BarChart() {
                 label: 'KDA',
                 data: [3.2, 4.9, 3.0, 4.7, 3.6],
                 borderColor: 'rgb(53, 162, 235)',
-                backgroundColor:'rgb(53, 162, 235, 0.4',
+                backgroundColor:'rgb(53, 162, 235, 0.4)',
             },
             {
                 label: 'CSMP',
                 data: [3.2, 4.9, 3.0, 4.7, 3.6],
-                borderColor: 'rgb(255, 0, 0)',
-                backgroundColor:'rgb(255, 0, 0 0.4',
+                borderColor: 'rgb(255, 50, 50)',
+                backgroundColor:'rgb(255, 50, 50, 0.4)',
             }
         ],
 

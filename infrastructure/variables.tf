@@ -32,6 +32,11 @@ variable "web_app_name" {
     description = "The name of the cosmosdb database"
 }
 
+variable "api_app_name" {
+    type = string
+    description = "The name of the api"
+}
+
 variable "container_registry_name" {
     type = string
     description = "The name of the container registry."

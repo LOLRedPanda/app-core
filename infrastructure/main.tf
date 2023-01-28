@@ -25,14 +25,14 @@ module "service_plan" {
   location = var.location
 }
 
-# module "cosmos_db" {
-#   count  = (var.env != "dev") ? 1 : 0
-#   source = "./modules/cosmosdb"
+module "cosmos_db" {
+  count  = (var.env != "dev") ? 1 : 0
+  source = "./modules/cosmosdb"
 
-#   resource_group_name = var.resource_group_name
-#   db_name = var.db_name
-#   location = var.location
-# }
+  resource_group_name = var.resource_group_name
+  db_name = var.db_name
+  location = var.location
+}
 
 module "linux_web_app" {
   source = "./modules/linux_web_app"

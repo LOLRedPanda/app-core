@@ -3,7 +3,7 @@ import { Listbox, Transition } from '@headlessui/react'
 import { HiChevronUpDown } from 'react-icons/hi2'
 import {BsCheckLg} from 'react-icons/bs'
 
-export default function ListBox({list}) {
+export default function ListBox({list}: any) {
   const [selected, setSelected] = useState(list[0])
 
   return (

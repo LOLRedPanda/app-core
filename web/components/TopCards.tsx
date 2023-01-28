@@ -7,7 +7,7 @@ function TopCards({teamData} : InferProps<typeof TopCards.propTypes>) {
         <div className="lg:col-span-2 col-span-1 bg-red-100 flex justify-between w-full border p-4 rounded-lg">
             <div className='flex flex-col w-full pb-4'>  
                 <>
-                <p className='text-2xl font-bold'>{teamData.Record}</p>
+                <p className='text-2xl font-bold'>{teamData.record}</p>
                 <p className='text-gray-600'>Record</p>
                 </>
             </div>

@@ -11,6 +11,36 @@ export const data = [
         adc:'RedPanda',
         support:'JTRippr'
       },
+      stats:{
+        KDA: {
+          top: 3.2,
+          jungle: 4.9,
+          mid: 3.0,
+          adc: 4.7,
+          support: 3.6
+        },
+        CSPM: {
+          top: 3.2,
+          jungle: 4.9,
+          mid: 3.0,
+          adc: 4.7,
+          support: 3.6
+        },
+        DMGPM: {
+          top: 3.2,
+          jungle: 4.9,
+          mid: 3.0,
+          adc: 4.7,
+          support: 3.6
+        },
+        KP: {
+          top: 3.2,
+          jungle: 4.9,
+          mid: 3.0,
+          adc: 4.7,
+          support: 3.6
+        }
+      },
       record: '4-0',
     },
     {

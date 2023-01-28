@@ -63,7 +63,13 @@ function BarChart({teamData} : InferProps<typeof BarChart.propTypes>) {
                 data: [teamData.stats.CSPM.top, teamData.stats.CSPM.jungle, teamData.stats.CSPM.mid, teamData.stats.CSPM.adc, teamData.stats.CSPM.support],
                 borderColor: 'rgb(255, 50, 50)',
                 backgroundColor:'rgb(255, 50, 50, 0.4)',
-            }
+            },
+            {
+                label: 'DMGPM(x100)',
+                data: [teamData.stats.DMGPM.top, teamData.stats.DMGPM.jungle, teamData.stats.DMGPM.mid, teamData.stats.DMGPM.adc, teamData.stats.DMGPM.support],
+                borderColor: 'rgb(50, 255, 50)',
+                backgroundColor:'rgb(50, 255, 50, 0.4)',
+            },
         ],
 
         })

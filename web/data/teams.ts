@@ -20,28 +20,21 @@ export const data = [
           support: 3.6
         },
         CSPM: {
-          top: 3.2,
-          jungle: 4.9,
-          mid: 3.0,
-          adc: 4.7,
-          support: 3.6
+          top: 3.16,
+          jungle: 3.84,
+          mid: 3.11,
+          adc: 2.28,
+          support: 2.21
         },
         DMGPM: {
-          top: 3.2,
-          jungle: 4.9,
-          mid: 3.0,
-          adc: 4.7,
-          support: 3.6
-        },
-        KP: {
-          top: 3.2,
-          jungle: 4.9,
-          mid: 3.0,
-          adc: 4.7,
-          support: 3.6
+          top: 4.56,
+          jungle: 7.71,
+          mid: 7.46,
+          adc: 3.06,
+          support: 5.99
         }
       },
-      record: '4-0',
+      record: '6-0',
     },
     {
         id: 2,

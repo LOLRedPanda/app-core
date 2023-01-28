@@ -18,6 +18,7 @@ terraform {
 
 module "infra" {
   source = "../../"
+  env = local.env
   resource_group_name = "${local.env}-lol-scout-rg"
   storage_account_name = "${local.env}lolscoutsa01"
   service_plan_name = "${local.env}lolscoutsp01"

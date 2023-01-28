@@ -26,6 +26,7 @@ module "service_plan" {
 }
 
 module "cosmos_db" {
+  count  = (var.env != "dev") ? 1 : 0
   source = "./modules/cosmosdb"
 
   resource_group_name = var.resource_group_name

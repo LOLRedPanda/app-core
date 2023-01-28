@@ -36,7 +36,6 @@ resource "azurerm_linux_web_app" "app_web" {
   site_config {
     always_on = true
     container_registry_use_managed_identity = true
-    app_command_line = var.app_command_line
   }
 
   identity {

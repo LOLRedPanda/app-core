@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes, {InferProps} from 'prop-types'
 function TopCards({teamData} : InferProps<typeof TopCards.propTypes>) {
+    const KDA = teamData.stats.KDA
+    const teamKDA = (KDA.top + KDA.jungle +KDA.mid + KDA.adc + KDA.support)/5
   return (
     
     <div className="grid lg:grid-cols-5 gap-4 pr-4 pt-4 ">
@@ -26,7 +28,7 @@ function TopCards({teamData} : InferProps<typeof TopCards.propTypes>) {
         </div>
         <div className=" bg-red-100 flex justify-between w-full border p-4 rounded-lg">
             <div className='flex flex-col w-full pb-4'>
-                <p className='text-2xl font-bold'>3.88</p>
+                <p className='text-2xl font-bold'>{Math.ceil(teamKDA * 100) / 100}</p>
                 <p className='text-gray-600'>Team KDA</p>
             </div>
             <p className='bg-gray-200 flex jusify-center items-center p-2 rounded-lg'>

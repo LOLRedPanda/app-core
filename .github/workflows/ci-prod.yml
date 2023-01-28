@@ -8,14 +8,11 @@ on:
     branches:
       - prod
 
-env:
-  ENV: prod
-
 jobs:
   unit-tests:
     name: 🧪 Run Unit Tests
     runs-on: ubuntu-latest
-    environment: ${{ variables.ENV }}
+    environment: prod
     steps:
       - uses: actions/checkout@v3
       - name: Run Tests
@@ -26,28 +23,28 @@ jobs:
   terraform-plan:
     name: Run Terraform Plan
     runs-on: ubuntu-latest
-    environment: ${{ variables.ENV }}
+    environment: prod
     env:
       ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
       # TF_LOG: "TRACE"
-      TF_VAR_env: ${{ variables.ENV }}
+      TF_VAR_env: prod
       TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
     steps:
       - uses: actions/checkout@v3
       - name: Run Tests
         uses: ./.github/actions/terraform-plan
         with:
-          workingDirectory: infrastructure/environments/${{ variables.ENV }}
+          workingDirectory: infrastructure/environments/prod
 
 
   terraform-apply:
     name: 🏗️ Deploy Infrastructure
     runs-on: ubuntu-latest
     needs: [unit-tests, terraform-plan]
-    environment: ${{ variables.ENV }}
+    environment: prod
     if: ${{ github.event_name == 'push' }}
     env:
       ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
@@ -55,7 +52,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
       # TF_LOG: "TRACE"
-      TF_VAR_env: ${{ variables.ENV }}
+      TF_VAR_env: prod
       TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
 
     steps:
@@ -64,14 +61,14 @@ jobs:
       - name: Run Terraform
         uses: ./.github/actions/terraform-apply
         with:
-          workingDirectory: infrastructure/environments/${{ variables.ENV }}
+          workingDirectory: infrastructure/environments/prod
 
   deploy-api:
     name: 🚀 Deploy API
     runs-on: ubuntu-latest
     needs: terraform-apply
     if: ${{ github.event_name == 'push' }}
-    environment: ${{ variables.ENV }}
+    environment: prod
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/deploy
@@ -84,14 +81,14 @@ jobs:
           loginServer: ${{secrets.REGISTRY_LOGIN_SERVER}}
           commitHash: ${{ github.sha }}
           publishProfile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          appName: ${{ variables.ENV }}lolscoutwa01
+          appName: prodlolscoutwa01
           imageName: lol-scout-api
 
   deploy-web:
     name: 🚀 Deploy Web
     runs-on: ubuntu-latest
     needs: terraform-apply
-    environment: ${{ variables.ENV }}
+    environment: prod
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/deploy
@@ -104,5 +101,5 @@ jobs:
           loginServer: ${{secrets.REGISTRY_LOGIN_SERVER}}
           commitHash: ${{ github.sha }}
           publishProfile: ${{ secrets.WEB_AZURE_PUBLISH_PROFILE }}
-          appName: ${{ variables.ENV }}lolscoutwa02
+          appName: prodlolscoutwa02
           imageName: lol-scout-web

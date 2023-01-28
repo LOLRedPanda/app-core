@@ -26,6 +26,7 @@ module "service_plan" {
 }
 
 module "cosmos_db" {
+  count  = (var.env != "dev") ? 1 : 0
   source = "./modules/cosmosdb"
 
   resource_group_name = var.resource_group_name
@@ -41,6 +42,7 @@ module "linux_web_app" {
   registry_server_url = module.container_registry.login_server
   resource_group_name = var.resource_group_name
   web_app_name = var.web_app_name
+  api_app_name = var.api_app_name
   location = var.location
   app_env_vars = var.app_env_vars
   service_plan_id = module.service_plan.service_plan_id

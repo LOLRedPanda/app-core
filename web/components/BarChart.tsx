@@ -3,7 +3,7 @@ import PropTypes, {InferProps} from 'prop-types'
 import { Bar } from "react-chartjs-2";
 import { Menu } from '@headlessui/react'
 import type { ChartData, ChartOptions } from 'chart.js';
-import teamData from "../data/teams"
+// import teamData from "../data/teams"
 import{
     Chart as ChartJS,
     CategoryScale,

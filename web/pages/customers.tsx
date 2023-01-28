@@ -30,9 +30,9 @@ function customers() {
                                 
                             </div>
                             <p className='text-Black sm:text-left text-center text-[50px]'>{order.name}</p>
-                            <p className='hidden md:flex text-[50px]'>{order.Record}</p>
+                            <p className='hidden md:flex text-[50px]'>{order.record}</p>
                             <div className='sm:flex hidden justify-between items-center'>
-                                <p className='hidden md:flex text-[50px]'>{order.Captain}</p>
+                                <p className='hidden md:flex text-[50px]'>{order.captain}</p>
                                 
                 
                             </div>

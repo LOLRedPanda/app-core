@@ -19,7 +19,7 @@ function Member({image, name, position}: InferProps<typeof Member.propTypes>) {
 }
 
 Member.propTypes = {
-    image: Image,
+    image: PropTypes.any,
     name: PropTypes.string,
     position: PropTypes.string
 }

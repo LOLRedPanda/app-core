@@ -1,16 +1,16 @@
-name: TEST - CI
+name: 🧪 TEST - CI
 
 on:
-  pull_request: 
-    branches: 
+  pull_request:
+    branches:
       - main
-  push: 
+  push:
     branches:
       - main
 
 jobs:
   unit-tests:
-    name: Run Unit Tests
+    name: 🧪 Run Unit Tests
     runs-on: ubuntu-latest
     environment: test
     steps:
@@ -41,7 +41,7 @@ jobs:
 
 
   terraform-apply:
-    name: Deploy Infrastructure
+    name: 🏗️ Deploy Infrastructure
     runs-on: ubuntu-latest
     needs: [unit-tests, terraform-plan]
     environment: test
@@ -64,7 +64,7 @@ jobs:
           workingDirectory: infrastructure/environments/test
 
   deploy-api:
-    name: Deploy API
+    name: 🚀 Deploy API
     runs-on: ubuntu-latest
     needs: terraform-apply
     environment: test
@@ -83,3 +83,23 @@ jobs:
           publishProfile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
           appName: testlolscoutwa01
           imageName: lol-scout-api
+
+  deploy-web:
+    name: 🚀 Deploy Web
+    runs-on: ubuntu-latest
+    needs: terraform-apply
+    environment: test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/deploy
+        with:
+          workingDirectory: web
+          clientId: ${{secrets.AZURE_CLIENT_ID}}
+          clientSecret: ${{secrets.AZURE_CLIENT_SECRET}}
+          subscriptionId: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+          tenantId: ${{secrets.AZURE_TENANT_ID}}
+          loginServer: ${{secrets.REGISTRY_LOGIN_SERVER}}
+          commitHash: ${{ github.sha }}
+          publishProfile: ${{ secrets.WEB_AZURE_PUBLISH_PROFILE }}
+          appName: testlolscoutwa02
+          imageName: lol-scout-web

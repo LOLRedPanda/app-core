@@ -3,10 +3,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import Sidebar from '../components/sidebar'
-import Header from "../components/Header"
+import Header from "../components/header"
 import TopCards from "../components/TopCards"
 import BarChart from "../components/BarChart"
-import Members from "../components/Members"
+import Members from "../components/members"
 import {data} from '../data/teams'
 import ListBox from '../components/ListBox'
 

@@ -1,3 +1,7 @@
+variable "env" {
+  description = "The environment of our resources"
+}
+
 variable "resource_group_name" {
     type = string
     description= "The name of the resource group."
@@ -26,6 +30,11 @@ variable "service_plan_name" {
 variable "web_app_name" {
     type = string
     description = "The name of the cosmosdb database"
+}
+
+variable "api_app_name" {
+    type = string
+    description = "The name of the api"
 }
 
 variable "container_registry_name" {

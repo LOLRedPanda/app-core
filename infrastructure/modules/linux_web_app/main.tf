@@ -1,5 +1,5 @@
 resource "azurerm_linux_web_app" "app_api" {
-  name                = var.web_app_name
+  name                = var.api_app_name
   resource_group_name = var.resource_group_name
   location            = var.location
   service_plan_id     = var.service_plan_id
@@ -18,6 +18,33 @@ resource "azurerm_linux_web_app" "app_api" {
 
   app_settings = merge(
     var.app_env_vars,
+    {
+      DOCKER_ENABLE_CI = true
+      WEBSITES_PORT=3000
+      DOCKER_REGISTRY_SERVER_URL = "https://${var.registry_server_url}"
+      WEBSITES_CONTAINER_START_TIME_LIMIT = 1800
+    }
+  )
+}
+
+resource "azurerm_linux_web_app" "app_web" {
+  name                = var.web_app_name
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  service_plan_id     = var.service_plan_id
+  https_only          = true
+
+  site_config {
+    always_on = true
+    container_registry_use_managed_identity = true
+  }
+
+  identity {
+    identity_ids = []
+    type = "SystemAssigned"
+  }
+
+  app_settings = merge(
     {
       DOCKER_ENABLE_CI = true
       DOCKER_REGISTRY_SERVER_URL = "https://${var.registry_server_url}"

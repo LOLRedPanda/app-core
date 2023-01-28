@@ -20,8 +20,9 @@ resource "azurerm_linux_web_app" "app_api" {
     var.app_env_vars,
     {
       DOCKER_ENABLE_CI = true
+      WEBSITES_PORT=3000
       DOCKER_REGISTRY_SERVER_URL = "https://${var.registry_server_url}"
-      WEBSITES_CONTAINER_START_TIME_LIMIT = 1800
+      WEBSITES_CONTAINER_START_TIME_LIMIT = 3200
     }
   )
 }

@@ -11,6 +11,8 @@ import{
     Tooltip,
     Legend
 } from 'chart.js';
+import { data } from '../data/data';
+import ListBox from './ListBox';
 
 
 ChartJS.register(
@@ -33,10 +35,16 @@ function BarChart() {
         setChartData({
             labels: ['Tyriq', 'Tominatoo', 'Soxxy', 'RedPanda', 'JT'],
             datasets: [{
-                label: '',
+                label: 'KDA',
                 data: [3.2, 4.9, 3.0, 4.7, 3.6],
                 borderColor: 'rgb(53, 162, 235)',
                 backgroundColor:'rgb(53, 162, 235, 0.4',
+            },
+            {
+                label: 'CSMP',
+                data: [3.2, 4.9, 3.0, 4.7, 3.6],
+                borderColor: 'rgb(255, 0, 0)',
+                backgroundColor:'rgb(255, 0, 0 0.4',
             }
         ],
 
@@ -44,7 +52,7 @@ function BarChart() {
         setChartOptions({
             plugins: {
                 legend:{
-                    display: false
+                    display: true
                 },
                 title: {
                     display: true,
@@ -58,8 +66,7 @@ function BarChart() {
 
   return (
     <>
-    <div className='w-full md:col-span-2 reletive lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>
-    <Bar data={chartData} options={chartOptions} />
+    <div className='w-full md:col-span-2 reletive lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>    <Bar data={chartData} options={chartOptions} />
         
     </div>
     </>

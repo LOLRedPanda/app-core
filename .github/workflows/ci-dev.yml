@@ -94,7 +94,7 @@ jobs:
           tenantId: ${{secrets.AZURE_TENANT_ID}}
           loginServer: ${{secrets.REGISTRY_LOGIN_SERVER}}
           commitHash: ${{ github.sha }}
-          publishProfile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          publishProfile: ${{ secrets.WEB_AZURE_PUBLISH_PROFILE }}
           appName: devlolscoutwa02
           imageName: lol-scout-web
 

@@ -25,7 +25,7 @@ const Home: NextPage = () => {
           <ListBox list={data} />
           <TopCards teamData={data[0]}/>
           <div className='pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 '>
-            <BarChart />
+            <BarChart teamData={data[0]}/>
             <Members teamData={data[0]} />
           </div>
         </div>

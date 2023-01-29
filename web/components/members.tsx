@@ -10,7 +10,7 @@ import PropTypes, {InferProps} from 'prop-types'
 
 function Members({teamData} : InferProps<typeof Members.propTypes>) {
   return (
-    <div className='w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border border-[#ff514d] shadow-lg shadow-[#FF514D] rounded-lg bg-[#101021]'>
+    <div className='w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border border-[#28bc0c] shadow-lg shadow-[#28bc0c] rounded-lg bg-[#101021]'>
         <ul>
             {teamData.members.top !== null ? <Member image={Top} name={teamData.members.top} position='Top' />: <Member image={Top} name="" position='Top' />}
             {teamData.members.jungle !== null ? <Member image={Jungle} name={teamData.members.jungle} position='Jungle' />: <Member image={Jungle} name="" position='Jungle' />}

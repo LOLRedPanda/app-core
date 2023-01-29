@@ -2,12 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import PropTypes, {InferProps} from 'prop-types'
 
-type props = {
-
-}
-
-function Member({image, name, position}: InferProps<typeof Member.propTypes>) {
-    return (<li className='bg-[#101021] shadow-md border border-[#ED009C] shadow-[#ED009C] rounded-lg my-3 p-2 flex items-center'>
+function MemberItem({image, name, position}: InferProps<typeof MemberItem.propTypes>) {
+    return (<li className='bg-[#101021] shadow-md border border-[#ff514d] shadow-[#ff514d] rounded-lg my-3 p-2 flex items-center'>
         <div >
             <Image src={image} alt='/' width={45} height={100} />
         </div>
@@ -18,10 +14,10 @@ function Member({image, name, position}: InferProps<typeof Member.propTypes>) {
     </li>)
 }
 
-Member.propTypes = {
+MemberItem.propTypes = {
     image: PropTypes.any,
     name: PropTypes.string,
     position: PropTypes.string
 }
 
-export default Member
+export default MemberItem

@@ -84,7 +84,7 @@ function BarChart({ teamData }: InferProps<typeof BarChart.propTypes>) {
           backgroundColor: "#ff514d",
         },
         {
-          label: "DMGPM(x100)",
+          label: "DMGPM (x100)",
           data: [
             teamData.stats.DMGPM.top,
             teamData.stats.DMGPM.jungle,

@@ -7,7 +7,7 @@ type props = {
 }
 
 function Member({image, name, position}: InferProps<typeof Member.propTypes>) {
-    return (<li className='bg-[#101021] shadow-md shadow-[#ED009C] rounded-lg my-3 p-2 flex items-center'>
+    return (<li className='bg-[#101021] shadow-md border border-[#ED009C] shadow-[#ED009C] rounded-lg my-3 p-2 flex items-center'>
         <div >
             <Image src={image} alt='/' width={45} height={100} />
         </div>

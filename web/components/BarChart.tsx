@@ -115,7 +115,7 @@ function BarChart({ teamData }: InferProps<typeof BarChart.propTypes>) {
 
   return (
     <>
-      <div className="w-full md:col-span-2 reletive lg:h-[70vh] h-[50vh] m-auto p-4 border border-[#FF514D] shadow-lg shadow-[#FF514D] rounded-lg bg-[#101021]">
+      <div className="w-full md:col-span-2 reletive lg:h-[70vh] h-[50vh] m-auto p-4 border border-[#FF514D] shadow-lg shadow-[#FF514D] rounded-lg bg-[#101021] text-[#7D98A1]">
         {" "}
         <Bar data={chartData} options={chartOptions} />
       </div>

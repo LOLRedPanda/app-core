@@ -1,14 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-
-import Sidebar from '../components/sidebar'
 import Header from "../components/header"
-import TopCards from "../components/TopCards"
-import BarChart from "../components/BarChart"
-import Members from "../components/members"
 import {data} from '../data/teams'
-import ListBox from '../components/ListBox'
+import DashBoard from '../components/Dashboard'
 
 const Home: NextPage = () => {
   return (
@@ -21,12 +15,7 @@ const Home: NextPage = () => {
       <main className="bg-[#101021] min-h-screen">
         <div className='pl-4'>
           <Header />
-          <ListBox list={data}/>
-          <TopCards teamData={data[0]}/>
-          <div className='pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 '>
-            <BarChart teamData={data[0]}/>
-            <Members teamData={data[0]} />
-          </div>
+          <DashBoard data={data}/>
         </div>
       </main>
     </div>

@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes, {InferProps} from 'prop-types'
 import Image from 'next/image'
 import Link from 'next/link'
-import {RxDashboard,RxPerson} from 'react-icons/rx'
+import {RxDashboard} from 'react-icons/rx'
+import {IoMdPeople} from 'react-icons/io'
 import {FiSettings} from 'react-icons/fi'
 import RedPandaLogo from '../public/assets/redPandaLogos/circle_panda.png'
 
@@ -22,7 +23,7 @@ function sidebar({children}:InferProps<typeof sidebar.propTypes>) {
                 </Link>
                 <Link href='/teams'>
                     <div className='bg-[#101021] hover:bg-gray-200 shadow-md shadow-[#FF514D] cursor-pointer my-4 p-3 rounded-lg inline-block'>
-                        <RxPerson size={24} color="#ED009C"/>
+                        <IoMdPeople size={24} color="#ED009C"/>
                     </div>
                 </Link>
                 <Link href='/'>

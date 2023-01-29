@@ -26,12 +26,11 @@ function teams() {
                                 <div className='bg-red-100 p-1 rounded-lg'>
                                 <Image src={order.logo} alt={''} width={100} height={100} />
                                 </div>
-                                
                             </div>
                             <p className='text-Black sm:text-left text-center text-[50px]'>{order.name}</p>
                             <p className='hidden md:flex text-[50px]'>{order.record}</p>
                             <div className='sm:flex hidden justify-between items-center'>
-                                <p className='hidden md:flex text-[50px]'>{order.captain}</p>           
+                                <p className='hidden md:flex text-[50px]'>{order.captain}</p>
                             </div>
                         </li>
                     ))}

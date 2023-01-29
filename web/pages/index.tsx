@@ -21,6 +21,7 @@ const Home: NextPage = () => {
       <main className="bg-[#101021] min-h-screen">
         <div className='pl-4'>
           <Header />
+          <ListBox list={data}/>
           <TopCards teamData={data[0]}/>
           <div className='pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 '>
             <BarChart teamData={data[0]}/>

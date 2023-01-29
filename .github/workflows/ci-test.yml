@@ -29,7 +29,7 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-      TF_LOG: "TRACE"
+      # TF_LOG: "TRACE"
       TF_VAR_env: test
       TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
     steps:

@@ -29,7 +29,7 @@ variable "service_plan_name" {
 
 variable "web_app_name" {
     type = string
-    description = "TThe name of the web app"
+    description = "The name of the web app"
 }
 
 variable "api_app_name" {

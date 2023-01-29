@@ -1,10 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
-import {BsPersonFill, BsThreeDotsVertical} from "react-icons/bs"
-import TeamLogo from '../public/assets/NL.png'
-import PxeLogo from '../public/assets/pxe_logo.png'
+import PxeLogo from '../public/assets/leagueLogos/pxe_logo.png'
 import {data} from '../data/teams'
-function customers() {
+
+function teams() {
   return (
     <div className='bg-red-300 min-h-screen'>
         <div className = "flex justify-between pr-4 pt-4">   
@@ -32,9 +31,7 @@ function customers() {
                             <p className='text-Black sm:text-left text-center text-[50px]'>{order.name}</p>
                             <p className='hidden md:flex text-[50px]'>{order.record}</p>
                             <div className='sm:flex hidden justify-between items-center'>
-                                <p className='hidden md:flex text-[50px]'>{order.captain}</p>
-                                
-                
+                                <p className='hidden md:flex text-[50px]'>{order.captain}</p>           
                             </div>
                         </li>
                     ))}
@@ -45,4 +42,4 @@ function customers() {
   )
 }
 
-export default customers
+export default teams

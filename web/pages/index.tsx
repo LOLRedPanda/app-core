@@ -18,6 +18,7 @@ const Home: NextPage = () => {
           <DashBoard data={data}/>
         </div>
       </main>
+      <footer className='text-xs bg-[#101021] text-[#7D98A1] text-center'>RedPanda isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</footer>
     </div>
   )
 }

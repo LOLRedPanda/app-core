@@ -1,5 +1,7 @@
 import { Fragment, useState } from 'react'
+import Image from 'next/image'
 import { Listbox, Transition } from '@headlessui/react'
+import NlLogo from '../public/assets/teamLogos/NL.png'
 import { HiChevronUpDown } from 'react-icons/hi2'
 import {BsCheckLg} from 'react-icons/bs'
 
@@ -8,15 +10,18 @@ export default function ListBox({list}: any) {
 
   return (
       <Listbox>
-        <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-            <span className="block truncate">{selected.name}</span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <HiChevronUpDown
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-            </span>
+        <div className="relative mt-1 text-[#EAD5E6]">
+          <Listbox.Button className="relative w-full cursor-default rounded-lg border bg-[#101021] py-4 pl-3 pr-10 text-center shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-[100px] text=[#EAD5E6]">
+            <div className="flex justify-between mr-40">
+              <Image className ="rounded-full" src={NlLogo} alt='Team Logo' width={150} height={150}/>
+              {selected.name}
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                <HiChevronUpDown
+                  className="h-20 w-20 text-[#ED009C] mt-12"
+                  aria-hidden="true"
+                />
+              </span>
+            </div>
           </Listbox.Button>
           <Transition
             as={Fragment}

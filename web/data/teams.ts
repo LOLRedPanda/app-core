@@ -2,7 +2,7 @@ export const data = [
     {
       id: 1,
       name: 'Never Lucky',
-      logo: '/../public/assets/NL.png',
+      logo: '/../public/assets/teamLogos/NL.png',
       captain:'Tominatoo',
       members: {
         top: 'Tyriq',
@@ -39,7 +39,7 @@ export const data = [
     {
         id: 2,
         name: 'Final Bastion',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'Ramss',
         members: {
           top: '',
@@ -53,7 +53,7 @@ export const data = [
       {
         id: 3,
         name: 'CSU',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'Rivinana',
         members: {
           top: '',
@@ -67,7 +67,7 @@ export const data = [
       {
         id: 4,
         name: 'Spartan Shields',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'Narwhal',
         members: {
           top: '',
@@ -81,7 +81,7 @@ export const data = [
       {
         id: 5,
         name: 'MiSFiTS',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'Fearless',
         members: {
           top: '',
@@ -95,7 +95,7 @@ export const data = [
       {
         id: 6,
         name: 'Orbit Gaming Quasar',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'BonTheQuad',
         members: {
           top: '',
@@ -109,7 +109,7 @@ export const data = [
       {
         id: 7,
         name: 'CB Frost',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'Inxtinction',
         members: {
           top: '',
@@ -123,7 +123,7 @@ export const data = [
       {
         id: 8,
         name: 'High on Meeps',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'DoorGaurd',
         members: {
           top: '',
@@ -137,7 +137,7 @@ export const data = [
       {
         id: 9,
         name: 'I Dont like sand',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'Xyenial',
         members: {
           top: '',
@@ -151,7 +151,7 @@ export const data = [
       {
         id: 10,
         name: 'Clown Gaming Spartans',
-        logo: '/../public/assets/pxe_logo.png',
+        logo: '/../public/assets/teamLogos/pxe_logo.png',
         captain:'SEMZ',
         members: {
           top: '',

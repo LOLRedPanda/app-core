@@ -14,8 +14,8 @@ const Home: NextPage = () => {
   return (
     <div className="">
       <Head>
-        <title>Red Panda</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Red Panda | LoL Stat Companion</title>
+        <link rel="icon" href="favicon.ico" />
       </Head>
 
       <main className="bg-[#101021] min-h-screen">

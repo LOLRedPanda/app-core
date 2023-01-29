@@ -23,7 +23,8 @@ module "infra" {
   storage_account_name = "${local.env}lolscoutsa01"
   service_plan_name = "${local.env}lolscoutsp01"
   db_name = "${local.env}lolscoutdb01"
-  web_app_name = "${local.env}lolscoutwa01"
+  api_app_name = "${local.env}lolscoutwa01"
+  web_app_name = "${local.env}lolscoutwa02"
   container_registry_name = "${local.env}lolscoutcr01"
   location = local.location
   app_command_line = "server.js"

@@ -1,8 +1,8 @@
 import PropTypes, {InferProps} from 'prop-types'
-import TopCards from '../components/TopCards';
-import BarChart from '../components/BarChart';
-import Members from '../components/Members';
-import ListBox from '../components/ListBox';
+import TopCards from './TopCards';
+import BarChart from './BarChart';
+import Members from './Members';
+import ListBox from './ListBox';
 
 function DashBoard({data}: InferProps<typeof DashBoard.propTypes>) {
   return (

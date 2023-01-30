@@ -1,15 +1,15 @@
 import { Fragment, useState } from 'react'
+import PropTypes, {InferProps} from 'prop-types'
 import Image from 'next/image'
 import { Listbox, Transition } from '@headlessui/react'
 import NlLogo from '../public/assets/teamLogos/NL.png'
 import { HiChevronUpDown } from 'react-icons/hi2'
 import {BsCheckLg} from 'react-icons/bs'
 
-export default function ListBox({list}: any) {
-  const [selected, setSelected] = useState(list[0])
+export default function ListBox({list, selected, setSelected} : InferProps<typeof ListBox.propTypes>) {
 
   return (
-      <Listbox>
+      <Listbox onChange={setSelected}>
         <div className="relative mt-1 text-[#EAD5E6]">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-[#101021] py-4 pl-3 pr-10 text-center shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-[100px] text=[#EAD5E6]">
             <div className="flex justify-between mr-40">
@@ -64,4 +64,9 @@ export default function ListBox({list}: any) {
       </Listbox>
 
   )
+}
+ListBox.propTypes = {
+  list: PropTypes.any,
+  selected: PropTypes.any,
+  setSelected: PropTypes.any
 }

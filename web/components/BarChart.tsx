@@ -35,6 +35,7 @@ ChartJS.register(
 );
 
 function BarChart({ teamData }: InferProps<typeof BarChart.propTypes>) {
+  console.log({teamData})
   const [chartData, setChartData] = useState<chartData>({
     labels: [],
     datasets: [

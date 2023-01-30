@@ -48,6 +48,29 @@ export const data = [
           adc:'',
           support:''
         },
+        stats:{
+          KDA: {
+            top: 9,
+            jungle: 7.9,
+            mid: 6.0,
+            adc: 4.7,
+            support: 3.6
+          },
+          CSPM: {
+            top: 3,
+            jungle: 3,
+            mid: 3.11,
+            adc: 2.28,
+            support: 2.21
+          },
+          DMGPM: {
+            top: 4.,
+            jungle: 7.,
+            mid: 7.46,
+            adc: 3.06,
+            support: 1
+          },
+        },
         record: '0-0',
       },
       {

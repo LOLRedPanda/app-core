@@ -7,7 +7,6 @@ import Support from '../public/assets/RoleLogos/Support.png'
 import Member from './MemberItem'
 import PropTypes, {InferProps} from 'prop-types'
 
-
 function Members({teamData} : InferProps<typeof Members.propTypes>) {
   return (
     <div className='w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border border-[#28bc0c] shadow-lg shadow-[#28bc0c] rounded-lg bg-[#101021]'>
@@ -21,7 +20,9 @@ function Members({teamData} : InferProps<typeof Members.propTypes>) {
     </div>
   )
 }
+
 Members.propTypes = {
     teamData: PropTypes.any,
 }
+
 export default Members

@@ -13,7 +13,7 @@ export default function ListBox({list, selected, setSelected} : InferProps<typeo
         <div className="relative mt-1 text-[#EAD5E6]">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-[#101021] py-4 pl-3 pr-10 text-center shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-[100px] text=[#EAD5E6]">
             <div className="flex justify-between mr-40">
-              <Image className ="rounded-full" src={NlLogo} alt='Team Logo' width={150} height={150}/>
+              <Image className ="rounded-full" src={selected.logo} alt='Team Logo' width={150} height={150}/>
               {selected.name}
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <HiChevronUpDown

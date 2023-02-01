@@ -81,10 +81,60 @@ function DashBoard({data}: InferProps<typeof DashBoard.propTypes>) {
       ],
     });
   }, []);
+  const handleSelected = (selected:any) => {
+    setSelected(selected)
+    setChartData({
+      labels: [
+        selected.members.top,
+        selected.members.jungle,
+        selected.members.mid,
+        selected.members.adc,
+        selected.members.support,
+      ],
+      datasets: [
+        {
+          label: "KDA",
+          data: [
+            selected.stats.KDA.top,
+            selected.stats.KDA.jungle,
+            selected.stats.KDA.mid,
+            selected.stats.KDA.adc,
+            selected.stats.KDA.support,
+          ],
+          borderColor: "#2887F5",
+          backgroundColor: "#2887F5",
+        },
+        {
+          label: "CSMP",
+          data: [
+            selected.stats.CSPM.top,
+            selected.stats.CSPM.jungle,
+            selected.stats.CSPM.mid,
+            selected.stats.CSPM.adc,
+            selected.stats.CSPM.support,
+          ],
+          borderColor: "#ff514d",
+          backgroundColor: "#ff514d",
+        },
+        {
+          label: "DMGPM (x100)",
+          data: [
+            selected.stats.DMGPM.top,
+            selected.stats.DMGPM.jungle,
+            selected.stats.DMGPM.mid,
+            selected.stats.DMGPM.adc,
+            selected.stats.DMGPM.support,
+          ],
+          borderColor: "#ED009C",
+          backgroundColor: "#ED009C",
+        },
+      ],
+    })
+  }
 
   return (
     <div className="p-4">
-      <ListBox list={data} selected={selected} setSelected={setSelected}/>
+      <ListBox list={data} selected={selected} setSelected={handleSelected}/>
       <TopCards teamData={selected} />
       <div className="pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 ">
         <BarChart chartData={chartData} />

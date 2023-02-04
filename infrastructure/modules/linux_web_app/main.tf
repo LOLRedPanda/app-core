@@ -1,10 +1,5 @@
 locals {
-  ip_addresses = [{
-    action = "Deny"
-    ip_address = cidrhost("0.0.0.0/0", 0)
-    name = "DenyAll"
-    priority = 2147483647
-  }]
+  whitelist_ip_addresses = ["64.184.72.246/32"]
 }
 
 resource "azurerm_linux_web_app" "app_api" {
@@ -47,12 +42,10 @@ resource "azurerm_linux_web_app" "app_web" {
     always_on = true
     container_registry_use_managed_identity = true
     dynamic "ip_restriction" {
-      for_each = local.ip_addresses
+      for_each = local.whitelist_ip_addresses
       content {
-        ip_address  = each.ip_address
-        action = each.action
-        name = each.name
-        priority = each.priority
+        ip_address  = cidrhost(ip_restriction.value, 0)
+        action                    = "Allow"
       }
     }
     # ip_restriction = [{

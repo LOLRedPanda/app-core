@@ -49,7 +49,7 @@ variable "container_registry_name" {
 }
 
 variable "api_env_vars" {
-    type = string
+    type = object
     description = "The environment variables for the api."
 }
 

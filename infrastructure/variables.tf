@@ -18,6 +18,11 @@ variable "location" {
     description = "The location the resources are associated with."
 }
 
+variable "cosmos_db" {
+    type = bool
+    description = "Whether or not to build a cosmos db"
+}
+
 variable "db_name" {
     type = string
     description = "The name of the cosmosdb database"

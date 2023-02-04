@@ -9,12 +9,6 @@ resource "azurerm_linux_web_app" "app_api" {
     always_on = true
     container_registry_use_managed_identity = true
     app_command_line = var.api_command_line
-  }
-
-  identity {
-    identity_ids = []
-    type = "SystemAssigned"
-  }
 
     ip_restriction {
       ip_address = "0.0.0.0/0"
@@ -29,6 +23,12 @@ resource "azurerm_linux_web_app" "app_api" {
         priority   = 100
       }
     }
+  }
+
+  identity {
+    identity_ids = []
+    type = "SystemAssigned"
+  }
 
   app_settings = merge(
     var.api_env_vars,

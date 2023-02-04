@@ -38,7 +38,7 @@ variable "api_env_vars" {
     description = "The environment variables for the application."
 }
 
-variable "app_command_line" {
+variable "api_command_line" {
     type = string
     description = "The script command to run the application."
 }

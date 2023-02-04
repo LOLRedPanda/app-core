@@ -26,7 +26,7 @@ module "service_plan" {
 }
 
 module "cosmos_db" {
-  count  = (var.env != "dev") ? 1 : 0
+  count  = (var.cosmosdb) ? 1 : 0
   source = "./modules/cosmosdb"
 
   resource_group_name = var.resource_group_name
@@ -44,8 +44,12 @@ module "linux_web_app" {
   web_app_name = var.web_app_name
   api_app_name = var.api_app_name
   location = var.location
-  app_env_vars = var.app_env_vars
+  api_env_vars = var.api_env_vars
   service_plan_id = module.service_plan.service_plan_id
+  ip_restrictions = var.ip_restrictions
+  ns_whitelist_ips = var.ns_whitelist_ips
+  nw_whitelist_ips = var.nw_whitelist_ips
+  c_whitelist_ips = var.c_whitelist_ips
 }
 
 module "container_registry" {

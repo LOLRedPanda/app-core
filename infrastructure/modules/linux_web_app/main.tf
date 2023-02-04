@@ -1,9 +1,3 @@
-locals {
-  ns_whitelist_ips = ["64.184.72.246/32", "184.170.174.120/32", "184.170.174.120/32"]
-  nw_whitelist_ips = ["174.238.49.39/32", "99.61.172.233/32"]
-  c_whitelist_ips = []
-}
-
 resource "azurerm_linux_web_app" "app_api" {
   name                = var.api_app_name
   resource_group_name = var.resource_group_name
@@ -14,7 +8,7 @@ resource "azurerm_linux_web_app" "app_api" {
   site_config {
     always_on = true
     container_registry_use_managed_identity = true
-    app_command_line = var.app_command_line
+    app_command_line = var.api_command_line
   }
 
   identity {
@@ -23,7 +17,7 @@ resource "azurerm_linux_web_app" "app_api" {
   }
 
   app_settings = merge(
-    var.app_env_vars,
+    var.api_env_vars,
     {
       DOCKER_ENABLE_CI = true
       WEBSITES_PORT=3000
@@ -46,11 +40,11 @@ resource "azurerm_linux_web_app" "app_web" {
 
     ip_restriction {
       ip_address = "0.0.0.0/0"
-      action = "Deny"
+      action = var.ip_restrictions ? "Deny" : "Allow"
     }
 
     dynamic "ip_restriction" {
-      for_each = concat(local.ns_whitelist_ips, local.nw_whitelist_ips, local.c_whitelist_ips)
+      for_each = concat(var.ns_whitelist_ips, var.nw_whitelist_ips, var.c_whitelist_ips)
       content {
         ip_address = ip_restriction.value
         action     = "Allow"

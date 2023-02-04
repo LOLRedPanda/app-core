@@ -16,6 +16,20 @@ resource "azurerm_linux_web_app" "app_api" {
     type = "SystemAssigned"
   }
 
+    ip_restriction {
+      ip_address = "0.0.0.0/0"
+      action = var.ip_restrictions ? "Deny" : "Allow"
+    }
+
+    dynamic "ip_restriction" {
+      for_each = concat(var.ns_whitelist_ips, var.nw_whitelist_ips, var.c_whitelist_ips)
+      content {
+        ip_address = ip_restriction.value
+        action     = "Allow"
+        priority   = 100
+      }
+    }
+
   app_settings = merge(
     var.api_env_vars,
     {

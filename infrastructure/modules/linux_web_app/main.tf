@@ -1,3 +1,12 @@
+locals {
+  ip_addresses = [{
+    action = "Deny"
+    ip_address = "0.0.0.0"
+    name = "DenyAll"
+    priority = 2147483647
+  }]
+}
+
 resource "azurerm_linux_web_app" "app_api" {
   name                = var.api_app_name
   resource_group_name = var.resource_group_name
@@ -37,20 +46,30 @@ resource "azurerm_linux_web_app" "app_web" {
   site_config {
     always_on = true
     container_registry_use_managed_identity = true
-    ip_restriction = [{
-      action = "Deny"
-      ip_address = "0.0.0.0/0"
-      name = "DenyAll"
-      priority = 2147483647
-        headers = [ {
-        x_azure_fdid = [ "" ]
-        x_fd_health_probe = [ "" ]
-        x_forwarded_for = [ "" ]
-        x_forwarded_host = [ "" ]
-      }]
-        service_tag = ""
-        virtual_network_subnet_id = ""
-    }]
+    dynamic "ip_restriction" {
+      for_each = local.ip_addresses
+      content {
+        ip_address  = ip_restriction.value
+        action = ip_restriction.value
+        name = ip_restriction.value
+        priority = ip_restriction.value
+        subnet_mask = "255.255.255.255"
+      }
+    }
+    # ip_restriction = [{
+    #   action = "Deny"
+    #   ip_address = "0.0.0.0/0"
+    #   name = "DenyAll"
+    #   priority = 2147483647
+    #     headers = [ {
+    #     x_azure_fdid = [ "" ]
+    #     x_fd_health_probe = [ "" ]
+    #     x_forwarded_for = [ "" ]
+    #     x_forwarded_host = [ "" ]
+    #   }]
+    #     service_tag = ""
+    #     virtual_network_subnet_id = ""
+    # }]
     # {
     #   action = "Allow"
     #   ip_address = "64.184.72.246/32"

@@ -37,7 +37,7 @@ module "cosmos_db" {
 module "linux_web_app" {
   source = "./modules/linux_web_app"
 
-  app_command_line =  var.app_command_line
+  api_command_line =  var.api_command_line
   container_registry_id = module.container_registry.container_registry_id
   registry_server_url = module.container_registry.login_server
   resource_group_name = var.resource_group_name

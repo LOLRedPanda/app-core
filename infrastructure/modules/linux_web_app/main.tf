@@ -1,7 +1,7 @@
 locals {
   ip_addresses = [{
     action = "Deny"
-    ip_address = "0.0.0.0"
+    ip_address = cidrhost("0.0.0.0/0", 0)
     name = "DenyAll"
     priority = 2147483647
   }]
@@ -49,11 +49,10 @@ resource "azurerm_linux_web_app" "app_web" {
     dynamic "ip_restriction" {
       for_each = local.ip_addresses
       content {
-        ip_address  = ip_restriction.value
-        action = ip_restriction.value
-        name = ip_restriction.value
-        priority = ip_restriction.value
-        subnet_mask = "255.255.255.255"
+        ip_address  = each.ip_address
+        action = each.action
+        name = each.name
+        priority = each.priority
       }
     }
     # ip_restriction = [{

@@ -1,5 +1,7 @@
 locals {
-  whitelist_ip_addresses = ["64.184.72.246/32"]
+  ns_whitelist_ips = ["64.184.72.246/32", "184.170.174.120/32", "184.170.174.120/32"]
+  nw_whitelist_ips = ["174.238.49.39/32", "99.61.172.233/32"]
+  c_whitelist_ips = []
 }
 
 resource "azurerm_linux_web_app" "app_api" {
@@ -41,59 +43,20 @@ resource "azurerm_linux_web_app" "app_web" {
   site_config {
     always_on = true
     container_registry_use_managed_identity = true
+
+    ip_restriction {
+      ip_address = "0.0.0.0/0"
+      action = "Deny"
+    }
+
     dynamic "ip_restriction" {
-      for_each = local.whitelist_ip_addresses
+      for_each = concat(local.ns_whitelist_ips, local.nw_whitelist_ips, local.c_whitelist_ips)
       content {
-        ip_address  = ip_restriction.value
-        action                    = "Allow"
-        priority = 100
+        ip_address = ip_restriction.value
+        action     = "Allow"
+        priority   = 100
       }
     }
-    # ip_restriction = [{
-    #   action = "Deny"
-    #   ip_address = "0.0.0.0/0"
-    #   name = "DenyAll"
-    #   priority = 2147483647
-    #     headers = [ {
-    #     x_azure_fdid = [ "" ]
-    #     x_fd_health_probe = [ "" ]
-    #     x_forwarded_for = [ "" ]
-    #     x_forwarded_host = [ "" ]
-    #   }]
-    #     service_tag = ""
-    #     virtual_network_subnet_id = ""
-    # }]
-    # {
-    #   action = "Allow"
-    #   ip_address = "64.184.72.246/32"
-    #   name = "NSC1"
-    #   priority = 100
-    # },
-    # {
-    #   action = "Allow"
-    #   ip_address = "184.170.174.120/32"
-    #   name = "NSC1"
-    #   priority = 100
-    # },
-    #  {
-    #   action = "Allow"
-    #   ip_address = "184.170.174.120/32"
-    #   name = "NSP"
-    #   priority = 100
-    # },
-    # {
-    #   action = "Allow"
-    #   ip_address = "174.238.49.39/32"
-    #   name = "NWP"
-    #   priority = 100
-    # },
-    # {
-    #   action = "Allow"
-    #   ip_address = "99.61.172.233/32"
-    #   name = "NWC1"
-    #   priority = 100
-    # }
-    # ]
   }
 
   identity {

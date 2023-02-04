@@ -37,6 +37,43 @@ resource "azurerm_linux_web_app" "app_web" {
   site_config {
     always_on = true
     container_registry_use_managed_identity = true
+    ip_restriction = [{
+      action = "Deny"
+      ip_address = "0.0.0.0/0"
+      name = "DenyAll"
+      priority = 2147483647
+    },
+    {
+      action = "Allow"
+      ip_address = "64.184.72.246/32"
+      name = "NSC1"
+      priority = 100
+    },
+    {
+      action = "Allow"
+      ip_address = "184.170.174.120/32"
+      name = "NSC1"
+      priority = 100
+    },
+     {
+      action = "Allow"
+      ip_address = "184.170.174.120/32"
+      name = "NSP"
+      priority = 100
+    },
+    {
+      action = "Allow"
+      ip_address = "174.238.49.39/32"
+      name = "NWP"
+      priority = 100
+    },
+    {
+      action = "Allow"
+      ip_address = "99.61.172.233/32"
+      name = "NWC1"
+      priority = 100
+    }
+    ]
   }
 
   identity {

@@ -34,7 +34,7 @@ variable "registry_server_url" {
 }
 
 variable "api_env_vars" {
-    type = string
+    type = map
     description = "The environment variables for the application."
 }
 

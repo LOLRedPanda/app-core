@@ -1,5 +1,5 @@
 locals {
-  whitelist_ip_addresses = ["64.184.72.246/32"]
+  whitelist_ip_addresses = ["64.184.72.246"]
 }
 
 resource "azurerm_linux_web_app" "app_api" {
@@ -46,6 +46,7 @@ resource "azurerm_linux_web_app" "app_web" {
       content {
         ip_address  = cidrhost(ip_restriction.value, 0)
         action                    = "Allow"
+        priority = 100
       }
     }
     # ip_restriction = [{

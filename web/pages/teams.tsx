@@ -20,17 +20,17 @@ function teams() {
                     <span className='hidden sm:grid'>Captain</span>
                 </div>
                 <ul>
-                    {data.map((order, id) => (
+                    {data.map((teamData, id) => (
                         <li key={id} className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
                             <div className='flex items-center'>
                                 <div className='bg-red-100 p-1 rounded-lg'>
-                                <Image src={order.logo} alt={''} width={100} height={100} />
+                                <Image src={teamData.logo} alt={''} width={100} height={100} />
                                 </div>
                             </div>
-                            <p className='text-Black sm:text-left text-center text-[50px]'>{order.name}</p>
-                            <p className='hidden md:flex text-[50px]'>{order.record}</p>
+                            <p className='text-Black sm:text-left text-center text-[50px]'>{teamData.name}</p>
+                            <p className='hidden md:flex text-[50px]'>{teamData.wins + '-' + teamData.loses}</p>
                             <div className='sm:flex hidden justify-between items-center'>
-                                <p className='hidden md:flex text-[50px]'>{order.captain}</p>
+                                <p className='hidden md:flex text-[50px]'>{teamData.captain}</p>
                             </div>
                         </li>
                     ))}

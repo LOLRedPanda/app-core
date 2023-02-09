@@ -42,8 +42,8 @@ export const data = [
           sub2: null
         },
       },
-      ranked: '1st/2nd',
-        wins: 6,
+      ranked: '2nd/3rd',
+        wins: 3,
         loses: 0
     },
     {
@@ -81,8 +81,8 @@ export const data = [
             support: 2.24
           },
         },
-        ranked: '1st/2nd',
-        wins: 6,
+        ranked: '2nd/3rd',
+        wins: 3,
         loses: 0
       },
       {
@@ -129,7 +129,7 @@ export const data = [
         },
         ranked: '6th',
         wins: 2,
-        loses: 3
+        loses: 3,
       },
       {
         id: 4,
@@ -241,7 +241,7 @@ export const data = [
             support:  1.6999
           },
         },
-        ranked: '7th/10th',
+        ranked: '5th',
         wins: 2,
         loses: 2
       },

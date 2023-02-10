@@ -11,15 +11,20 @@ runs:
   steps:
   - name: Install Packages
     shell: bash
-    run : npm install
+    run : yarn install
     working-directory: ${{ inputs.workingDirectory }}
 
   - name: Lint
     shell: bash
-    run: npm run lint
+    run: yarn run lint
     working-directory: ${{ inputs.workingDirectory }}
 
   - name: Unit Test
     shell: bash
-    run: npm test
+    run: yarn test
+    working-directory: ${{ inputs.workingDirectory }}
+
+  - name: Build
+    shell: bash
+    run: yarn build
     working-directory: ${{ inputs.workingDirectory }}

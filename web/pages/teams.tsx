@@ -14,14 +14,17 @@ function teams() {
     data.sort(function (a, b) {
         if(a.wins!=b.wins){
             if(a.wins > b.wins)
-            return - 1
-        }else
-        if(a.wins==b.wins){
-            if(a.wins/(a.wins + a.loses) > b.wins/(b.wins + b.loses))
-            return - 1
-        }else
+            return -1
+        }
         return 0
     });
+    data.sort(function (a, b) {
+        if(a.wins==b.wins){
+            if(a.wins/(a.wins + a.loses) > b.wins/(b.wins + b.loses))
+            return -1
+        }
+        return 0
+    })
   return (
     <div className='bg-[#101021]'>
         <div className = "flex justify-between pr-4 pt-4">   

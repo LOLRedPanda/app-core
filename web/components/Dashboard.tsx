@@ -1,9 +1,10 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import PropTypes, {InferProps} from 'prop-types'
 import TopCards from './TopCards';
 import BarChart from './BarChart';
 import Members from './Members';
 import ListBox from './ListBox';
+import React from 'react';
 
 interface chartData {
   labels: string[];
@@ -19,120 +20,62 @@ interface dataset {
 
 function DashBoard({data}: InferProps<typeof DashBoard.propTypes>) {
   const [selected, setSelected] = useState(data[0])
+  const {members} = selected
+  const labels = members.map((member: any) => member.name)
+  const KDAs = members.map((member: any) => member.KDA)
+  const CSMPs = members.map((member: any) => member.CSMP)
+  const DMGPMs = members.map((member: any) => member.DMGPM)
 
   const [chartData, setChartData] = useState<chartData>({
-    labels: [],
+    labels: labels,
     datasets: [
       {
-        label: "",
-        data: [],
-        borderColor: "",
-        backgroundColor: "",
+        label: "KDA",
+        data: KDAs,
+        borderColor: "#2887F5",
+        backgroundColor: "#2887F5",
+      },
+      {
+        label: "CSMP",
+        data: CSMPs,
+        borderColor: "#ff514d",
+        backgroundColor: "#ff514d",
+      },
+      {
+        label: "DMGPM (x100)",
+        data: DMGPMs,
+        borderColor: "#ED009C",
+        backgroundColor: "#ED009C",
       },
     ],
   });
 
-  useEffect(() => {
-    setChartData({
-      labels: [
-        selected.members.top,
-        selected.members.jungle,
-        selected.members.mid,
-        selected.members.adc,
-        selected.members.support,
-        // selected.members.sub,
-        // selected.members.sub2,
-      ],
-      datasets: [
-        {
-          label: "KDA",
-          data: [
-            selected.stats.KDA.top,
-            selected.stats.KDA.jungle,
-            selected.stats.KDA.mid,
-            selected.stats.KDA.adc,
-            selected.stats.KDA.support,
-            // selected.members.sub !== null ? selected.stats.KDA.sub: null,
-            // selected.members.sub1 !== null ? selected.stats.KDA.sub: null,
-          ],
-          borderColor: "#2887F5",
-          backgroundColor: "#2887F5",
-        },
-        {
-          label: "CSMP",
-          data: [
-            selected.stats.CSPM.top,
-            selected.stats.CSPM.jungle,
-            selected.stats.CSPM.mid,
-            selected.stats.CSPM.adc,
-            selected.stats.CSPM.support,
-            // selected.members.sub !== null ? selected.stats.CSPM.sub: null,
-            // selected.members.sub1 !== null ? selected.stats.CSPM.sub: null,
-          ],
-          borderColor: "#ff514d",
-          backgroundColor: "#ff514d",
-        },
-        {
-          label: "DMGPM (x100)",
-          data: [
-            selected.stats.DMGPM.top,
-            selected.stats.DMGPM.jungle,
-            selected.stats.DMGPM.mid,
-            selected.stats.DMGPM.adc,
-            selected.stats.DMGPM.support,
-            // selected.members.sub !== null ? selected.stats.DMGPM.sub: null,
-            // selected.members.sub1 !== null ? selected.stats.DMGPM.sub: null,
-          ],
-          borderColor: "#ED009C",
-          backgroundColor: "#ED009C",
-        },
-      ],
-    });
-  }, []);
   const handleSelected = (selected:any) => {
+    console.log(selected)
+    const {members} = selected
+    const labels = members.map((member: any) => member.name)
+    const KDAs = members.map((member: any) => member.KDA)
+    const CSMPs = members.map((member: any) => member.CSMP)
+    const DMGPMs = members.map((member: any) => member.DMGPM)
     setSelected(selected)
     setChartData({
-      labels: [
-        selected.members.top,
-        selected.members.jungle,
-        selected.members.mid,
-        selected.members.adc,
-        selected.members.support,
-      ],
+      labels: labels,
       datasets: [
         {
           label: "KDA",
-          data: [
-            selected.stats.KDA.top,
-            selected.stats.KDA.jungle,
-            selected.stats.KDA.mid,
-            selected.stats.KDA.adc,
-            selected.stats.KDA.support,
-          ],
+          data: KDAs,
           borderColor: "#2887F5",
           backgroundColor: "#2887F5",
         },
         {
           label: "CSMP",
-          data: [
-            selected.stats.CSPM.top,
-            selected.stats.CSPM.jungle,
-            selected.stats.CSPM.mid,
-            selected.stats.CSPM.adc,
-            selected.stats.CSPM.support,
-          ],
+          data: CSMPs,
           borderColor: "#ff514d",
           backgroundColor: "#ff514d",
         },
         {
           label: "DMGPM (x100)",
-          data: [
-            selected.stats.DMGPM.top,
-            selected.stats.DMGPM.jungle,
-            selected.stats.DMGPM.mid,
-            selected.stats.DMGPM.adc,
-            selected.stats.DMGPM.support,
-          ],
+          data: DMGPMs,
           borderColor: "#ED009C",
           backgroundColor: "#ED009C",
         },

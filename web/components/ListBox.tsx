@@ -1,10 +1,10 @@
-import { Fragment, useState } from 'react'
+import { Fragment} from 'react'
 import PropTypes, {InferProps} from 'prop-types'
 import Image from 'next/image'
 import { Listbox, Transition } from '@headlessui/react'
-import NlLogo from '../public/assets/teamLogos/NL.png'
 import { HiChevronUpDown } from 'react-icons/hi2'
 import {BsCheckLg} from 'react-icons/bs'
+import React from 'react'
 
 export default function ListBox({list, selected, setSelected} : InferProps<typeof ListBox.propTypes>) {
 

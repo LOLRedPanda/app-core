@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes, { InferProps } from "prop-types";
 import { Bar } from "react-chartjs-2";
-// import teamData from "../data/teams"
 
 import {
   Chart as ChartJS,
@@ -12,18 +11,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
-interface chartData {
-  labels: string[];
-  datasets: dataset[];
-}
-
-interface dataset {
-  label: string;
-  data: number[];
-  borderColor: string;
-  backgroundColor: string;
-}
 
 ChartJS.register(
   CategoryScale,

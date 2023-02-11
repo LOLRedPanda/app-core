@@ -11,14 +11,14 @@ function teams() {
     //     winrate.push(teamData.wins/(teamData.wins + teamData.loses))
     // ))
     // winrate.sort(function(a, b){return b - a})\let rankings: number[] = []
-    data.sort(function (a, b) {
+    data.sort((a, b) => {
         if(a.wins!=b.wins){
             if(a.wins > b.wins)
             return -1
         }
         return 0
     });
-    data.sort(function (a, b) {
+    data.sort((a, b) => {
         if(a.wins==b.wins){
             if(a.wins/(a.wins + a.loses) > b.wins/(b.wins + b.loses))
             return -1
@@ -41,7 +41,8 @@ function teams() {
                     <span className='hidden sm:grid'>Captain</span>
                 </div>
                 <ul>
-                    {data.map((teamData, id) => (
+                    {data.map((teamData, id) => 
+                        (
                         <li key={id} className='bg-[#101021] rounded-lg my-3 p-2 grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 items-center justify-between cursor-pointer'>
                             <p className='text-[#FF514D] sm:text-left text-center text-[40px]'>{teamData.ranked}</p>
                             <div className='flex items-center'>
@@ -51,9 +52,9 @@ function teams() {
                             </div>
                             <p className='text-[#FF514D] sm:text-left text-center text-[45px]'>{teamData.name}</p>
                             <p className='text-[#FF514D] hidden md:flex text-[45px]'>{teamData.wins + '-' + teamData.loses}</p>
-                            <div className='text-[#FF514D] sm:flex hidden justify-between items-center'>
-                                <p className=' hidden md:flex text-[45px]'>{teamData.captain}</p>
-                            </div>
+                            {/* <div className='text-[#FF514D] sm:flex hidden justify-between items-center'>
+                                <p className=' hidden md:flex text-[45px]'>{captain}</p>
+                            </div> */}
                         </li>
                     ))}
                 </ul>

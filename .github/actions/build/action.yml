@@ -1,0 +1,20 @@
+name: 🛠️ Build
+description: Run Build
+
+inputs:
+  workingDirectory:
+    required: true
+    description: Working directory where the tests will run.
+
+runs:
+  using: composite
+  steps:
+  - name: Install Packages
+    shell: bash
+    run : yarn install
+    working-directory: ${{ inputs.workingDirectory }}
+
+  - name: Build
+    shell: bash
+    run: yarn build
+    working-directory: ${{ inputs.workingDirectory }}

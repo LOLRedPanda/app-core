@@ -23,7 +23,7 @@ function DashBoard({data}: InferProps<typeof DashBoard.propTypes>) {
   const {members} = selected
   const labels = members.map((member: any) => member.name)
   const KDAs = members.map((member: any) => member.KDA)
-  const CSMPs = members.map((member: any) => member.CSMP)
+  const CSMPs = members.map((member: any) => member.CSPM)
   const DMGPMs = members.map((member: any) => member.DMGPM)
 
   const [chartData, setChartData] = useState<chartData>({
@@ -55,7 +55,7 @@ function DashBoard({data}: InferProps<typeof DashBoard.propTypes>) {
     const {members} = selected
     const labels = members.map((member: any) => member.name)
     const KDAs = members.map((member: any) => member.KDA)
-    const CSMPs = members.map((member: any) => member.CSMP)
+    const CSMPs = members.map((member: any) => member.CSPM)
     const DMGPMs = members.map((member: any) => member.DMGPM)
     setSelected(selected)
     setChartData({

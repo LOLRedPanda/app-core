@@ -1,0 +1,21 @@
+name: 🧹 Lint
+description: Run Lint
+
+inputs:
+  workingDirectory:
+    required: true
+    description: Working directory where the tests will run.
+
+runs:
+  using: composite
+  steps:
+  - name: Install Packages
+    shell: bash
+    run : npm install
+    working-directory: ${{ inputs.workingDirectory }}
+
+  - name: Lint
+    shell: bash
+    run: npm run lint
+    working-directory: ${{ inputs.workingDirectory }}
+

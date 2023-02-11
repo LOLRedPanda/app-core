@@ -11,9 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run Tests
-        uses: ./.github/actions/test
+        uses: ./.github/actions/api-test
         with:
           workingDirectory: api
+
+      - uses: actions/checkout@v3
+      - name: Run Tests
+        uses: ./.github/actions/web-test
+        with:
+          workingDirectory: web
 
   terraform-plan:
     name: 📐 Terraform Plan

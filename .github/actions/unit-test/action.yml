@@ -1,5 +1,5 @@
-name: Test
-description: Run Tests
+name: 🧪 Unit Test
+description: Run Unit Tests
 
 inputs:
   workingDirectory:
@@ -11,20 +11,10 @@ runs:
   steps:
   - name: Install Packages
     shell: bash
-    run : yarn install
+    run : npm install
     working-directory: ${{ inputs.workingDirectory }}
 
-  - name: Lint
+  - name: Test
     shell: bash
-    run: yarn run lint
-    working-directory: ${{ inputs.workingDirectory }}
-
-  - name: Unit Test
-    shell: bash
-    run: yarn test
-    working-directory: ${{ inputs.workingDirectory }}
-
-  - name: Build
-    shell: bash
-    run: yarn build
+    run: npm test
     working-directory: ${{ inputs.workingDirectory }}

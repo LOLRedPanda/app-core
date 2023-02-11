@@ -1,0 +1,30 @@
+name: 🕸️🧪 Web Tests
+description: Run Tests
+
+inputs:
+  workingDirectory:
+    required: true
+    description: Working directory where the tests will run.
+
+runs:
+  using: composite
+  steps:
+  - name: Install Packages
+    shell: bash
+    run : yarn install
+    working-directory: ${{ inputs.workingDirectory }}
+
+  # - name: Lint
+  #   shell: bash
+  #   run: yarn run lint
+  #   working-directory: ${{ inputs.workingDirectory }}
+
+  # - name: Unit Test
+  #   shell: bash
+  #   run: yarn test
+  #   working-directory: ${{ inputs.workingDirectory }}
+
+  - name: Build
+    shell: bash
+    run: yarn build
+    working-directory: ${{ inputs.workingDirectory }}

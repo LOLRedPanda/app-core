@@ -4,13 +4,6 @@ import PxeLogo from '../public/assets/leagueLogos/pxe_logo.png'
 import {data} from '../data/teams'
 
 function teams() {
-    // let winrate: number[] = []
-    // let rankings: number[] = []
-    // // let winrate: number[] = []
-    // data.map((teamData) => (
-    //     winrate.push(teamData.wins/(teamData.wins + teamData.loses))
-    // ))
-    // winrate.sort(function(a, b){return b - a})\let rankings: number[] = []
     data.sort((a, b) => {
         if(a.wins!=b.wins){
             if(a.wins > b.wins)
@@ -38,7 +31,7 @@ function teams() {
                     <span>Logo</span>
                     <span className='sm:text-left text-right'>Name</span>
                     <span className='hidden md:grid'>Record</span>
-                    <span className='hidden sm:grid'>Captain</span>
+                    {/* <span className='hidden sm:grid'>Captain</span> */}
                 </div>
                 <ul>
                     {data.map((teamData, id) => 

@@ -1,35 +1,24 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
-
-import Sidebar from '../components/sidebar'
 import Header from "../components/header"
-import TopCards from "../components/TopCards"
-import BarChart from "../components/BarChart"
-import Members from "../components/members"
 import {data} from '../data/teams'
-import ListBox from '../components/ListBox'
+import DashBoard from '../components/Dashboard'
 
 const Home: NextPage = () => {
   return (
     <div className="">
       <Head>
-        <title>Red Panda</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Red Panda | LoL Stat Companion</title>
+        <link rel="icon" href="favicon.ico" />
       </Head>
 
-      <main className="bg-red-300 min-h-screen">
-        {/* <Sidebar/> */}
+      <main className="bg-[#101021] min-h-screen">
         <div className='pl-4'>
           <Header />
-          <ListBox list={data} />
-          <TopCards teamData={data[0]}/>
-          <div className='pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 '>
-            <BarChart teamData={data[0]}/>
-            <Members teamData={data[0]} />
-          </div>
+          <DashBoard data={data}/>
         </div>
       </main>
+      <footer className='text-xs bg-[#101021] text-[#7D98A1] text-center'>RedPanda isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</footer>
     </div>
   )
 }

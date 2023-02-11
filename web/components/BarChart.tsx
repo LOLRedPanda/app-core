@@ -1,102 +1,55 @@
-import React, { useEffect, useState } from 'react'
-import PropTypes, {InferProps} from 'prop-types'
+import React from "react";
+import PropTypes, { InferProps } from "prop-types";
 import { Bar } from "react-chartjs-2";
-import { Menu } from '@headlessui/react'
-import type { ChartData, ChartOptions } from 'chart.js';
-// import teamData from "../data/teams"
-import{
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-} from 'chart.js';
-import ListBox from './ListBox';
 
-interface chartData{
-    labels: string[] ,
-    datasets: dataset[]
-}
-
-interface dataset{
-    label: string,
-    data: number[],
-    borderColor: string,
-    backgroundColor: string
-}
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
-function BarChart({teamData} : InferProps<typeof BarChart.propTypes>) {
-    const [chartData, setChartData] = useState<chartData>({
-        labels: [],
-        datasets: [{
-            label: '',
-            data: [],
-            borderColor: '',
-            backgroundColor:'',
-        }]
-    })
+function BarChart({ chartData }: InferProps<typeof BarChart.propTypes>) {
 
-    const[chartOptions, setChartOptions] = useState({})
+  const chartOptions = {
+    plugins: {
+      legend: {
+        display: true,
+      },
+      title: {
+        display: true,
+        text: "Team Stats",
+      },
+      maintainAspectRatio: false,
+      responsive: true,
+    },
+  }
 
-    useEffect(() => {
-        setChartData({
-            labels: [teamData.members.top, teamData.members.jungle, teamData.members.mid, teamData.members.adc, teamData.members.support],
-            datasets: [{
-                label: 'KDA',
-                data: [teamData.stats.KDA.top, teamData.stats.KDA.jungle, teamData.stats.KDA.mid, teamData.stats.KDA.adc, teamData.stats.KDA.support],
-                borderColor: 'rgb(53, 162, 235)',
-                backgroundColor:'rgb(53, 162, 235, 0.4)',
-            },
-            {
-                label: 'CSMP',
-                data: [teamData.stats.CSPM.top, teamData.stats.CSPM.jungle, teamData.stats.CSPM.mid, teamData.stats.CSPM.adc, teamData.stats.CSPM.support],
-                borderColor: 'rgb(255, 50, 50)',
-                backgroundColor:'rgb(255, 50, 50, 0.4)',
-            },
-            {
-                label: 'DMGPM(x100)',
-                data: [teamData.stats.DMGPM.top, teamData.stats.DMGPM.jungle, teamData.stats.DMGPM.mid, teamData.stats.DMGPM.adc, teamData.stats.DMGPM.support],
-                borderColor: 'rgb(50, 255, 50)',
-                backgroundColor:'rgb(50, 255, 50, 0.4)',
-            },
-        ],
-
-        })
-        setChartOptions({
-            plugins: {
-                legend:{
-                    display: true
-                },
-                title: {
-                    display: true,
-                    text: 'KDA'
-                },
-                maintainAspectRatio: false,
-                responsive: true
-            }
-        })
-    }, [])
 
   return (
     <>
-    <div className='w-full md:col-span-2 reletive lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white'>    <Bar data={chartData} options={chartOptions} />
-        
-    </div>
+      <div className="w-full md:col-span-2 relative lg:h-[70vh] h-[50vh] m-auto p-4 border border-[#ED009C] shadow-lg shadow-[#ED009C] rounded-lg bg-[#101021] text-[#7D98A1]">
+        {" "}
+        <Bar data={chartData} options={chartOptions} />
+      </div>
     </>
-  )
+  );
 }
+
 BarChart.propTypes = {
-    teamData: PropTypes.any,
-}
-export default BarChart
+  chartData: PropTypes.any,
+};
+
+export default BarChart;

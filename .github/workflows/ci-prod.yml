@@ -16,13 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run Tests
-        uses: ./.github/actions/api-test
+        uses: ./.github/workflows/api-test
         with:
           workingDirectory: api
 
       - uses: actions/checkout@v3
       - name: Run Tests
-        uses: ./.github/actions/web-test
+        uses: ./.github/workflows/web-test
         with:
           workingDirectory: web
   

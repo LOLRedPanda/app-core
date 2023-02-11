@@ -1,5 +1,5 @@
-name: Terraform
-description: create the infrastructure.
+name: Terraform Plan
+description: Run Terraform Plan
 
 inputs:
   workingDirectory:

@@ -1,4 +1,5 @@
 variable "env" {
+  type = string
   description = "The environment of our resources"
 }
 
@@ -15,6 +16,11 @@ variable "storage_account_name" {
 variable "location" {
     type = string
     description = "The location the resources are associated with."
+}
+
+variable "cosmos_db" {
+    type = bool
+    description = "Whether or not to build a cosmos db"
 }
 
 variable "db_name" {
@@ -42,10 +48,32 @@ variable "container_registry_name" {
     description = "The name of the container registry."
 }
 
-variable "app_env_vars" {
-    description = "The environment variables for the application."
+variable "api_env_vars" {
+    type = map
+    description = "The environment variables for the api."
 }
 
-variable "app_command_line" {
-    description = "The script command to run the application."
+variable "api_command_line" {
+    type = string
+    description = "The script command to run the api."
+}
+
+variable "ip_restrictions" {
+    type = bool
+    description = "whether or not to restrict the ips"
+}
+
+variable "ns_whitelist_ips" {
+    type = list
+    description = "ns whitelist ips"
+}
+
+variable "nw_whitelist_ips" {
+    type = list
+    description = "nw whitelist ips"
+}
+
+variable "c_whitelist_ips" {
+    type = list
+    description = "cw whitelist ips"
 }

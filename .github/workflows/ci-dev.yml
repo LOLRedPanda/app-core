@@ -35,7 +35,7 @@ jobs:
       TF_VAR_riot_api_key: ${{secrets.RIOT_API_KEY}}
     steps:
       - uses: actions/checkout@v3
-      - name: Run Tests
+      - name: Terraform Plan
         uses: ./.github/actions/terraform-plan
         with:
           workingDirectory: infrastructure/environments/dev

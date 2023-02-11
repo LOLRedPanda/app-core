@@ -1,4 +1,4 @@
-name: 🕸️🧪 Web Tests
+name: 🌐🧪 API Tests
 description: Run Tests
 
 inputs:
@@ -11,20 +11,15 @@ runs:
   steps:
   - name: Install Packages
     shell: bash
-    run : yarn install
+    run : npm install
     working-directory: ${{ inputs.workingDirectory }}
 
-  # - name: Lint
-  #   shell: bash
-  #   run: yarn run lint
-  #   working-directory: ${{ inputs.workingDirectory }}
-
-  # - name: Unit Test
-  #   shell: bash
-  #   run: yarn test
-  #   working-directory: ${{ inputs.workingDirectory }}
-
-  - name: Build
+  - name: Lint
     shell: bash
-    run: yarn build
+    run: npm run lint
+    working-directory: ${{ inputs.workingDirectory }}
+
+  - name: Unit Test
+    shell: bash
+    run: npm test
     working-directory: ${{ inputs.workingDirectory }}

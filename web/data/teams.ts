@@ -2,7 +2,7 @@ export const data = [
   {
     id: "1",
     name: "Never Lucky",
-    logo: "/../public/assets/teamLogos/NL.png",
+    logo: "NL.png",
     members: [
       {
         name: "Tyriq",
@@ -52,7 +52,7 @@ export const data = [
   {
     id: "2",
     name: "Final Bastion",
-    logo: "/../public/assets/teamLogos/final_bastion.png",
+    logo: "final_bastion.png",
     members: [
       {
         name: "VelaCosv",
@@ -102,7 +102,7 @@ export const data = [
   {
     id: "3",
     name: "CSU",
-    logo: "/../public/assets/teamLogos/CSU.png",
+    logo: "CSU.png",
     members: [
       {
         name: "Eggashira",
@@ -168,7 +168,7 @@ export const data = [
   {
     id: "4",
     name: "Spartan Shields",
-    logo: "/../public/assets/teamLogos/Spartan_shields.png",
+    logo: "Spartan_shields.png",
     members: [
       {
         name: "KingKimchi07",
@@ -218,7 +218,7 @@ export const data = [
   {
     id: "5",
     name: "MiSFiTS",
-    logo: "/../public/assets/teamLogos/Misfits.png",
+    logo: "Misfits.png",
     members: [
       {
         name: "LEAKYWALLO",
@@ -268,7 +268,7 @@ export const data = [
   {
     id: "6",
     name: "Orbit Gaming Quasar",
-    logo: "/../public/assets/teamLogos/Orbit_Gaming_Quasar.png",
+    logo: "Orbit_Gaming_Quasar.png",
     members: [
       {
         name: "MooseInJuice",
@@ -318,7 +318,7 @@ export const data = [
   {
     id: "7",
     name: "CB Frost",
-    logo: "/../public/assets/teamLogos/CB_Gaming.png",
+    logo: "CB_Gaming.png",
     members: [
       {
         name: "Th3WorldEnder",
@@ -368,7 +368,7 @@ export const data = [
   {
     id: "8",
     name: "High on Meeps",
-    logo: "/../public/assets/teamLogos/HoM.png",
+    logo: "HoM.png",
     members: [
       {
         name: "Bersoker",
@@ -418,7 +418,7 @@ export const data = [
   {
     id: "9",
     name: "I Dont like sand",
-    logo: "/../public/assets/teamLogos/IHS.png",
+    logo: "IHS.png",
     members: [
       {
         name: "Deszin",
@@ -468,7 +468,7 @@ export const data = [
   {
     id: "10",
     name: "Clown Gaming Spartans",
-    logo: "/../public/assets/teamLogos/CGS.png",
+    logo: "CGS.png",
     members: [
       {
         name: "KingKong5790",

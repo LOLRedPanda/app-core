@@ -21,7 +21,7 @@ function teams() {
   return (
     <div className='bg-[#101021]'>
         <div className = "flex justify-between pr-4 pt-4">   
-        <Image src={PxeLogo} alt='No Image' width={200} height={100}/>
+        <Image src={PxeLogo} alt='League Photo' width={200} height={100}/>
         <h2 className='text-[#FF514D] font-bold text-[50px] pt-14'>Pheonix Esports League</h2>
     </div>
         <div className='p-4'>
@@ -40,7 +40,7 @@ function teams() {
                             <p className='text-[#FF514D] sm:text-left text-center text-[40px]'>{teamData.ranked}</p>
                             <div className='flex items-center'>
                                 <div className='bg-[#8d3f3f] p-1 shadow-md shadow-[#573d3d] rounded-lg'>
-                                <Image src={teamData.logo} alt={''} width={100} height={100} />
+                                <Image src={`/assets/teamLogos/${teamData.logo}`} alt={''} width={100} height={100} />
                                 </div>
                             </div>
                             <p className='text-[#FF514D] sm:text-left text-center text-[45px]'>{teamData.name}</p>

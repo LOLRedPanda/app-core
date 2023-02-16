@@ -3,9 +3,10 @@ import Image from 'next/image'
 import PxeLogo from '../public/assets/leagueLogos/pxe_logo.png'
 import {data} from '../data/teams'
 import {winLossScore, rank} from '../services/teamService'
+import Team from '../models/team'
 
 function teams() {
-    const teamsResults = data.map((t) => {
+    const teamsResults: Team[] = data.map((t) => {
         const team = {...t, score: winLossScore(t)}
         return team
     })
@@ -25,7 +26,6 @@ function teams() {
                     <span>Logo</span>
                     <span className='sm:text-left text-right'>Name</span>
                     <span className='hidden md:grid'>Record</span>
-                    {/* <span className='hidden sm:grid'>Captain</span> */}
                 </div>
                 <ul>
                     {ranked.map((teamData: any) =>
@@ -38,7 +38,7 @@ function teams() {
                                 </div>
                             </div>
                             <p className='text-[#FF514D] sm:text-left text-center text-[45px]'>{teamData.name}</p>
-                            <p className='text-[#FF514D] hidden md:flex text-[45px]'>{teamData.wins + '-' + teamData.loses}</p>
+                            <p className='text-[#FF514D] hidden md:flex text-[45px]'>{teamData.wins + '-' + teamData.losses}</p>
                         </li>
                     ))}
                 </ul>

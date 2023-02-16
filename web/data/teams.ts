@@ -46,7 +46,7 @@ export const data = [
       },
     ],
     wins: 3,
-    loses: 0,
+    losses: 0,
   },
   {
     id: "2",
@@ -95,7 +95,7 @@ export const data = [
       },
     ],
     wins: 3,
-    loses: 0,
+    losses: 0,
   },
   {
     id: "3",
@@ -160,7 +160,7 @@ export const data = [
       },
     ],
     wins: 2,
-    loses: 3,
+    losses: 3,
   },
   {
     id: "4",
@@ -209,7 +209,7 @@ export const data = [
       },
     ],
     wins: 5,
-    loses: 0,
+    losses: 0,
   },
   {
     id: "5",
@@ -258,7 +258,7 @@ export const data = [
       },
     ],
     wins: 1,
-    loses: 4,
+    losses: 4,
   },
   {
     id: "6",
@@ -307,7 +307,7 @@ export const data = [
       },
     ],
     wins: 2,
-    loses: 2,
+    losses: 2,
   },
   {
     id: "7",
@@ -356,7 +356,7 @@ export const data = [
       },
     ],
     wins: 1,
-    loses: 4,
+    losses: 4,
   },
   {
     id: "8",
@@ -405,7 +405,7 @@ export const data = [
       },
     ],
     wins: 1,
-    loses: 4,
+    losses: 4,
   },
   {
     id: "9",
@@ -454,7 +454,7 @@ export const data = [
       },
     ],
     wins: 1,
-    loses: 4,
+    losses: 4,
   },
   {
     id: "10",
@@ -503,6 +503,6 @@ export const data = [
       },
     ],
     wins: 3,
-    loses: 1,
+    losses: 1,
   },
 ];

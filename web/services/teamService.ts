@@ -1,33 +1,35 @@
+import  team from '../models/team'
 
-function winRate(wins: number, losses: number) {
+
+function winRate(wins: number, losses: number): number {
     const totalPlayed = wins + losses
     const winRate = (wins / totalPlayed) * 100
     return winRate
 }
 
-export function winLossScore(team: any) {
-    const { wins, loses } = team
-    const rate = winRate(wins, loses)
+export function winLossScore(team: team) : number {
+    const { wins, losses } = team
+    const rate = winRate(wins, losses)
     const weight = wins
     const score = rate * weight
     return score
 }
 
-export function rank(teams: any) {
-    const sortedByScore = teams.sort((a: any, b: any) => {
+export function rank(teams: team[]) {
+    const sortedByScore = teams.sort((a: team, b: team) => {
         if (a.score !== b.score) {
-            if (a.score > b.score)
+            if ((a.score !== undefined) && (b.score !== undefined) && (a.score > b.score))
                 return -1
         }
         return 0
     });
 
     const groupedByRank = [[sortedByScore[0]]]
-    sortedByScore.slice(1).forEach((e: any, i: any) => {
-        if (e.score == sortedByScore[i].score) {
-            groupedByRank[groupedByRank.length - 1].push(e);
+    sortedByScore.slice(1).forEach((t: team, i: number) => {
+        if (t.score == sortedByScore[i].score) {
+            groupedByRank[groupedByRank.length - 1].push(t);
         } else {
-            groupedByRank.push([e]);
+            groupedByRank.push([t]);
         }
     });
 

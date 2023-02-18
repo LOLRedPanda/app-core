@@ -17,8 +17,13 @@ export function winLossScore(team: team) : number {
 
 export function rank(teams: team[]) {
     const sortedByScore = teams.sort((a: team, b: team) => {
+        console.log(a.gWins)
         if (a.score !== b.score) {
             if ((a.score !== undefined) && (b.score !== undefined) && (a.score > b.score))
+                return -1
+        }
+        if (a.score == b.score) {
+            if ((a.score !== undefined) && (b.score !== undefined) && (a.gWins > b.gWins))
                 return -1
         }
         return 0

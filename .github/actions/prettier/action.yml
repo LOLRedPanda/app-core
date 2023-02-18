@@ -16,5 +16,5 @@ runs:
 
   - name: Prettier
     shell: bash
-    run: yarn pretter:check
+    run: yarn prettier:check
     working-directory: ${{ inputs.workingDirectory }}

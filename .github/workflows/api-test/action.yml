@@ -17,7 +17,7 @@ runs:
   - name: Lint
     uses: ./.github/actions/lint
     with:
-      working-directory: ${{ inputs.workingDirectory }}
+      workingDirectory: ${{ inputs.workingDirectory }}
       script: npm run
 
   - name: Unit Test

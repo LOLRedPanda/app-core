@@ -17,13 +17,13 @@ runs:
   - name: Lint
     uses: ./.github/actions/lint
     with:
-      working-directory: ${{ inputs.workingDirectory }}
+      workingDirectory: ${{ inputs.workingDirectory }}
       script: yarn
   
   - name: Prettier
     uses: ./.github/actions/prettier
     with:
-      working-directory: ${{ inputs.workingDirectory }}
+      workingDirectory: ${{ inputs.workingDirectory }}
 
   # - name: Unit Test
   #   shell: bash

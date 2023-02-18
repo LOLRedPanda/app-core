@@ -12,12 +12,7 @@ function sidebar({ children }: InferProps<typeof sidebar.propTypes>) {
 			<div className='fixed w-20 h-screen p-4 bg-[#101021] border-r-[1px] flex flex-col justify-between'>
 				<div className='flex flex-col items-center'>
 					<Link href='/'>
-						<Image
-							src={RedPandaLogo}
-							alt=''
-							width={500}
-							height={500}
-						/>
+						<Image src={RedPandaLogo} alt='' width={500} height={500} />
 					</Link>
 					<span className='border-b-[1px] border-gray-200 w-full p-2'></span>
 					<Link href='/'>

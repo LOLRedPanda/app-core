@@ -89,11 +89,7 @@ export default function DashBoard({ data }: dashboardProps) {
 
 	return (
 		<div className='p-4'>
-			<ListBox
-				list={data}
-				selected={selected}
-				setSelected={handleSelected}
-			/>
+			<ListBox list={data} selected={selected} setSelected={handleSelected} />
 			<TopCards team={selected} />
 			<div className='pt-4 pr-4 grid md:grid-cols-3 grid-cols-1 gap-4 '>
 				<BarChart chartData={chartData} />
@@ -102,4 +98,3 @@ export default function DashBoard({ data }: dashboardProps) {
 		</div>
 	)
 }
-

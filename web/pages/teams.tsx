@@ -12,20 +12,14 @@ function teams() {
 	})
 	data.sort((a, b) => {
 		if (a.wins == b.wins) {
-			if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses))
-				return -1
+			if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses)) return -1
 		}
 		return 0
 	})
 	return (
 		<div className='bg-[#101021]'>
 			<div className='flex justify-between pr-4 pt-4'>
-				<Image
-					src={PxeLogo}
-					alt='League Photo'
-					width={200}
-					height={100}
-				/>
+				<Image src={PxeLogo} alt='League Photo' width={200} height={100} />
 				<h2 className='text-[#FF514D] font-bold text-[50px] pt-14'>
 					Pheonix Esports League
 				</h2>

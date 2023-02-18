@@ -46,9 +46,7 @@ export default function ListBox({ list, selected, setSelected }: props) {
 								key={itemIdx}
 								className={({ active }) =>
 									`relative cursor-default select-none py-2 pl-10 pr-4 ${
-										active
-											? 'bg-amber-100 text-amber-900'
-											: 'text-gray-900'
+										active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
 									}`
 								}
 								value={item}
@@ -57,19 +55,14 @@ export default function ListBox({ list, selected, setSelected }: props) {
 									<>
 										<span
 											className={`block truncate ${
-												selected
-													? 'font-medium'
-													: 'font-normal'
+												selected ? 'font-medium' : 'font-normal'
 											}`}
 										>
 											{item.name}
 										</span>
 										{selected ? (
 											<span className='absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600'>
-												<BsCheckLg
-													className='h-5 w-5'
-													aria-hidden='true'
-												/>
+												<BsCheckLg className='h-5 w-5' aria-hidden='true' />
 											</span>
 										) : null}
 									</>

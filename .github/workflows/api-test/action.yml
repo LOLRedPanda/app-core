@@ -15,9 +15,10 @@ runs:
     working-directory: ${{ inputs.workingDirectory }}
 
   - name: Lint
-    shell: bash
-    run: npm run lint
-    working-directory: ${{ inputs.workingDirectory }}
+    uses: ./.github/actions/lint
+    with:
+      working-directory: ${{ inputs.workingDirectory }}
+      script: npm run
 
   - name: Unit Test
     shell: bash

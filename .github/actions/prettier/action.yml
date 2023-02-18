@@ -1,24 +1,20 @@
-name: 🧹 Lint
-description: Run Lint
+name: 🧹 Prettier
+description: Run Prettier
 
 inputs:
   workingDirectory:
     required: true
     description: Working directory where the tests will run.
-  script:
-    required: true
-    description: Which script to use.
 
 runs:
   using: composite
   steps:
   - name: Install Packages
     shell: bash
-    run : npm install
+    run : yarn install
     working-directory: ${{ inputs.workingDirectory }}
 
-  - name: Lint
+  - name: Prettier
     shell: bash
-    run: ${{ inputs.script}} lint
+    run: yarn pretter:check
     working-directory: ${{ inputs.workingDirectory }}
-

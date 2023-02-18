@@ -9,8 +9,7 @@ interface props {
 
 export default function TopCards({ team }: props) {
 	const KDAs = team.members.map((member: player) => member.KDA)
-	const teamKDA =
-		KDAs.reduce((a: number, b: number) => a + b, 0) / KDAs.length
+	const teamKDA = KDAs.reduce((a: number, b: number) => a + b, 0) / KDAs.length
 	return (
 		<div className='grid lg:grid-cols-3 gap-8 pr-4 pt-4 '>
 			<TopCardItem label='Record' data={team.wins + '-' + team.losses} />

@@ -1,14 +1,11 @@
-export interface Team {
-    id: string
-    name: string
-    logo: string
-    members: {
-        top: string | null
-        jungle: string | null
-        mid: string | null
-        adc: string | null
-        support: string | null
-    },
-    record: string
+import player from './player'
 
+export default interface Team {
+	id: string
+	name: string
+	logo: string
+	members: player[]
+	wins: number
+	losses: number
+	ranked: string
 }

@@ -8,22 +8,17 @@ function winRate(wins: number, losses: number): number {
 }
 
 export function winLossScore(team: team) : number {
-    const { wins, losses } = team
+    const { wins, losses, gWins } = team
     const rate = winRate(wins, losses)
-    const weight = wins
+    const weight = gWins
     const score = rate * weight
     return score
 }
 
 export function rank(teams: team[]) {
     const sortedByScore = teams.sort((a: team, b: team) => {
-        console.log(a.gWins)
         if (a.score !== b.score) {
             if ((a.score !== undefined) && (b.score !== undefined) && (a.score > b.score))
-                return -1
-        }
-        if (a.score == b.score) {
-            if ((a.score !== undefined) && (b.score !== undefined) && (a.gWins > b.gWins))
                 return -1
         }
         return 0
@@ -36,6 +31,7 @@ export function rank(teams: team[]) {
         } else {
             groupedByRank.push([t]);
         }
+        
     });
 
     const rankedLeague = groupedByRank.flatMap((group, i) => {

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Header from '../components/header'
-import { data } from '../data/teams'
+import data from '../data/teams.json'
 import DashBoard from '../components/Dashboard'
 
 const Home: NextPage = () => {

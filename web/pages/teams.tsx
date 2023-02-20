@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import PxeLogo from '../public/assets/leagueLogos/pxe_logo.png'
-import { data } from '../data/teams'
+import data from '../data/teams.json'
 
 function teams() {
 	data.sort((a, b) => {
@@ -11,7 +11,7 @@ function teams() {
 		return 0
 	})
 	data.sort((a, b) => {
-		if (a.wins == b.wins) {
+		if (a.wins === b.wins) {
 			if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses)) return -1
 		}
 		return 0
@@ -40,7 +40,7 @@ function teams() {
 								className='bg-[#101021] rounded-lg my-3 p-2 grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 items-center justify-between cursor-pointer'
 							>
 								<p className='text-[#FF514D] sm:text-left text-center text-[40px]'>
-									{teamData.ranked}
+									{"Ranked Placeholder"}
 								</p>
 								<div className='flex items-center'>
 									<div className='bg-[#8d3f3f] p-1 shadow-md shadow-[#573d3d] rounded-lg'>

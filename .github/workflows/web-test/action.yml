@@ -14,10 +14,16 @@ runs:
     run : yarn install
     working-directory: ${{ inputs.workingDirectory }}
 
-  # - name: Lint
-  #   shell: bash
-  #   run: yarn run lint
-  #   working-directory: ${{ inputs.workingDirectory }}
+  - name: Lint
+    uses: ./.github/actions/lint
+    with:
+      workingDirectory: ${{ inputs.workingDirectory }}
+      script: yarn
+  
+  - name: Prettier
+    uses: ./.github/actions/prettier
+    with:
+      workingDirectory: ${{ inputs.workingDirectory }}
 
   # - name: Unit Test
   #   shell: bash

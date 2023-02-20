@@ -5,4 +5,9 @@
   "files.autoSaveDelay": 1000,
   "json.format.enable": true,
   "editor.formatOnType": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

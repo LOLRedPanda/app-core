@@ -1,5 +1,5 @@
-name: API Tests
-description: Run Tests
+name: 🧹 Prettier
+description: Run Prettier
 
 inputs:
   workingDirectory:
@@ -11,16 +11,10 @@ runs:
   steps:
   - name: Install Packages
     shell: bash
-    run : npm install
+    run : yarn install
     working-directory: ${{ inputs.workingDirectory }}
 
-  - name: Lint
-    uses: ./.github/actions/lint
-    with:
-      workingDirectory: ${{ inputs.workingDirectory }}
-      script: npm run
-
-  - name: Unit Test
+  - name: Prettier
     shell: bash
-    run: npm test
+    run: yarn prettier:check
     working-directory: ${{ inputs.workingDirectory }}

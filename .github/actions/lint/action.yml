@@ -5,6 +5,9 @@ inputs:
   workingDirectory:
     required: true
     description: Working directory where the tests will run.
+  script:
+    required: true
+    description: Which script to use.
 
 runs:
   using: composite
@@ -16,6 +19,6 @@ runs:
 
   - name: Lint
     shell: bash
-    run: npm run lint
+    run: ${{ inputs.script}} lint
     working-directory: ${{ inputs.workingDirectory }}
 

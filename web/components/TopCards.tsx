@@ -13,7 +13,7 @@ export default function TopCards({ team }: props) {
 	return (
 		<div className='grid lg:grid-cols-3 gap-8 pr-4 pt-4 '>
 			<TopCardItem label='Record' data={team.wins + '-' + team.losses} />
-			<TopCardItem label='Ranked' data={team.ranked} />
+			<TopCardItem label='Ranked' data={'RANKED PLACEHOLDER'} />
 			<TopCardItem
 				label='Team KDA'
 				data={JSON.stringify(Math.ceil(teamKDA * 100) / 100)}

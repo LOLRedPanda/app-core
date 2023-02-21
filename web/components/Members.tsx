@@ -8,9 +8,11 @@ function Members({ teamData }: InferProps<typeof Members.propTypes>) {
 	const memberItems = members.map((member: player) => (
 		<Member
 			key={member.name}
-			image={`/assets/roleLogos/${member.position.toLowerCase()}.png`}
+			image={`/assets/roleLogos/${
+				member.position ? member.position.toLowerCase() : 'sub'
+			}.png`}
 			name={member.name}
-			position={member.position}
+			position={member.position ? member.position : 'sub'}
 		/>
 	))
 

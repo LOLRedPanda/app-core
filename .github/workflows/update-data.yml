@@ -1,7 +1,9 @@
 name: 📊 Update Stat Data
 
 on:
-  workflow_dispatch:
+  push:
+    branches: 
+    - story/google-spreadsheet-pipeline
 
 jobs:
   get-data:

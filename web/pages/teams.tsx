@@ -40,7 +40,7 @@ function teams() {
 								className='bg-[#101021] rounded-lg my-3 p-2 grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 items-center justify-between cursor-pointer'
 							>
 								<p className='text-[#FF514D] sm:text-left text-center text-[40px]'>
-									{"Ranked Placeholder"}
+									{'Ranked Placeholder'}
 								</p>
 								<div className='flex items-center'>
 									<div className='bg-[#8d3f3f] p-1 shadow-md shadow-[#573d3d] rounded-lg'>

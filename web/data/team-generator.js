@@ -7,7 +7,9 @@ const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID)
 async function auth() {
 	await doc.useServiceAccountAuth({
 		client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-		private_key: process.env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join('\n'),
+		private_key: process.env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join(
+			'\n'
+		),
 	})
 }
 
@@ -56,15 +58,7 @@ async function getTeamStats() {
 
 	const rows = await teamStatSheet.getRows()
 	const spreadsheetData = rows.map((row) => {
-		const {
-			teamId,
-			teamName,
-			logo,
-			wins,
-			losses,
-			gWins,
-			gLosses
-		} = row
+		const { teamId, teamName, logo, wins, losses, gWins, gLosses } = row
 
 		return {
 			id: teamId,
@@ -73,7 +67,7 @@ async function getTeamStats() {
 			wins: parseInt(wins),
 			losses: parseInt(losses),
 			gWins: parseInt(gWins),
-			gLosses: parseInt(gLosses)
+			gLosses: parseInt(gLosses),
 		}
 	})
 	return spreadsheetData
@@ -92,7 +86,7 @@ async function buildData() {
 
 async function writeToFile() {
 	const data = await buildData()
-	const fs = require('fs');
+	const fs = require('fs')
 	fs.writeFile('teams.json', JSON.stringify(data, null, 2), (err) => {
 		if (err) throw err
 		console.log('The file has been saved!')
@@ -101,4 +95,3 @@ async function writeToFile() {
 
 auth()
 writeToFile()
-

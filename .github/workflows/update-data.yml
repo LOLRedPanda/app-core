@@ -34,7 +34,6 @@ jobs:
       - name: Commit To Repo
         shell: bash
         run : |
-          yarn get:data
           git config user.name "RedPandaBot"
           git config user.email "<>"
           set +e
@@ -42,6 +41,7 @@ jobs:
           if [ $? -eq 0 ]
           then
             set -e
+            git add teams.json
             git commit -m "update-data-${{ steps.date.outputs.date }}"
             git push -u origin
           else

@@ -102,4 +102,3 @@ async function writeToFile() {
 auth()
 writeToFile()
 
-// console.log(JSON.stringify(newTeams, null, 2))

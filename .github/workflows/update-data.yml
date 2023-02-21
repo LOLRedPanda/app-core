@@ -23,8 +23,9 @@ jobs:
         working-directory: ./web
     
   commit-to-repo:
-    name: Commit to Repo
+    name: 🛸 Commit to Repo
     runs-on: ubuntu-latest
+    needs: [get-data]
     steps:
       - uses: actions/checkout@v3
       - name: Get current date
@@ -38,5 +39,4 @@ jobs:
           git switch -c update-data-${{ steps.date.outputs.date }}
           git add ./web/data/teams.json
           git commit -m "update spreadsheet data"
-          # git push origin main
           

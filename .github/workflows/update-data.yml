@@ -20,16 +20,16 @@ jobs:
         shell: bash
         run : yarn install
         working-directory: ./web
-      
+
       - name: Update Teams Data
         shell: bash
         run: yarn get:data
         working-directory: ./web
-      
+
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-      
+
       - name: Commit To Repo
         shell: bash
         run : |

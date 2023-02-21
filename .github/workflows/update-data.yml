@@ -37,8 +37,7 @@ jobs:
           yarn get:data
           git config user.name "RedPandaBot"
           git config user.email "<>"
-          git switch -c update-data-${{ steps.date.outputs.date }}
-          git add teams.json
-          git commit -m "update spreadsheet data"
+          git diff --exit-code || add teams.json
+          git commit -m "update-data-${{ steps.date.outputs.date }}"
           git push -u origin update-data-${{ steps.date.outputs.date }}
         working-directory: ./web

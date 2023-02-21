@@ -2,7 +2,7 @@ name: 📊 Update Stat Data
 
 on:
   push:
-    branches: 
+    branches:
     - story/google-spreadsheet-pipeline
 
 jobs:
@@ -33,12 +33,6 @@ jobs:
           git config user.name "RedPandaBot"
           git config user.email "<>"
           git switch -c update-data-${{ steps.date.outputs.date }}
-          git add ./data/teams.json
+          git add teams.json
           git commit -m "update spreadsheet data"
         working-directory: ./web
-    
-      - name: Commit and Push
-        shell: bash
-        run: |
-          
-          

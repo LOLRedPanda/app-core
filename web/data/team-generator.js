@@ -2,14 +2,12 @@ const fs = require('fs')
 require('dotenv').config()
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
-console.log('spreadsheetId', process.env.SPREADSHEET_ID.substring(0,10))
-
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID)
 
 async function auth() {
 	await doc.useServiceAccountAuth({
 		client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-		private_key: process.env.GOOGLE_PRIVATE_KEY,
+		private_key: process.env.GOOGLE_PRIVATE_KEY.split(String.raw`\n`).join('\n'),
 	})
 }
 

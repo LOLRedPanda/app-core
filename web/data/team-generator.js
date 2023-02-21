@@ -2,6 +2,8 @@ const fs = require('fs')
 require('dotenv').config()
 const { GoogleSpreadsheet } = require('google-spreadsheet')
 
+console.log('spreadsheetId', process.env.SPREADSHEET_ID.substring(0,10))
+
 const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID)
 
 async function auth() {

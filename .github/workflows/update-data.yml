@@ -1,9 +1,8 @@
 name: 📊 Update Stat Data
 
 on:
-  push:
-    branches:
-    - story/google-spreadsheet-pipeline
+  schedule:
+    - 0 0 3 1/1 * ? *
 
 jobs:
   get-data:

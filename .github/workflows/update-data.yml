@@ -22,21 +22,23 @@ jobs:
         run : yarn install
         working-directory: ./web
       
-      - name: Run Script
-        shell: bash
-        run : yarn get:data
-        working-directory: ./web
-    
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-
-      - name: Commit and Push
+      
+      - name: Run Script
         shell: bash
-        run: |
+        run : |
+          yarn get:data
           git config user.name "RedPandaBot"
           git config user.email "<>"
           git switch -c update-data-${{ steps.date.outputs.date }}
           git add ./web/data/teams.json
           git commit -m "update spreadsheet data"
+        working-directory: ./web
+    
+      - name: Commit and Push
+        shell: bash
+        run: |
+          
           

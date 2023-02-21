@@ -10,7 +10,7 @@ on:
 
 jobs:
   unit-tests:
-    name: 🧪 Run Unit Tests
+    name: 🧪 Run Tests
     runs-on: ubuntu-latest
     environment: test
     steps:

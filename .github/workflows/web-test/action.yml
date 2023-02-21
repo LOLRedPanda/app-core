@@ -25,10 +25,10 @@ runs:
     with:
       workingDirectory: ${{ inputs.workingDirectory }}
 
-  # - name: Unit Test
-  #   shell: bash
-  #   run: yarn test
-  #   working-directory: ${{ inputs.workingDirectory }}
+  - name: Unit Test
+    shell: bash
+    run: yarn test
+    working-directory: ${{ inputs.workingDirectory }}
 
   - name: Build
     shell: bash

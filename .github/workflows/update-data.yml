@@ -37,7 +37,15 @@ jobs:
           yarn get:data
           git config user.name "RedPandaBot"
           git config user.email "<>"
-          git diff --exit-code || add teams.json
-          git commit -m "update-data-${{ steps.date.outputs.date }}"
-          git push -u origin update-data-${{ steps.date.outputs.date }}
+          set +e
+          git status | grep modified
+          if [ $? -eq 0 ]
+          then
+            set -e
+            git commit -m "update-data-${{ steps.date.outputs.date }}"
+            git push -u origin
+          else
+            set -e
+            echo "No changes since last run"
+          fi
         working-directory: ./web

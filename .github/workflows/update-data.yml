@@ -33,7 +33,7 @@ jobs:
           git config user.name "RedPandaBot"
           git config user.email "<>"
           git switch -c update-data-${{ steps.date.outputs.date }}
-          git add ./web/data/teams.json
+          git add ./data/teams.json
           git commit -m "update spreadsheet data"
         working-directory: ./web
     

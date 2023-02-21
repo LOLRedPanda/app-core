@@ -1,0 +1,40 @@
+name: 📊 Update Stat Data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-data:
+    name: 📊 Get Data from Spreadsheet
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Packages
+        shell: bash
+        run : yarn install
+        working-directory: ./web
+      
+      - name: Run Script
+        shell: bash
+        run : yarn get:data
+        working-directory: ./web
+    
+  commit-to-repo:
+    name: Commit to Repo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Run Script
+        shell: bash
+        run: |
+          git config user.name "RedPandaBot"
+          git config user.email "<>"
+          git switch -c update-data-${{ steps.date.outputs.date }}
+          git add ./web/data/teams.json
+          git commit -m "update spreadsheet data"
+          # git push origin main
+          

@@ -2,7 +2,7 @@ name: 📊 Update Stat Data
 
 on:
   schedule:
-    - cron: "0 3 * * *"
+    - cron: "0 5 * * *"
 
 jobs:
   get-data:

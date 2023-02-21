@@ -31,13 +31,14 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       
-      - name: Run Script
+      - name: Commit To Repo
         shell: bash
         run : |
           yarn get:data
           git config user.name "RedPandaBot"
           git config user.email "<>"
           git switch -c update-data-${{ steps.date.outputs.date }}
-          git add ./data/teams.json
+          git add teams.json
           git commit -m "update spreadsheet data"
+          git push -u origin update-data-${{ steps.date.outputs.date }}
         working-directory: ./web

@@ -38,7 +38,7 @@ function teams() {
                                 <Image src={`/assets/teamLogos/${teamData.logo}`} alt={''} width={100} height={100} />
                                 </div>
                             </div>
-                            <p className='text-[#FF514D] sm:text-left text-center text-[45px]'>{teamData.name}</p>
+                            <p className='text-[#FF514D] sm:text-left text-center text-[35px]'>{teamData.name}</p>
                             <p className='text-[#FF514D] hidden md:flex text-[45px]'>{teamData.wins + '-' + teamData.losses}</p>
 							<p className='text-[#FF514D] hidden md:flex text-[45px]'>{teamData.gWins + '-' + teamData.gLosses}</p>
                         </li>

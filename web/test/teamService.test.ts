@@ -12,6 +12,7 @@ describe("rank", () => {
         wins: 1,
         losses: 0,
         rank: 2,
+        gWins: 10,
         score: 100,
       },
       {
@@ -21,6 +22,7 @@ describe("rank", () => {
         members: [],
         wins: 3,
         losses: 0,
+        gWins: 5,
         rank: 1,
         score: 300,
       },
@@ -31,6 +33,7 @@ describe("rank", () => {
         members: [],
         wins: 1,
         losses: 3,
+        gWins: 3,
         rank: 3,
         score: 30,
       },
@@ -45,6 +48,7 @@ describe("rank", () => {
       members: [],
       wins: 3,
       losses: 0,
+      gWins: 5,
       rank: 1,
       score: 300,
     },
@@ -55,6 +59,7 @@ describe("rank", () => {
       members: [],
       wins: 1,
       losses: 0,
+      gWins: 10,
       rank: 2,
       score: 100,
     },
@@ -65,6 +70,7 @@ describe("rank", () => {
       members: [],
       wins: 1,
       losses: 3,
+      gWins: 3,
       rank: 3,
       score: 30,
     },
@@ -82,6 +88,7 @@ describe("rank", () => {
         score: 300,
         wins: 3,
         losses: 0,
+        gWins: 5,
         members: []
       },
       {
@@ -91,6 +98,7 @@ describe("rank", () => {
         score: 300,
         wins: 3,
         losses: 0,
+        gWins: 10,
         members: []
       }
     ]
@@ -98,26 +106,27 @@ describe("rank", () => {
     const result = rank(teamsData)
 
     const ranks = result.map((i) => i.rank)
-
-    ranks.forEach((r) => {
-      expect(r).toEqual(1)
+    
+    ranks.forEach((rank) => {
+      expect(rank).toEqual(1)
     })
   })
 })
 
 
 describe("winLossScore", () => {
-  it("should calculate a weighted score based on wins and losses", () => {
+  it("should calculate a weighted score based on wins, losses, and gwins", () => {
     const fakeTeam: Team = {
         id: "1",
         name: "Never Lucky",
         logo: "NL.png",
         wins: 3,
         losses: 2,
+        gWins: 5,
         members: []
     }
 
     const result = winLossScore(fakeTeam)
-    expect(result).toEqual(180)
+    expect(result).toEqual(300)
   })
 })

@@ -42,7 +42,7 @@ module "infra" {
   ip_restrictions = true
   ns_whitelist_ips = ["64.184.72.246/32", "184.170.174.120/32", "184.170.174.120/32"]
   nw_whitelist_ips = ["174.238.49.39/32", "99.61.172.233/32"]
-  c_whitelist_ips = []
+  c_whitelist_ips = ["76.142.154.179/32","140.141.199.138/32"]
   api_env_vars = {
     RIOT_API_KEY = local.riot_api_key
   }

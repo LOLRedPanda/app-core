@@ -1,0 +1,50 @@
+name: 📊 Update Stat Data
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+
+jobs:
+  get-data:
+    name: 📊 Get Data from Spreadsheet
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL}}
+      GOOGLE_PRIVATE_KEY: ${{secrets.GOOGLE_PRIVATE_KEY}}
+      SPREADSHEET_ID: ${{secrets.SPREADSHEET_ID}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Packages
+        shell: bash
+        run : yarn install
+        working-directory: ./web
+
+      - name: Update Teams Data
+        shell: bash
+        run: yarn get:data
+        working-directory: ./web
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      - name: Commit To Repo
+        shell: bash
+        run : |
+          git config user.name "RedPandaBot"
+          git config user.email "<>"
+          set +e
+          git status | grep modified
+          if [ $? -eq 0 ]
+          then
+            set -e
+            git add teams.json
+            git commit -m "update-data-${{ steps.date.outputs.date }}"
+            git push -u origin
+          else
+            set -e
+            echo "No changes since last run"
+          fi
+        working-directory: ./web

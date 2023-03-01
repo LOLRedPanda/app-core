@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import PxeLogo from '../public/assets/leagueLogos/pxe_logo.png'
-import {data} from '../data/teams'
+import data from '../data/teams.json'
 import {winLossScore, rank} from '../services/teamService'
 import Team from '../models/team'
 

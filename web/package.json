@@ -4,7 +4,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+		"lint:fix": "next lint --fix",
+		"prettier": "prettier --write .",
+		"prettier:check": "npx prettier --check .",
+		"get:data": "node ./data/team-generator.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.8",

@@ -1,13 +1,14 @@
-import player from "./player"
+import player from './player'
 
 export default interface Team {
-    id: string
-    name: string
-    logo: string
-    members: player[]
-    wins: number
-    gWins : number
-    losses: number
-    score?: number
-    rank?: number
+	id: string
+	name: string
+	logo: string
+	members: player[]
+	wins: number
+	gWins: number
+	gLosses:number
+	losses: number
+	score?: number
+	rank?: number
 }

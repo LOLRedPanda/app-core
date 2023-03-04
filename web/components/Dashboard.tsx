@@ -26,7 +26,7 @@ interface dashboardProps {
 
 export default function DashBoard({ data }: dashboardProps) {
 	const ranked = rank(data)
-	const [selected, setSelected] = useState(ranked[0])
+	const [selected, setSelected] = useState(ranked[0] as team)
 	const { members } = selected
 	const labels = members.map((member: player) => member.name)
 	const KDAs = members.map((member: player) => member.KDA)

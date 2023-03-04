@@ -10,7 +10,7 @@ function teams() {
         const team = {...t, score: winLossScore(t)}
         return team
     })
-
+    
     const ranked = rank(teamsResults)
 
     return (
@@ -29,7 +29,7 @@ function teams() {
 					<span className='hidden md:grid'>Game Record</span>
                 </div>
                 <ul>
-                    {ranked.map((teamData: any) =>
+                    {ranked.map((teamData: Team) =>
                         (
                         <li key={teamData.id} className='bg-[#101021] rounded-lg my-3 p-2 grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 items-center justify-between cursor-pointer'>
                             <p className='text-[#FF514D] sm:text-left text-center text-[40px]'>{teamData.rank}</p>

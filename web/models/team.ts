@@ -7,7 +7,7 @@ export default interface Team {
 	members: player[]
 	wins: number
 	gWins: number
-	gLosses:number
+	gLosses: number
 	losses: number
 	score?: number
 	rank?: number

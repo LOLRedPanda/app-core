@@ -3,10 +3,10 @@
 		"id": "03b9ca54",
 		"name": "Final Bastion",
 		"logo": "final_bastion.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 4,
+		"losses": 2,
+		"gWins": 9,
+		"gLosses": 4,
 		"members": [
 			{
 				"id": "f4909296",
@@ -112,10 +112,10 @@
 		"id": "87554917",
 		"name": "Never Lucky Gaming",
 		"logo": "NL.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 5,
+		"losses": 1,
+		"gWins": 11,
+		"gLosses": 3,
 		"members": [
 			{
 				"id": "5ceafef5",
@@ -207,10 +207,10 @@
 		"id": "dbb7fd02",
 		"name": "CSU",
 		"logo": "CSU.png",
-		"wins": 1,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 3,
+		"losses": 3,
+		"gWins": 7,
+		"gLosses": 6,
 		"members": [
 			{
 				"id": "a8fe3f73",
@@ -316,10 +316,10 @@
 		"id": "7fbdedbc",
 		"name": "Spartan Shields",
 		"logo": "spartan_shields.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 5,
+		"losses": 1,
+		"gWins": 10,
+		"gLosses": 4,
 		"members": [
 			{
 				"id": "929c1083",
@@ -411,10 +411,10 @@
 		"id": "64bf4ebc",
 		"name": "Misfits",
 		"logo": "Misfits.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 1,
+		"losses": 5,
+		"gWins": 4,
+		"gLosses": 10,
 		"members": [
 			{
 				"id": "88bfbf43",
@@ -520,10 +520,10 @@
 		"id": "3247a3e1",
 		"name": "Orbit Gaming Quasar",
 		"logo": "Orbit_Gaming_Quasar.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 3,
+		"losses": 2,
+		"gWins": 6,
+		"gLosses": 5,
 		"members": [
 			{
 				"id": "c775986f",
@@ -629,10 +629,10 @@
 		"id": "d92ad2ef",
 		"name": "CB Frost",
 		"logo": "CB_Gaming.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 2,
+		"losses": 4,
+		"gWins": 4,
+		"gLosses": 9,
 		"members": [
 			{
 				"id": "cc4d484c",
@@ -752,10 +752,10 @@
 		"id": "9247dc58",
 		"name": "Glacial Guardians (HOM)",
 		"logo": "HoM.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 2,
+		"losses": 4,
+		"gWins": 5,
+		"gLosses": 9,
 		"members": [
 			{
 				"id": "5073fc8b",
@@ -847,10 +847,10 @@
 		"id": "7710847a",
 		"name": "I Don't Like Sand",
 		"logo": "IHS.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 1,
+		"losses": 5,
+		"gWins": 5,
+		"gLosses": 10,
 		"members": [
 			{
 				"id": "1e483968",
@@ -942,10 +942,10 @@
 		"id": "2aa6d27a",
 		"name": "Clown Gaming Spartans",
 		"logo": "CGS.png",
-		"wins": 0,
-		"losses": 0,
-		"gWins": 0,
-		"gLosses": 0,
+		"wins": 3,
+		"losses": 2,
+		"gWins": 6,
+		"gLosses": 6,
 		"members": [
 			{
 				"id": "f1e5ced3",

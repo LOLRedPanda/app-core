@@ -2,20 +2,17 @@ import React from 'react'
 import Image from 'next/image'
 import PxeLogo from '../public/assets/leagueLogos/pxe_logo.png'
 import data from '../data/teams.json'
+import { winLossScore, rank } from '../services/teamService'
+import Team from '../models/team'
 
 function teams() {
-	data.sort((a, b) => {
-		if (a.wins != b.wins) {
-			if (a.wins > b.wins) return -1
-		}
-		return 0
+	const teamsResults: Team[] = data.map((t) => {
+		const team = { ...t, score: winLossScore(t) }
+		return team
 	})
-	data.sort((a, b) => {
-		if (a.wins === b.wins) {
-			if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses)) return -1
-		}
-		return 0
-	})
+
+	const ranked = rank(teamsResults)
+
 	return (
 		<div className='bg-[#101021]'>
 			<div className='flex justify-between pr-4 pt-4'>
@@ -26,21 +23,21 @@ function teams() {
 			</div>
 			<div className='p-4'>
 				<div className='w-full m-auto p-4 border rounded-lg bg-[#da2b82] overflow-y-auto'>
-					<div className='my-3 p-2 grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 items-center justify-between cursor-pointer'>
+					<div className='my-3 p-2 grid md:grid-cols-5 sm:grid-cols-3 grid-cols-3 items-center justify-between cursor-pointer'>
 						<span className='hidden sm:grid'>Ranked</span>
 						<span>Logo</span>
 						<span className='sm:text-left text-right'>Name</span>
 						<span className='hidden md:grid'>Record</span>
-						{/* <span className='hidden sm:grid'>Captain</span> */}
+						<span className='hidden md:grid'>Game Record</span>
 					</div>
 					<ul>
-						{data.map((teamData, id) => (
+						{ranked.map((teamData: Team) => (
 							<li
-								key={id}
+								key={teamData.id}
 								className='bg-[#101021] rounded-lg my-3 p-2 grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 items-center justify-between cursor-pointer'
 							>
 								<p className='text-[#FF514D] sm:text-left text-center text-[40px]'>
-									{'Ranked Placeholder'}
+									{teamData.rank}
 								</p>
 								<div className='flex items-center'>
 									<div className='bg-[#8d3f3f] p-1 shadow-md shadow-[#573d3d] rounded-lg'>
@@ -52,15 +49,15 @@ function teams() {
 										/>
 									</div>
 								</div>
-								<p className='text-[#FF514D] sm:text-left text-center text-[45px]'>
+								<p className='text-[#FF514D] sm:text-left text-center text-[35px]'>
 									{teamData.name}
 								</p>
 								<p className='text-[#FF514D] hidden md:flex text-[45px]'>
 									{teamData.wins + '-' + teamData.losses}
 								</p>
-								{/* <div className='text-[#FF514D] sm:flex hidden justify-between items-center'>
-                                <p className=' hidden md:flex text-[45px]'>{captain}</p>
-                            </div> */}
+								<p className='text-[#FF514D] hidden md:flex text-[45px]'>
+									{teamData.gWins + '-' + teamData.gLosses}
+								</p>
 							</li>
 						))}
 					</ul>

@@ -6,7 +6,9 @@ export default interface Team {
 	logo: string
 	members: player[]
 	wins: number
-	losses: number
 	gWins: number
 	gLosses: number
+	losses: number
+	score?: number
+	rank?: number
 }

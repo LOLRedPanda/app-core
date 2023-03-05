@@ -6,6 +6,7 @@ import ListBox from './ListBox'
 import React from 'react'
 import player from '../models/player'
 import team from '../models/team'
+import { rank } from '../services/teamService'
 
 interface chartData {
 	labels: string[]
@@ -24,7 +25,8 @@ interface dashboardProps {
 }
 
 export default function DashBoard({ data }: dashboardProps) {
-	const [selected, setSelected] = useState(data[0])
+	const ranked = rank(data)
+	const [selected, setSelected] = useState(ranked[0] as team)
 	const { members } = selected
 	const labels = members.map((member: player) => member.name)
 	const KDAs = members.map((member: player) => member.KDA)

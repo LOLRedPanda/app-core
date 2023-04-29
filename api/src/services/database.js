@@ -2,7 +2,6 @@ const { CosmosClient } = require("@azure/cosmos");
 
 class Database {
     constructor() {
-        // const connectionString = "AccountEndpoint=https://testlolscoutdb01.documents.azure.com:443/;AccountKey=rzVppmHoAbSVvZkfgzwgsWExLErGAaQpSp2lDNABQO5hWvxpZgMZTeURmw4XUEWCd9eJht3nyR4ZACDbPP3z6Q==;"
         this.connectionString = `AccountEndpoint=${process.env.COSMOS_DB_URI};AccountKey=${process.env.COSMOS_DB_PRIMARY_KEY};`
         this.cosmosClient = new CosmosClient(this.connectionString);
         this.database = this.cosmosClient.database('RedPanda')

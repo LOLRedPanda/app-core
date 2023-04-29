@@ -6,13 +6,13 @@ resource "azurerm_linux_web_app" "app_api" {
   https_only          = true
 
   site_config {
-    always_on = true
+    always_on                               = true
     container_registry_use_managed_identity = true
-    app_command_line = var.api_command_line
+    app_command_line                        = var.api_command_line
 
     ip_restriction {
       ip_address = "0.0.0.0/0"
-      action = var.ip_restrictions ? "Deny" : "Allow"
+      action     = var.ip_restrictions ? "Deny" : "Allow"
     }
 
     dynamic "ip_restriction" {
@@ -27,15 +27,15 @@ resource "azurerm_linux_web_app" "app_api" {
 
   identity {
     identity_ids = []
-    type = "SystemAssigned"
+    type         = "SystemAssigned"
   }
 
   app_settings = merge(
     var.api_env_vars,
     {
-      DOCKER_ENABLE_CI = true
-      WEBSITES_PORT=3000
-      DOCKER_REGISTRY_SERVER_URL = "https://${var.registry_server_url}"
+      DOCKER_ENABLE_CI                    = true
+      WEBSITES_PORT                       = 3000
+      DOCKER_REGISTRY_SERVER_URL          = "https://${var.registry_server_url}"
       WEBSITES_CONTAINER_START_TIME_LIMIT = 1800
     }
   )
@@ -49,12 +49,12 @@ resource "azurerm_linux_web_app" "app_web" {
   https_only          = true
 
   site_config {
-    always_on = true
+    always_on                               = true
     container_registry_use_managed_identity = true
 
     ip_restriction {
       ip_address = "0.0.0.0/0"
-      action = var.ip_restrictions ? "Deny" : "Allow"
+      action     = var.ip_restrictions ? "Deny" : "Allow"
     }
 
     dynamic "ip_restriction" {
@@ -69,13 +69,13 @@ resource "azurerm_linux_web_app" "app_web" {
 
   identity {
     identity_ids = []
-    type = "SystemAssigned"
+    type         = "SystemAssigned"
   }
 
   app_settings = merge(
     {
-      DOCKER_ENABLE_CI = true
-      DOCKER_REGISTRY_SERVER_URL = "https://${var.registry_server_url}"
+      DOCKER_ENABLE_CI                    = true
+      DOCKER_REGISTRY_SERVER_URL          = "https://${var.registry_server_url}"
       WEBSITES_CONTAINER_START_TIME_LIMIT = 1800
     }
   )

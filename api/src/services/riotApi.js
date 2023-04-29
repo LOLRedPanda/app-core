@@ -26,16 +26,6 @@ class RiotApi {
 		return result
 	}
 
-	async getChampionMastery(PlayerId, count) {
-		const options = { ...this.options }
-		options.params.count = count
-		const result = await this.client.get(
-			`${this.na1url}/champion-mastery/v4/champion-masteries/by-summoner/${PlayerId}/top`,
-			options
-		)
-		return result
-	}
-
 	async getLeagueEntries(PlayerID) {
 		const result = await this.client.get(
 			`${this.na1url}/league/v4/entries/by-summoner/${PlayerID}`,

@@ -1,27 +1,34 @@
-const { SummonerController } = require('../controllers/summoner')
+const { PlayerController } = require('../controllers/player')
+const { TeamController } = require('../controllers/team')
 const { MatchesController } = require('../controllers/matches')
 const { RiotApi } = require('../services/riotApi')
 
 
 function Routes(app) {
-	app.get('/summoner', async (req, res) => {
+	app.post('/team', async (req, res) => {
 		const riotApi = new RiotApi()
-		const summoner = new SummonerController(riotApi)
+		const team = new TeamController()
 		try {
-			const playerName = req.query.name
-			const { id, puuid, name } = await summoner.getIdsByName(playerName)
-			const rank = await summoner.getRank(id)
-			const champs = await summoner.getChampionMastery(id)
-			const matchIds = await summoner.getMatchIds(puuid)
-			const CSPerMinute = await summoner.getCSPerMinute(matchIds, puuid)
+			const teamName = req.query.name
+			const {name} = await team.addTeam(teamName)
 			const data = {
-				Username: name,
-				Rank: rank,
-				Top5ChampsByMastery: champs,
-				CS: CSPerMinute
+				name,
 			}
 			res.send(data)
-		} catch (e){
+		} catch (e) {
+			console.log(e)
+			res.send(e)
+		}
+	})
+
+	app.get('/player', async (req, res) => {
+		const riotApi = new RiotApi()
+		const player = new PlayerController(riotApi)
+		try {
+			const playerName = req.query.name
+			const data = await player.getIdsByName(playerName)
+			res.send(data)
+		} catch (e) {
 			console.log(e)
 			res.send(e)
 		}
@@ -31,7 +38,7 @@ function Routes(app) {
 		const riotApi = new RiotApi()
 		const match = new MatchesController(riotApi)
 		const name = req.query.name
-		const {puuid} = await match.getIdsByName(name)
+		const { puuid } = await match.getIdsByName(name)
 		const matchId = await match.getMatchId(puuid)
 		const participant = await match.getPlayerMatchHistory(matchId, puuid)
 		res.send(participant)

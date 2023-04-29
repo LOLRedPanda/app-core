@@ -15,10 +15,36 @@
         "application/json"
     ],
     "paths": {
-        "/summoner": {
+        "/team": {
+            "post": {
+                "tags": [
+                    "Team"
+                ],
+                "summary": "Adds a team to the database and returns the values",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "type": "string",
+                        "required": true,
+                        "x-example": "Redpanda0129",
+                        "description": "Player's Username."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Player"
+                        }
+                    }
+                }
+            }
+        },
+        "/player": {
             "get": {
                 "tags": [
-                    "Summoner"
+                    "Player"
                 ],
                 "summary": "Finds the information of a player by their summoner(player) name and returns stats for that player's in game information.",
                 "parameters": [
@@ -35,7 +61,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Summoner"
+                            "$ref": "#/definitions/Player"
                         }
                     }
                 }
@@ -69,24 +95,24 @@
         }
     },
     "definitions": {
-        "Summoner": {
+        "Player": {
             "type": "object",
             "properties": {
-                "Username": {
+                "name": {
                     "type": "string",
                     "uniqueItems": true
                 },
-                "Rank": {
-                    "type": "string"
+                "puuid": {
+                    "type": "string",
+                    "uniqueItems": true
                 },
-                "Top5ChampsByMastery": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                "summmonerId": {
+                    "type": "string",
+                    "uniqueItems": true
                 },
-                "CS": {
-                    "type": "number"
+                "accountId": {
+                    "type": "string",
+                    "uniqueItems": true
                 }
             }
         },
@@ -111,6 +137,22 @@
                 },
                 "time": {
                     "type": "number"
+                }
+            }
+        },
+        "Team": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "players": {
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         }

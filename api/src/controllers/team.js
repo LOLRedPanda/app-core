@@ -17,12 +17,8 @@ class TeamController {
 
 	async getTeam(teamName){
 		try{
-			const querySpec = {
-				query: `SELECT * from c WHERE c.name = ${teamName}`
-			}
-	
-			const {resources: items} = await container.items.query(querySpec).fetchAll()
-			return items[0]
+			const {id, name} = await this.cosmosDB.getTeam(teamName)
+			return {id, name}
 		}
 		catch (e){
 			throw new Error(`cannot get Team: ${e}`)

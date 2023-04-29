@@ -20,7 +20,10 @@
   },
   "homepage": "https://github.com/Nathanlee29/lol-scouting-api#readme",
   "dependencies": {
+    "@azure/cosmos": "^3.17.3",
+    "@azure/identity": "^3.1.4",
     "axios": "^1.1.3",
+    "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jasmine-console-reporter": "^3.1.0",

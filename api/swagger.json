@@ -53,8 +53,8 @@
                         "in": "query",
                         "type": "string",
                         "required": true,
-                        "x-example": "Redpanda0129",
-                        "description": "Player's Username."
+                        "x-example": "MyCoolTeam",
+                        "description": "Team Name"
                     }
                 ],
                 "responses": {

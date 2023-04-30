@@ -27,11 +27,9 @@ class TeamController {
 
 	async deleteTeam(teamName){
 		try{
-			const {id} = this.getTeam(teamName)
-	
-			const {resources: item} = await container.item(id)
-			console.log(item)
-			return 'delete'
+			const result = await this.getTeam(teamName)
+			const {item} = await this.cosmosDB.deleteTeam(result.id)
+			return {id: item.id}
 		}
 		catch (e){
 			throw new Error(`cannot delete Team: ${e}`)

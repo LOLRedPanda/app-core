@@ -3,7 +3,7 @@ const { CosmosClient } = require("@azure/cosmos");
 class Database {
     constructor() {
         this.connectionString = `AccountEndpoint=${process.env.COSMOS_DB_URI};AccountKey=${process.env.COSMOS_DB_PRIMARY_KEY};`
-        this.cosmosClient = new CosmosClient(this.connectionString);
+        this.cosmosClient = new CosmosClient(this.connectionString)
         this.database = this.cosmosClient.database('RedPanda')
         this.teamsContainer = this.database.container('teams')
         this.playersContainer = this.database.container('players')
@@ -16,7 +16,6 @@ class Database {
     }
 
     async getTeam(teamName) {
-        console.log(this.teamsContainer)
         const querySpec = {
             query: `SELECT * from c WHERE c.name = "${teamName}"`
         }
@@ -25,15 +24,11 @@ class Database {
         return items[0]
     }
 
-    async deleteTeam(teamName) {
-        console.log(this.teamsContainer)
-        const team = await this.getTeam(teamName)
-        
-        const { resource: deletedTeam } = await this.teamsContainer.item(team.id).delete()
-        return deletedTeam
+    async deleteTeam(id) {
+        const result = await this.teamsContainer.item(id, id).delete()
+        return result
     }
-}
-
+} 
 
 module.exports.Database = Database
 

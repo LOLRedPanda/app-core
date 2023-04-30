@@ -35,7 +35,10 @@ resource "azurerm_cosmosdb_sql_container" "teamContainer" {
   resource_group_name = var.resource_group_name
   account_name        = azurerm_cosmosdb_account.app_db.name
   database_name       = azurerm_cosmosdb_sql_database.database.name
-  partition_key_path  = "id"
+  partition_key_path  = "name"
+  unique_key {
+    paths = ["/name"]
+  }
 }
 
 resource "azurerm_cosmosdb_sql_container" "playersContainer" {

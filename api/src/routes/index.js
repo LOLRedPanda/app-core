@@ -3,18 +3,17 @@ const { TeamController } = require('../controllers/team')
 const { MatchesController } = require('../controllers/matches')
 const { RiotApi } = require('../services/riotApi')
 const { Database } = require('../services/database')
+const bodyParser = require('body-parser')
 
 
 function Routes(app) {
 	const db = new Database()
-
-	app.post('/team', async (req, res) => {
+	const jsonParser = bodyParser.json() 
+	
+	app.post('/team', jsonParser, async (req, res) => {
 		const team = new TeamController(db)
 		try {
-			const teamName = req.query.name
-			const newTeam = {
-				name: teamName
-			}
+			const newTeam  = req.body
 			const data = await team.addTeam(newTeam)
 			res.send(data)
 		} catch (e) {
@@ -59,7 +58,7 @@ function Routes(app) {
 			res.send(data)
 		} catch (e) {
 			console.log(e)
-			res.send(e)
+			res.send(e) 
 		}
 	})
 

@@ -24,8 +24,8 @@ class Database {
         return items[0]
     }
 
-    async deleteTeam(id) {
-        const result = await this.teamsContainer.item(id, id).delete()
+    async deleteTeam(team) {
+        const result = await this.teamsContainer.item(team.id, team.name).delete()
         return result
     }
 } 

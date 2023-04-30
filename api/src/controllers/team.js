@@ -28,7 +28,6 @@ class TeamController {
 	async deleteTeam(teamName){
 		try{
 			const result = await this.getTeam(teamName)
-			console.log(result)
 			const {item} = await this.cosmosDB.deleteTeam(result)
 			return {id: item.id}
 		}
